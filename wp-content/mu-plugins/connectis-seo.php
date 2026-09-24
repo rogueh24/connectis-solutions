@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v1 : premières métadonnées, plan du site, données structurées.
-const CONNECTIS_SEO_VERSION = 1;
+// v2 : descriptions sans « gratuit » (devis détaillé, financement).
+const CONNECTIS_SEO_VERSION = 2;
 
 /**
  * Métadonnées par page : chemin => [titre (≈60 car.), description (≈155 car.)].
@@ -19,7 +19,7 @@ function connectis_seo_definitions() {
     return [
         'accueil' => [
             'Informatique, vidéosurveillance, téléphonie à Nancy | Connectis',
-            "Connectis Solutions installe et maintient l'informatique, la vidéosurveillance et la téléphonie des professionnels à Nancy. Devis gratuit et détaillé.",
+            "Connectis Solutions installe et maintient l'informatique, la vidéosurveillance et la téléphonie des professionnels à Nancy. Devis détaillé et solutions de financement.",
         ],
         'nos-solutions' => [
             'Nos solutions pour professionnels | Connectis Solutions',
@@ -27,7 +27,7 @@ function connectis_seo_definitions() {
         ],
         'nos-solutions/materiel' => [
             'Informatique et matériel pour entreprises | Connectis',
-            "Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration par notre équipe à Nancy. Devis gratuit et détaillé.",
+            "Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration par notre équipe à Nancy. Devis détaillé et solutions de financement.",
         ],
         'nos-solutions/videosurveillance' => [
             'Vidéosurveillance professionnelle | Connectis Solutions',
@@ -54,8 +54,8 @@ function connectis_seo_definitions() {
             "Connectis Solutions, SAS basée à Nancy : conseil, installation et maintenance en informatique, vidéosurveillance et téléphonie pour les professionnels.",
         ],
         'devis-contact' => [
-            'Devis gratuit et contact | Connectis Solutions',
-            "Décrivez votre projet informatique, vidéosurveillance ou téléphonie : réponse rapide et devis gratuit et détaillé de Connectis Solutions à Nancy.",
+            'Devis, financement et contact | Connectis Solutions',
+            "Décrivez votre projet informatique, vidéosurveillance ou téléphonie : réponse rapide, devis détaillé et solutions de financement de Connectis Solutions à Nancy.",
         ],
         'recrutement' => [
             'Recrutement | Rejoindre Connectis Solutions',

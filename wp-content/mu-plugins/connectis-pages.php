@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v7 : « Nos solutions » développée (méthode, atouts, FAQ, confiance), titres « Services complémentaires », grilles de 3.
-const CONNECTIS_PAGES_VERSION = 7;
+// v8 : plus de « gratuit » (devis détaillé, solutions de financement).
+const CONNECTIS_PAGES_VERSION = 8;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -86,7 +86,7 @@ function cn_grid(array $cards) {
 function cn_steps() {
     $steps = [
         ['Échange sur site', "Nous nous déplaçons chez vous pour comprendre votre besoin et vos locaux."],
-        ['Devis détaillé', "Un devis gratuit, clair et chiffré poste par poste."],
+        ['Devis détaillé', "Un devis clair et chiffré, poste par poste."],
         ['Installation', "Livraison, installation et configuration par notre équipe."],
         ['Suivi & SAV', "Prise en main, maintenance et assistance : un interlocuteur unique."],
     ];
@@ -97,7 +97,7 @@ function cn_steps() {
     return $html . "</div>";
 }
 
-function cn_cta($title, $text = "Décrivez-nous votre projet : devis gratuit et détaillé.") {
+function cn_cta($title, $text = "Décrivez-nous votre projet : devis détaillé et solutions de financement.") {
     return "<div class='cn-cta'><h2>" . $title . "</h2><p>" . $text . "</p><p><a class='cn-btn' href='/devis-contact/'>Demander un devis</a></p></div>";
 }
 
@@ -122,7 +122,7 @@ function cn_trust() {
         $li .= "<li><span>" . $f[0] . "</span><strong>" . $f[1] . "</strong></li>";
     }
     $commit = [
-        "Devis détaillé et gratuit",
+        "Devis détaillé et solutions de financement",
         "Installation et configuration par notre équipe",
         "Matériel couvert par la garantie constructeur",
         "Un interlocuteur unique, du devis au SAV",
@@ -162,7 +162,7 @@ function cn_faq(array $items) {
 
 function cn_faq_common() {
     return [
-        ["Comment obtenir un devis ?", "Remplissez le formulaire ou écrivez-nous : nous revenons vers vous rapidement, puis nous nous déplaçons pour étudier votre besoin et établir un devis détaillé et gratuit."],
+        ["Comment obtenir un devis ?", "Remplissez le formulaire ou écrivez-nous : nous revenons vers vous rapidement, puis nous nous déplaçons pour étudier votre besoin et établir un devis détaillé."],
         ["Intervenez-vous directement chez nous ?", "Oui. Notre équipe se déplace dans vos locaux pour le conseil, l'installation et la mise en service."],
         ["Puis-je financer l'équipement en location (leasing) ?", "Oui, c'est possible : nous établissons des devis détaillés, poste par poste, utilisables pour une demande de financement auprès d'un de nos partenaires financiers. Nos informations légales (SIREN, RCS) sont publiques, et un extrait Kbis peut être communiqué sur demande."],
         ["Quelles garanties sur le matériel ?", "Le matériel installé bénéficie de la garantie constructeur. Un contrat de maintenance peut être souscrit séparément pour un suivi dans la durée."],
@@ -368,8 +368,8 @@ function connectis_pages_definitions() {
     $pages['devis-contact'] = [
         'title'   => 'Devis & Contact',
         'content' => "<!--cn--><div class='cn-narrow'>" . cn_strip()
-            . "<p class='cn-lead'>Une question, un projet ? Décrivez-nous votre besoin : notre équipe vous répond rapidement avec un devis clair et gratuit.</p>"
-            . "<ul class='cn-chips'><li>" . cn_i('check') . "Devis gratuit et détaillé</li><li>" . cn_i('clock') . "Réponse rapide</li><li>" . cn_i('users') . "Interlocuteur unique</li></ul>"
+            . "<p class='cn-lead'>Une question, un projet ? Décrivez-nous votre besoin : notre équipe vous répond rapidement avec un devis clair et détaillé.</p>"
+            . "<ul class='cn-chips'><li>" . cn_i('check') . "Devis détaillé et financement</li><li>" . cn_i('clock') . "Réponse rapide</li><li>" . cn_i('users') . "Interlocuteur unique</li></ul>"
             . "<div class='cn-form-card'><h2>Demande de devis</h2>" . $shortcode($f_devis, 'Demande de devis') . "<div class='cn-secure'><div class='cn-secure-in'>" . cn_i('lock') . "<span class='cn-secure-t'>Vos données servent uniquement à traiter votre demande. Aucune revente, aucune newsletter non sollicitée.</span></div></div></div>"
             . "<h2>Nous contacter directement</h2><div class='cn-contact-row'>"
             . "<a class='cn-mini' href='mailto:contact@connectis-solutions.fr'>" . cn_i('mail') . "<span><strong>E-mail</strong>contact@connectis-solutions.fr</span></a>"
