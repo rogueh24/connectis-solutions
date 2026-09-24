@@ -110,11 +110,11 @@ add_action('wp_head', function () {
     }
 }, 100);
 
-// Barre d'identité vérifiable, visible sur toutes les pages (confiance clients et organismes de financement).
+// Barre d'accès rapide au-dessus du menu (métiers, contact, devis). L'identité légale (SAS, SIREN, RCS) est dans le pied de page.
 add_action('wp_body_open', function () {
     echo '<div class="cn-topbar"><div class="cn-topbar-in">'
-        . '<span><strong>Connectis Solutions</strong> · SAS · SIREN 103 370 557 · RCS Nancy</span>'
-        . '<span class="cn-tb-right"><a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a> · Devis gratuit</span>'
+        . '<span><strong>Informatique</strong> · <strong>Vidéosurveillance</strong> · <strong>Téléphonie</strong> — Nancy</span>'
+        . '<span class="cn-tb-right"><a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a> · <a href="/devis-contact/">Devis gratuit</a></span>'
         . '</div></div>';
 });
 
