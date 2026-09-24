@@ -9,6 +9,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Interrupteur de mise en ligne : true = le public voit la page « en construction » (aperçu par jeton),
+// false = site public. Ne pas supprimer le fichier : le déploiement n'efface rien côté serveur.
+const CONNECTIS_MAINTENANCE = false;
+
 // Jeton d'aperçu : stocké en base (réglage REST, modifiable uniquement par un admin), JAMAIS dans Git.
 // Permet de voir le vrai site sans être connecté : https://…/?cp=<jeton> (pose un cookie de 12 h).
 add_action('init', function () {
@@ -21,6 +25,9 @@ add_action('init', function () {
 });
 
 add_action('template_redirect', function () {
+    if (!CONNECTIS_MAINTENANCE) {
+        return;
+    }
     if (is_user_logged_in() || is_admin() || (defined('REST_REQUEST') && REST_REQUEST) || (defined('DOING_CRON') && DOING_CRON) || (defined('WP_CLI') && WP_CLI)) {
         return;
     }
