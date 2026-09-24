@@ -173,3 +173,77 @@ add_action('init', function () {
         update_option('connectis_forms_error', $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
     }
 }, 30);
+
+/* ───────── Mise en page des formulaires : une seule colonne, tuiles de choix, consentement RGPD ───────── */
+
+function connectis_forms_layouts() {
+    $consent = '<p class="cn-consent">[acceptance your-consent] J\'accepte que mes données soient utilisées pour traiter ma demande, conformément à la <a href="/confidentialite/">politique de confidentialité</a>. [/acceptance]</p>';
+
+    $devis = <<<'FORM'
+<div class="cn-fstep"><span class="cn-num">1</span><h3>Votre besoin</h3></div>
+[radio your-service use_label_element default:1 "Informatique et matériel" "Vidéosurveillance" "Téléphonie et VoIP" "Internet et fibre optique" "Abonnements et forfaits" "Services et maintenance" "Plusieurs services / autre"]
+
+<div class="cn-fstep"><span class="cn-num">2</span><h3>Vos coordonnées</h3></div>
+<p class="cn-field"><label>Nom et prénom *<br>[text* your-name autocomplete:name]</label></p>
+<p class="cn-field"><label>E-mail *<br>[email* your-email autocomplete:email]</label></p>
+<p class="cn-field"><label>Téléphone<br>[tel your-tel autocomplete:tel]</label></p>
+<p class="cn-field"><label>Entreprise<br>[text your-company autocomplete:organization]</label></p>
+
+<div class="cn-fstep"><span class="cn-num">3</span><h3>Votre projet</h3></div>
+<p class="cn-field"><label>Décrivez brièvement votre besoin<br>[textarea your-message x6 placeholder "Nombre de postes, de caméras ou de lignes, délais souhaités, financement envisagé…"]</label></p>
+{{CONSENT}}
+[submit "Envoyer ma demande de devis"]
+FORM;
+
+    $contact = <<<'FORM'
+<p class="cn-field"><label>Nom et prénom *<br>[text* your-name autocomplete:name]</label></p>
+<p class="cn-field"><label>E-mail *<br>[email* your-email autocomplete:email]</label></p>
+<p class="cn-field"><label>Objet<br>[text your-subject]</label></p>
+<p class="cn-field"><label>Message *<br>[textarea* your-message x5]</label></p>
+{{CONSENT}}
+[submit "Envoyer"]
+FORM;
+
+    $candidature = <<<'FORM'
+<p class="cn-field"><label>Nom et prénom *<br>[text* your-name autocomplete:name]</label></p>
+<p class="cn-field"><label>E-mail *<br>[email* your-email autocomplete:email]</label></p>
+<p class="cn-field"><label>Téléphone<br>[tel your-tel autocomplete:tel]</label></p>
+<p class="cn-field"><label>Poste souhaité<br>[text your-poste]</label></p>
+<p class="cn-field"><label>Votre CV (PDF, 5 Mo maximum)<br>[file your-cv limit:5mb filetypes:pdf]</label></p>
+<p class="cn-field"><label>Message<br>[textarea your-message x5]</label></p>
+{{CONSENT}}
+[submit "Envoyer ma candidature"]
+FORM;
+
+    return [
+        'devis'       => str_replace('{{CONSENT}}', $consent, $devis),
+        'contact'     => str_replace('{{CONSENT}}', $consent, $contact),
+        'candidature' => str_replace('{{CONSENT}}', $consent, $candidature),
+    ];
+}
+
+add_action('init', function () {
+    if (get_option('connectis_forms_layout_v1') || !get_option('connectis_forms_v1') || !class_exists('WPCF7_ContactForm') || !post_type_exists('wpcf7_contact_form')) {
+        return;
+    }
+    try {
+        $ids = (array) get_option('connectis_forms_ids', []);
+        foreach (connectis_forms_layouts() as $key => $template) {
+            if (empty($ids[$key])) {
+                continue;
+            }
+            $form = WPCF7_ContactForm::get_instance((int) $ids[$key]);
+            if (!$form) {
+                continue;
+            }
+            $props = $form->get_properties();
+            $props['form'] = $template;
+            $form->set_properties($props);
+            $form->save();
+        }
+        update_option('connectis_forms_layout_error', null);
+    } catch (\Throwable $e) {
+        update_option('connectis_forms_layout_error', $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
+    }
+    update_option('connectis_forms_layout_v1', 1);
+}, 31);
