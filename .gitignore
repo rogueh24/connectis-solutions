@@ -5,6 +5,13 @@ wp-content/cache/
 wp-content/upgrade/
 *.log
 
+# Identifiants notés localement — ne jamais versionner (dépôt public)
+*admin*.txt
+*identifiant*.txt
+*password*.txt
+*credentials*
+wordpress admin.txt
+
 # OS / éditeurs
 .DS_Store
 Thumbs.db
