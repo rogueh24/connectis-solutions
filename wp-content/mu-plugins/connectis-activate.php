@@ -110,6 +110,15 @@ add_action('rest_api_init', function () {
                     'forms_layout_done'  => (bool) get_option('connectis_forms_layout_v1'),
                     'forms_layout_error' => get_option('connectis_forms_layout_error', null),
                 ],
+                'seo'                => [
+                    'version' => (int) get_option('connectis_seo_version', 0),
+                    'pages'   => (int) get_option('connectis_seo_pages_done', 0),
+                    'error'   => get_option('connectis_seo_error', null),
+                ],
+                'admin'              => [
+                    'version' => (int) get_option('connectis_admin_version', 0),
+                    'error'   => get_option('connectis_admin_error', null),
+                ],
                 'theme_config'       => [
                     'version' => (int) get_option('connectis_theme_config_version', 0),
                     'error'   => get_option('connectis_theme_config_error', null),
