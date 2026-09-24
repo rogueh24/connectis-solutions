@@ -3,14 +3,15 @@ wp-config.php
 wp-content/uploads/
 wp-content/cache/
 wp-content/upgrade/
-*.log
+wp-content/*.log
 
-# Identifiants notés localement — ne jamais versionner (dépôt public)
-*admin*.txt
-*identifiant*.txt
-*password*.txt
-*credentials*
-wordpress admin.txt
+# Identifiants notés localement — ne jamais versionner (dépôt public).
+# Ancrés à la racine (/) pour ne pas exclure par erreur des fichiers d'extensions.
+/*admin*.txt
+/*identifiant*.txt
+/*password*.txt
+/*credentials*
+/wordpress admin.txt
 
 # OS / éditeurs
 .DS_Store
@@ -18,10 +19,13 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Dépendances
-node_modules/
-vendor/
+# Dépendances du dépôt lui-même (racine uniquement).
+# ATTENTION : ne PAS ignorer vendor/ ou node_modules/ à toute profondeur — les extensions
+# WordPress embarquent leur propre vendor/ (autoload PHP) qui doit être déployé, sinon
+# activation impossible (ex. Contact Form 7, Blocksy Companion).
+/node_modules/
+/vendor/
 
-# Sauvegardes
-*.sql
-*.zip
+# Sauvegardes locales (racine uniquement — certaines extensions embarquent des .sql de schéma)
+/*.sql
+/*.zip
