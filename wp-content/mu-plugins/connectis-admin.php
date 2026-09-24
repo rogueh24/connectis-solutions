@@ -190,3 +190,19 @@ add_action('login_enqueue_scripts', function () {
 </style>
     <?php
 });
+
+/* ───────────────────────── Tableau de bord : adresse sans « index.php » ───────────────────────── */
+
+// L'adresse exacte /wp-admin/index.php est signalée à tort (hameçonnage) par la navigation sécurisée de Google.
+// /wp-admin/ mène au même tableau de bord : on n'utilise que celle-là.
+add_filter('admin_url', function ($url, $path) {
+    return ($path === 'index.php') ? admin_url() : $url;
+}, 10, 2);
+
+add_action('admin_footer', function () {
+    ?>
+<script>
+document.querySelectorAll('a[href="index.php"], a[href$="/wp-admin/index.php"]').forEach(function (a) { a.setAttribute('href', './'); });
+</script>
+    <?php
+});
