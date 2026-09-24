@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Connectis — Identité visuelle (import du logo)
- * Description: Importe une fois le logo complet et le favicon dans la médiathèque à partir des fichiers déployés (aucun appel réseau), puis les assigne comme logo du thème et icône du site. Idempotent, tolérant aux erreurs.
+ * Description: Importe une fois le logo complet et le favicon dans la médiathèque (fichiers déployés, aucun appel réseau) et les assigne comme logo/icône du site ; injecte la charte graphique CSS. Idempotent, tolérant aux erreurs.
  * Version: 1.0
  */
 
@@ -57,3 +57,11 @@ add_action('init', function () {
     // Une seule tentative : pour rejouer, incrémenter la version de l'option.
     update_option('connectis_branding_v1', 1);
 }, 40);
+
+// Charte graphique : injecte connectis-branding/custom.css dans <head>, après les styles du thème.
+add_action('wp_head', function () {
+    $file = __DIR__ . '/connectis-branding/custom.css';
+    if (is_readable($file)) {
+        echo '<style id="connectis-branding">' . "\n" . file_get_contents($file) . "\n</style>\n";
+    }
+}, 100);

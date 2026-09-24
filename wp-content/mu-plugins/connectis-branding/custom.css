@@ -1,0 +1,111 @@
+/*
+ * Charte graphique Connectis Solutions — CSS additionnel du thème Blocksy.
+ *
+ * Source de vérité : ce fichier, injecté dans <head> par connectis-branding.php (après les
+ * styles du thème). L'outil « CSS additionnel » de l'API MCP ne persiste rien : ne pas l'utiliser.
+ * Palette du logo : navy #070d1f · bleu #1b63e6 · bleu foncé #123a8c · cyan #33d0e8.
+ */
+:root {
+  --cn-navy: #070d1f;
+  --cn-navy-2: #0c1730;
+  --cn-blue: #1b63e6;
+  --cn-blue-dark: #123a8c;
+  --cn-cyan: #33d0e8;
+  --cn-grey: #cfd8e8;
+}
+
+/* ── En-tête : sombre (le logo d'origine contient du texte blanc), identique partout ── */
+#header [data-row] {
+  background: linear-gradient(180deg, #070d1f 0%, #0a1430 100%) !important;
+  border-bottom: 1px solid rgba(51, 208, 232, .18) !important;
+  --height: 108px !important;
+}
+#header [data-id="logo"] { --logo-max-height: 90px !important; }
+#header .site-logo-container img,
+#header img.default-logo {
+  height: auto !important;
+  max-height: 90px !important;
+  width: auto !important;
+  filter: drop-shadow(0 4px 14px rgba(27, 99, 230, .35));
+}
+#header a, #header .ct-label, #header .site-title a { color: #fff !important; }
+#header .ct-icon, #header svg { fill: #fff !important; }
+#header .site-title-container { display: none !important; }   /* le logo complet contient déjà le nom */
+#header .ct-header-trigger,
+#header .ct-header-search,
+#header .ct-account-item { transition: transform .2s ease, opacity .2s ease; }
+#header .ct-header-trigger:hover,
+#header .ct-header-search:hover,
+#header .ct-account-item:hover { transform: translateY(-2px); opacity: .8; }
+
+/* ── Panneau du menu (hamburger) ── */
+#offcanvas .ct-panel-inner { background: linear-gradient(160deg, #070d1f 0%, #0c1730 100%) !important; }
+#offcanvas a, #offcanvas .ct-menu-link, #offcanvas .ct-toggle-dropdown-mobile { color: #fff !important; }
+#offcanvas .ct-icon, #offcanvas svg { fill: #fff !important; }
+#offcanvas .menu > li > a { font-weight: 600; letter-spacing: .3px; }
+#offcanvas .menu > li > a:hover { color: var(--cn-cyan) !important; }
+#offcanvas .sub-menu a { color: var(--cn-grey) !important; }
+
+/* ── Accueil : le hero porte déjà le titre, on masque « Accueil » ── */
+.home .hero-section { display: none !important; }
+
+/* ── Boutons (liens boutons du contenu + Contact Form 7) ── */
+a[style*="background:#1b63e6"],
+.wpcf7-submit {
+  background: linear-gradient(90deg, var(--cn-blue), var(--cn-blue-dark)) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  padding: 13px 26px !important;
+  font-weight: 600 !important;
+  display: inline-block;
+  text-decoration: none !important;
+  box-shadow: 0 8px 22px rgba(27, 99, 230, .28);
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
+}
+a[style*="background:#1b63e6"]:hover,
+.wpcf7-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(27, 99, 230, .4); }
+
+/* ── Cartes « Nos solutions » ── */
+div[style*="flex:1 1 280px"] {
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  background: #fff;
+}
+div[style*="flex:1 1 280px"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(27, 99, 230, .14);
+  border-color: var(--cn-blue) !important;
+}
+div[style*="flex:1 1 280px"] a { text-decoration: none; font-weight: 600; }
+
+/* ── Formulaires ── */
+.wpcf7 input[type="text"], .wpcf7 input[type="email"], .wpcf7 input[type="tel"],
+.wpcf7 select, .wpcf7 textarea {
+  width: 100%;
+  border: 1px solid var(--cn-grey) !important;
+  border-radius: 10px !important;
+  padding: 11px 14px !important;
+  font-family: inherit;
+  background: #fff;
+}
+.wpcf7 input:focus, .wpcf7 select:focus, .wpcf7 textarea:focus {
+  outline: none !important;
+  border-color: var(--cn-blue) !important;
+  box-shadow: 0 0 0 3px rgba(27, 99, 230, .15) !important;
+}
+.wpcf7-not-valid-tip { color: #e0245e; font-size: .85em; }
+.wpcf7-response-output { border-radius: 10px !important; }
+
+/* ── Pied de page ── */
+#footer [data-row] { background: var(--cn-navy) !important; }
+#footer, #footer .ct-footer-copyright { color: var(--cn-grey) !important; text-align: center; }
+#footer a { color: #fff !important; }
+#footer a:hover { color: var(--cn-cyan) !important; }
+
+/* ── Mobile ── */
+@media (max-width: 999px) {
+  #header [data-row] { --height: 80px !important; }
+  #header [data-id="logo"] { --logo-max-height: 64px !important; }
+  #header .site-logo-container img, #header img.default-logo { max-height: 64px !important; }
+}
