@@ -65,3 +65,42 @@ add_action('wp_head', function () {
         echo '<style id="connectis-branding">' . "\n" . file_get_contents($file) . "\n</style>\n";
     }
 }, 100);
+
+// Barre d'identité vérifiable, visible sur toutes les pages (confiance clients et organismes de financement).
+add_action('wp_body_open', function () {
+    echo '<div class="cn-topbar"><div class="cn-topbar-in">'
+        . '<span><strong>Connectis Solutions</strong> · SAS · SIREN 103 370 557 · RCS Nancy</span>'
+        . '<span class="cn-tb-right"><a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a> · Devis gratuit</span>'
+        . '</div></div>';
+});
+
+// Apparition douce des blocs au défilement. Sans JavaScript, tout reste visible.
+add_action('wp_footer', function () {
+    ?>
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) { return; }
+  var d = document, h = d.documentElement;
+  h.classList.add('cn-js');
+  var els = d.querySelectorAll('.cn-card,.cn-step,.cn-feature,.cn-strip,.cn-finance,.cn-trust-id,.cn-trust-commit,.cn-cta,.cn-form-card,.cn-faq,.cn-mini');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) { return; }
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+      setTimeout(function () { e.target.style.transitionDelay = ''; }, 900);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  els.forEach(function (el, i) {
+    el.classList.add('cn-reveal');
+    el.style.transitionDelay = ((i % 4) * 70) + 'ms';
+    io.observe(el);
+  });
+  // Filet de sécurité : rien ne doit rester masqué (capture, impression, défilement rapide).
+  setTimeout(function () {
+    d.querySelectorAll('.cn-reveal:not(.in)').forEach(function (el) { el.classList.add('in'); });
+  }, 4000);
+})();
+</script>
+    <?php
+}, 100);
