@@ -109,3 +109,106 @@ div[style*="flex:1 1 280px"] a { text-decoration: none; font-weight: 600; }
   #header [data-id="logo"] { --logo-max-height: 64px !important; }
   #header .site-logo-container img, #header img.default-logo { max-height: 64px !important; }
 }
+
+/* ══ THÈME SOMBRE — même ADN que la page en construction (marine, halos, verre dépoli) ══════════ */
+html { background: #070d1f !important; }
+body {
+  background: transparent !important;
+  color: var(--cn-grey);
+}
+/* Halos lumineux animés + grille technique, fixes derrière tout le contenu */
+body::before {
+  content: ""; position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(38vmax 38vmax at 6% 4%, rgba(27,99,230,.42), transparent 62%),
+    radial-gradient(34vmax 34vmax at 96% 96%, rgba(51,208,232,.20), transparent 62%),
+    radial-gradient(28vmax 28vmax at 72% 38%, rgba(18,58,140,.38), transparent 62%);
+  animation: cn-aurora 26s ease-in-out infinite alternate;
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(51,208,232,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51,208,232,.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 30%, #000 25%, transparent 100%);
+          mask-image: radial-gradient(80% 70% at 50% 30%, #000 25%, transparent 100%);
+}
+@keyframes cn-aurora {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+#main-container, #main, .site-main, [data-prefix] .entry-content, .ct-container-full { background: transparent !important; }
+
+/* Titres et texte */
+h1, h2, h3, h4, h5, h6, .page-title, .entry-title, .ct-widget .widget-title { color: #fff !important; }
+.entry-content, .entry-content p, .entry-content li { color: var(--cn-grey); }
+.entry-content a:not([style*="background"]):not(.wpcf7-submit) { color: #6ab7ff; text-decoration: none; }
+.entry-content a:not([style*="background"]):not(.wpcf7-submit):hover { color: var(--cn-cyan); }
+.entry-content hr { border: 0 !important; border-top: 1px solid rgba(255,255,255,.12) !important; background: transparent !important; height: 0; }
+
+/* Cartes en verre dépoli (Nos solutions, valeurs) */
+div[style*="flex:1 1 280px"], div[style*="flex:1 1 220px"] {
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 18px !important;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+}
+div[style*="flex:1 1 220px"] { padding: 20px 22px; }
+div[style*="flex:1 1 280px"]:hover {
+  border-color: rgba(51,208,232,.55) !important;
+  box-shadow: 0 24px 56px rgba(27,99,230,.28), inset 0 1px 0 rgba(255,255,255,.08);
+}
+div[style*="flex:1 1 280px"] a { color: var(--cn-cyan) !important; }
+div[style*="flex:1 1 280px"] p { color: var(--cn-grey) !important; }
+
+/* Encadré d'appel à l'action (fond clair inline) */
+div[style*="background:#eef4fd"] {
+  background: linear-gradient(135deg, rgba(27,99,230,.28), rgba(51,208,232,.10)) !important;
+  border: 1px solid rgba(51,208,232,.28) !important;
+  border-radius: 20px !important;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+div[style*="background:#eef4fd"] p, div[style*="background:#eef4fd"] strong { color: #fff !important; }
+
+/* Hero (dégradé inline) : liseré + halo */
+div[style*="linear-gradient(135deg,#070d1f"] {
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 0 80px rgba(27,99,230,.20);
+}
+
+/* Images des pages services */
+.entry-content img { border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+
+/* Formulaires en verre dépoli */
+.wpcf7 label { color: var(--cn-grey); font-weight: 500; }
+.wpcf7 input[type="text"], .wpcf7 input[type="email"], .wpcf7 input[type="tel"],
+.wpcf7 select, .wpcf7 textarea {
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  color: #fff !important;
+}
+.wpcf7 input::placeholder, .wpcf7 textarea::placeholder { color: rgba(207,216,232,.5); }
+.wpcf7 select option { color: #0c1730; background: #fff; }
+.wpcf7 input[type="file"] { color: var(--cn-grey); }
+.wpcf7 select { height: auto !important; min-height: 48px; line-height: 1.4 !important; appearance: auto; }
+.wpcf7 input:focus, .wpcf7 select:focus, .wpcf7 textarea:focus {
+  background: rgba(255,255,255,.09) !important; border-color: var(--cn-cyan) !important;
+  box-shadow: 0 0 0 3px rgba(51,208,232,.18) !important;
+}
+.wpcf7-response-output { color: #fff; border-color: rgba(51,208,232,.4) !important; }
+
+/* Pied de page : marine profond + liseré lumineux */
+#footer { border-top: 1px solid rgba(51,208,232,.16); background: #050a17 !important; }
+#footer [data-row] { background: transparent !important; padding: 8px 0; }
+
+@media (max-width: 600px) {
+  div[style*="linear-gradient(135deg,#070d1f"] { padding: 40px 22px !important; border-radius: 20px !important; }
+  div[style*="linear-gradient(135deg,#070d1f"] h1 { font-size: 1.7rem !important; line-height: 1.25 !important; }
+  div[style*="linear-gradient(135deg,#070d1f"] p { font-size: 1rem !important; }
+}
+@media (prefers-reduced-motion: reduce) { body::before { animation: none; } }
+
