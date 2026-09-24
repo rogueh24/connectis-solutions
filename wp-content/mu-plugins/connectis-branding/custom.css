@@ -478,7 +478,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 .cn-mini > span:last-child { align-items: center; overflow-wrap: anywhere; }
 .wpcf7-submit:disabled, .wpcf7-submit[disabled] { opacity: .6; cursor: not-allowed; transform: none !important; box-shadow: none; }
 
-/* Menu : le logo remplace l'entrée « Accueil » (cliquable, ramène à l'accueil) */
+/* Menu hamburger : le logo d'origine (nom en dessous) remplace l'entrée « Accueil » — cliquable, ramène à l'accueil ; l'en-tête garde le logo horizontal */
 #offcanvas li.cn-menu-logo { margin-bottom: 14px; }
-#offcanvas li.cn-menu-logo > a { display: block !important; width: 230px; height: 62px; padding: 0 !important; font-size: 0 !important; line-height: 0; color: transparent !important; background: url('/wp-content/mu-plugins/connectis-branding/logo-horizontal.png') left center / contain no-repeat; transition: transform .2s ease, filter .2s ease; }
+#offcanvas li.cn-menu-logo > a { display: block !important; width: 150px; height: 132px; padding: 0 !important; font-size: 0 !important; line-height: 0; color: transparent !important; background: url('/wp-content/mu-plugins/connectis-maintenance/logo-full.png') left center / contain no-repeat; transition: transform .2s ease, filter .2s ease; }
 #offcanvas li.cn-menu-logo > a:hover { transform: translateY(-2px); filter: drop-shadow(0 6px 16px rgba(27,99,230,.5)); }
