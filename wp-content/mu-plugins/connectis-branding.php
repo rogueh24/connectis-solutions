@@ -152,6 +152,16 @@ add_action('wp_footer', function () {
 // Menu : le logo remplace l'entrée « Accueil » (cliquable, ramène à l'accueil), ordre stable, « Devis & Contact » en appel à l'action.
 add_filter('wp_nav_menu_objects', function ($items) {
     $front = (int) get_option('page_on_front');
+    // « Accueil » peut être un lien personnalisé vers la racine du site ou la page d'accueil.
+    $is_home = function ($item) use ($front) {
+        if ((int) $item->menu_item_parent) {
+            return false;
+        }
+        if ($item->object === 'page' && (int) $item->object_id === $front) {
+            return true;
+        }
+        return rtrim((string) $item->url, '/') === rtrim(home_url(), '/');
+    };
     $order = ['nos-solutions' => 2, 'a-propos' => 3, 'recrutement' => 4, 'devis-contact' => 5];
 
     $top = [];
@@ -171,17 +181,17 @@ add_filter('wp_nav_menu_objects', function ($items) {
         $page = ($item->object === 'page') ? get_post((int) $item->object_id) : null;
         return $page ? $page->post_name : '';
     };
-    usort($top, function ($a, $b) use ($order, $slug_of) {
-        $pa = ((int) $a->object_id === (int) get_option('page_on_front') && $a->object === 'page') ? 1 : ($order[$slug_of($a)] ?? 50);
-        $pb = ((int) $b->object_id === (int) get_option('page_on_front') && $b->object === 'page') ? 1 : ($order[$slug_of($b)] ?? 50);
+    usort($top, function ($a, $b) use ($order, $slug_of, $is_home) {
+        $pa = $is_home($a) ? 1 : ($order[$slug_of($a)] ?? 50);
+        $pb = $is_home($b) ? 1 : ($order[$slug_of($b)] ?? 50);
         return $pa <=> $pb;
     });
 
     $sorted = [];
     $i = 1;
-    $append = function ($item) use (&$sorted, &$i, &$append, $children, $slug_of) {
+    $append = function ($item) use (&$sorted, &$i, &$append, $children, $slug_of, $is_home) {
         $item->menu_order = $i++;
-        if (!(int) $item->menu_item_parent && $item->object === 'page' && (int) $item->object_id === $front) {
+        if ($is_home($item)) {
             $item->classes[] = 'cn-menu-logo';
             $item->attr_title = 'Connectis Solutions — accueil';
         }
