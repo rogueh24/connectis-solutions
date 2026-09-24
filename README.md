@@ -8,7 +8,7 @@ abonnements, services & maintenance.
 |---|---|
 | **Domaine** | [connectis-solutions.fr](https://connectis-solutions.fr) |
 | **Contact** | contact@connectis-solutions.fr |
-| **Hébergement** | Planet Hoster (N0C — node240-eu.n0c.com) |
+| **Hébergement** | Planet Hoster |
 | **Stack** | WordPress · thème [Blocksy](https://www.blocksy.wordpress.com) + Companion · MySQL |
 | **Cahier des charges** | [docs/Connectis_Solutions_Cahier_des_Charges_et_Projet_Commercial.pdf](docs/Connectis_Solutions_Cahier_des_Charges_et_Projet_Commercial.pdf) |
 
