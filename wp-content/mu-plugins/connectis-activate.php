@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 
 add_action('plugins_loaded', function () {
 
-    if (get_option('connectis_activated_v2')) {
+    if (get_option('connectis_activated_v3')) {
         return;
     }
 
@@ -31,9 +31,13 @@ add_action('plugins_loaded', function () {
     }
 
     // --- Extensions ---
+    // SEOPress volontairement exclu : fatale sur PHP 8+ (référence à la constante
+    // SITE_ID_CURRENT_SITE, réservée au multisite, sans garde defined()) dans
+    // sp-core.php. Cassait le site entier à chaque requête (pas seulement à
+    // l'activation, impossible à intercepter via try/catch ici). À réactiver une
+    // fois une version corrigée disponible, ou remplacé par une autre extension SEO.
     $plugins = [
         'litespeed-cache/litespeed-cache.php',
-        'seopress/seopress.php',
         'suremails/suremails.php',
         'honeypot/wp-armour.php',
         'blocksy-companion/blocksy-companion.php',
@@ -65,7 +69,7 @@ add_action('plugins_loaded', function () {
     }
 
     update_option('connectis_activation_errors', $errors);
-    update_option('connectis_activated_v2', 1);
+    update_option('connectis_activated_v3', 1);
 }, 1);
 
 // Filet de sécurité : enregistre la dernière erreur fatale PHP (d'où qu'elle vienne)
