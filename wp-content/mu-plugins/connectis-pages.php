@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-const CONNECTIS_PAGES_VERSION = 1;
+const CONNECTIS_PAGES_VERSION = 2;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
