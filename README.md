@@ -73,5 +73,8 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - [ ] Contenus intégrés (textes, photos, logos partenaires)
 - [x] Formulaires de devis / contact / candidature (Contact Form 7)
 - [ ] Configuration d'envoi des e-mails (SureMail) et bandeau cookies RGPD
-- [ ] Charte graphique du site public (header/menu hamburger, boutons, pied de page) aux couleurs du logo
+- [x] Charte graphique du site public (thème sombre, en-tête + menu hamburger, boutons, pied de page) aux couleurs du logo
+- [ ] Relecture juridique (mentions légales : hébergeur ; CGV ; politique de confidentialité)
+- [ ] Contenus réels (numéro de téléphone, photos de l'équipe, logos partenaires, références)
+- [ ] Mise en ligne : retirer le mode construction (voir docs/ENGINEERING.md §7)
 - [ ] Recette & mise en ligne définitive

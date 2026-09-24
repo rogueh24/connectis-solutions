@@ -22,7 +22,15 @@ format AAAA-MM-JJ.
   responsive (vérifié en 1440×900, 390×844 et 320×568), favicon carré.
 - Documentation d'ingénierie réécrite (leçons apprises, procédure d'ajout d'extension, accès).
 
+- **Thème sombre sur tout le site**, dans l'esprit de la page en construction : fond marine à halos animés
+  et grille technique, cartes/encadrés en verre dépoli, liens cyan, formulaires sombres, pied de page marine ;
+  en-tête sombre avec le logo complet, recherche + connexion + **menu hamburger sur ordinateur comme sur mobile**.
+- Menus assignés à Blocksy (principal + mobile, pied de page) avec les 6 sous-pages sous « Nos solutions » ;
+  logo et favicon importés en médiathèque ; français (dates, fuseau Europe/Paris, slogan).
+- **Mode aperçu** protégé par jeton pour voir le vrai site pendant la construction.
+
 ### Corrigé (session du soir)
+- Menu affiché par ordre alphabétique : emplacements de menu enregistrés pour l'ancien thème, réassignés par l'API.
 - **Site en panne (HTTP 500)** : extension `seopress` installée par erreur (mauvais slug, vieux plugin
   ThemeKraft multisite), remplacée par `wp-seopress` et supprimée du serveur via l'API.
 - **`.gitignore`** excluait `vendor/` et `*.sql` des extensions (Contact Form 7 inactivable) : règles ancrées à la racine.

@@ -92,7 +92,25 @@ Les commits assistés par un agent portent `Co-Authored-By: Claude Sonnet 5 <nor
 Un agent IA ne saisit jamais un mot de passe ou un jeton dans un fichier, un formulaire ou un terminal :
 l'humain les place lui-même.
 
-## 7. Activation automatique (historique)
+## 7. Design, aperçu et mode construction
+
+- **Mode construction** : `connectis-maintenance.php` sert la page d'attente (HTTP 503) à tout visiteur non
+  connecté. Pour **mettre le site en ligne**, retirer ce mu-plugin (un commit) ou le renommer en `.off`.
+- **Mode aperçu** : `https://connectis-solutions.fr/?cp=<jeton>` montre le vrai site sans compte (cookie 12 h).
+  Le jeton est le réglage REST `connectis_preview_token` (base de données, **jamais dans Git**) ; le
+  changer = `settings/update`. Les réponses d'aperçu sont `no-cache` pour ne jamais être servies au public.
+- **Configuration du thème** : `connectis-theme-config.php` pose les réglages Blocksy inaccessibles par
+  l'API (en-tête `header_placements`, palette `colorPalette`) ; à relancer en incrémentant
+  `CONNECTIS_THEME_CONFIG_VERSION`. Les emplacements de menu se règlent par l'API (`menus/update` →
+  `locations`) — `nav_menu_locations` est propre à chaque thème, d'où le menu alphabétique initial.
+- **Charte CSS** : `mu-plugins/connectis-branding/custom.css`, injecté dans `<head>` par
+  `connectis-branding.php`. L'outil « CSS additionnel » de l'API MCP **ne persiste rien** (relecture vide).
+- **Itérer sans déployer** : enregistrer le HTML réel (avec `?cp=`), y injecter `<base href>` + le CSS candidat,
+  puis rendre avec Chrome headless (ordinateur, iframe 390 px pour le mobile, script pour ouvrir le tiroir
+  du menu). Ne déployer qu'une fois le rendu validé.
+- Les images de `mu-plugins/connectis-content-seed/images/` viennent de Pexels (licence libre).
+
+## 8. Activation automatique (historique)
 
 `connectis-activate.php` a activé Blocksy et les premières extensions au premier chargement. L'activation
 se fait désormais **par l'API** (plus contrôlée, cf. §3). Le fichier reste utile pour son endpoint de
