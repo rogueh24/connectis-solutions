@@ -1,0 +1,20 @@
+# WordPress core / secrets — jamais versionnés
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+*.log
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dépendances
+node_modules/
+vendor/
+
+# Sauvegardes
+*.sql
+*.zip
