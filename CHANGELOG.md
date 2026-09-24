@@ -29,6 +29,13 @@ format AAAA-MM-JJ.
   logo et favicon importés en médiathèque ; français (dates, fuseau Europe/Paris, slogan).
 - **Mode aperçu** protégé par jeton pour voir le vrai site pendant la construction.
 
+### Modifié (positionnement)
+- Message central recentré sur **informatique, vidéosurveillance et téléphonie** ; « sécurisation / sécurité » retiré
+  de la page en construction, de l'accueil, de « Nos solutions », de « À propos » et du slogan du site.
+- Accueil et « Nos solutions » : trois grandes cartes avec photo (Informatique, Vidéosurveillance, Téléphonie),
+  puis « Et aussi » (fibre, abonnements, services). Page « Matériel informatique & télécom » renommée
+  « Informatique & matériel » (URL inchangée), placée en premier dans le menu.
+
 ### Corrigé (session du soir)
 - Menu affiché par ordre alphabétique : emplacements de menu enregistrés pour l'ancien thème, réassignés par l'API.
 - **Site en panne (HTTP 500)** : extension `seopress` installée par erreur (mauvais slug, vieux plugin
