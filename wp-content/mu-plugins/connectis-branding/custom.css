@@ -43,8 +43,8 @@
 #offcanvas .ct-panel-inner { background: linear-gradient(160deg, #070d1f 0%, #0c1730 100%) !important; }
 #offcanvas a, #offcanvas .ct-menu-link, #offcanvas .ct-toggle-dropdown-mobile { color: #fff !important; }
 #offcanvas .ct-icon, #offcanvas svg { fill: #fff !important; }
-#offcanvas .menu > li > a { font-weight: 600; letter-spacing: .3px; }
-#offcanvas .menu > li > a:hover { color: var(--cn-cyan) !important; }
+#offcanvas nav > ul > li > a { font-weight: 600; letter-spacing: .3px; }
+#offcanvas nav > ul > li > a:hover { color: var(--cn-cyan) !important; }
 #offcanvas .sub-menu a { color: var(--cn-grey) !important; }
 
 /* ── Accueil : le hero porte déjà le titre, on masque « Accueil » ── */
@@ -466,9 +466,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 @media print { .cn-js .cn-reveal:not(.in) { opacity: 1 !important; translate: none !important; } }
 
 /* Menu : « Devis & Contact » en appel à l'action */
-#offcanvas .menu > li.cn-menu-cta { margin-top: 18px; }
-#offcanvas .menu > li.cn-menu-cta > a { display: inline-flex !important; align-items: center; width: auto !important; padding: 13px 26px !important; border-radius: 14px; background: linear-gradient(135deg, var(--cn-blue), #2f80ff); box-shadow: 0 12px 30px rgba(27,99,230,.4); transition: transform .2s ease, box-shadow .2s ease; }
-#offcanvas .menu > li.cn-menu-cta > a:hover { color: #fff !important; transform: translateY(-2px); box-shadow: 0 16px 36px rgba(27,99,230,.55); }
+#offcanvas li.cn-menu-cta { margin-top: 18px; }
+#offcanvas li.cn-menu-cta > a { display: inline-flex !important; align-items: center; width: auto !important; padding: 13px 26px !important; border-radius: 14px; background: linear-gradient(135deg, var(--cn-blue), #2f80ff); box-shadow: 0 12px 30px rgba(27,99,230,.4); transition: transform .2s ease, box-shadow .2s ease; }
+#offcanvas li.cn-menu-cta > a:hover { color: #fff !important; transform: translateY(-2px); box-shadow: 0 16px 36px rgba(27,99,230,.55); }
 
 /* Cohérence : titres de section dans les colonnes étroites, blocs de confiance et contacts empilés */
 .cn-narrow > h2 { text-align: center; }
@@ -478,6 +478,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 .wpcf7-submit:disabled, .wpcf7-submit[disabled] { opacity: .6; cursor: not-allowed; transform: none !important; box-shadow: none; }
 
 /* Menu : le logo remplace l'entrée « Accueil » (cliquable, ramène à l'accueil) */
-#offcanvas .menu > li.cn-menu-logo { margin-bottom: 14px; }
-#offcanvas .menu > li.cn-menu-logo > a { display: block !important; width: 230px; height: 62px; padding: 0 !important; font-size: 0 !important; line-height: 0; color: transparent !important; background: url('/wp-content/mu-plugins/connectis-branding/logo-horizontal.png') left center / contain no-repeat; transition: transform .2s ease, filter .2s ease; }
-#offcanvas .menu > li.cn-menu-logo > a:hover { transform: translateY(-2px); filter: drop-shadow(0 6px 16px rgba(27,99,230,.5)); }
+#offcanvas li.cn-menu-logo { margin-bottom: 14px; }
+#offcanvas li.cn-menu-logo > a { display: block !important; width: 230px; height: 62px; padding: 0 !important; font-size: 0 !important; line-height: 0; color: transparent !important; background: url('/wp-content/mu-plugins/connectis-branding/logo-horizontal.png') left center / contain no-repeat; transition: transform .2s ease, filter .2s ease; }
+#offcanvas li.cn-menu-logo > a:hover { transform: translateY(-2px); filter: drop-shadow(0 6px 16px rgba(27,99,230,.5)); }
