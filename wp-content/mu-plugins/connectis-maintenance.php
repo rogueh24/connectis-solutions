@@ -143,10 +143,12 @@ add_action('template_redirect', function () {
   .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
   @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(51,208,232,0.35);}50%{box-shadow:0 0 0 8px rgba(51,208,232,0);}}
 
-  p.tag{color:var(--grey);font-size:1rem;line-height:1.6;margin-bottom:28px;text-wrap:balance;}
+  p.tag{color:var(--grey);font-size:1.02rem;line-height:1.6;margin-bottom:28px;text-wrap:balance;}
+  p.tag strong{color:#fff;font-weight:700;}
   .services{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px;}
   .services span{font-size:0.82rem;color:var(--grey);border:1px solid rgba(207,216,232,0.25);background:rgba(255,255,255,0.03);padding:6px 14px;border-radius:999px;transition:border-color .2s ease, color .2s ease;}
   .services span:hover{border-color:var(--cyan);color:#fff;}
+  .services span.main{color:#fff;font-weight:600;border-color:rgba(51,208,232,.55);background:rgba(51,208,232,0.10);}
 
   .progress{width:100%;max-width:360px;height:6px;background:rgba(255,255,255,0.08);border-radius:999px;margin:0 auto 28px;overflow:hidden;}
   .progress-bar{height:100%;width:65%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan));animation:pulse 2.4s ease-in-out infinite;}
@@ -198,13 +200,14 @@ add_action('template_redirect', function () {
     <div class="badge">Site en construction</div>
     <h1>Notre nouveau site arrive bientôt</h1>
     <p class="tag">
-      Connectis Solutions accompagne les professionnels dans la sécurisation, la connectivité et l'équipement de leurs locaux. Proximité, réactivité, solutions sur mesure.
+      <strong>Informatique, vidéosurveillance et téléphonie</strong> pour les professionnels.<br>
+      Proximité, réactivité, solutions sur mesure.
     </p>
     <div class="services">
-      <span>Vidéosurveillance</span>
-      <span>Téléphonie &amp; VoIP</span>
+      <span class="main">Informatique</span>
+      <span class="main">Vidéosurveillance</span>
+      <span class="main">Téléphonie &amp; VoIP</span>
       <span>Internet &amp; Fibre optique</span>
-      <span>Matériel informatique</span>
       <span>Abonnements</span>
       <span>Services &amp; maintenance</span>
     </div>
