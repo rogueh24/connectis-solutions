@@ -198,6 +198,9 @@ add_filter('wp_nav_menu_objects', function ($items) {
         if ($slug_of($item) === 'a-propos') {
             $item->title = 'Connectis';
         }
+        if ($slug_of($item) === 'nos-solutions' && !(int) $item->menu_item_parent) {
+            $item->title = 'Solutions';
+        }
         if ($slug_of($item) === 'devis-contact' && !(int) $item->menu_item_parent) {
             $item->classes[] = 'cn-menu-cta';
         }

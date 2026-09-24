@@ -493,3 +493,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 #offcanvas .ct-toggle-dropdown-mobile { position: static !important; margin: 0 !important; flex: 0 0 auto !important; }
 #offcanvas .sub-menu { text-align: center; }
 #offcanvas .sub-menu a { justify-content: center; }
+#offcanvas .sub-menu, #offcanvas .sub-menu li { list-style: none !important; padding-left: 0 !important; margin-left: 0 !important; }
+#offcanvas .sub-menu li::before, #offcanvas .sub-menu li::marker, #offcanvas .sub-menu a::before { content: none !important; display: none !important; }
+#offcanvas .sub-menu { padding-inline: 0 !important; }
