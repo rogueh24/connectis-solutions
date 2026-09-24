@@ -68,6 +68,21 @@ add_action('plugins_loaded', function () {
     update_option('connectis_activated_v2', 1);
 }, 1);
 
+// Filet de sécurité : enregistre la dernière erreur fatale PHP (d'où qu'elle vienne)
+// dans une option, lisible via l'endpoint de diagnostic ci-dessous. Ne bloque rien,
+// sert uniquement à pouvoir diagnostiquer à distance sans accès SSH/FTP.
+register_shutdown_function(function () {
+    $error = error_get_last();
+    if ($error && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR], true)) {
+        update_option('connectis_last_fatal_error', [
+            'message' => $error['message'],
+            'file'    => $error['file'],
+            'line'    => $error['line'],
+            'time'    => current_time('mysql'),
+        ]);
+    }
+});
+
 // Petit endpoit de diagnostic public (lecture seule, aucune donnée sensible) pour
 // vérifier l'état d'activation sans avoir besoin d'accès à wp-admin.
 add_action('rest_api_init', function () {
@@ -81,6 +96,8 @@ add_action('rest_api_init', function () {
                 'active_plugins' => get_option('active_plugins', []),
                 'activation_errors' => get_option('connectis_activation_errors', []),
                 'content_seeded'    => (bool) get_option('connectis_content_seeded_v2'),
+                'content_seed_error' => get_option('connectis_content_seed_error', null),
+                'last_fatal_error'   => get_option('connectis_last_fatal_error', null),
             ];
         },
         'permission_callback' => '__return_true',

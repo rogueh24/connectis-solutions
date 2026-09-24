@@ -15,6 +15,8 @@ add_action('init', function () {
         return;
     }
 
+    try {
+
     // Le CMS doit être prêt (types de contenu + Contact Form 7 enregistrés).
     if (!post_type_exists('page')) {
         return;
@@ -487,5 +489,8 @@ Contact : <a href="mailto:contact@connectis-solutions.fr">contact@connectis-solu
         wp_delete_post($hello_posts[0]->ID, true);
     }
 
-    update_option('connectis_content_seeded_v2', 1);
+        update_option('connectis_content_seeded_v2', 1);
+    } catch (\Throwable $e) {
+        update_option('connectis_content_seed_error', $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
+    }
 }, 20);
