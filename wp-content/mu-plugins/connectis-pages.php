@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v3 : visuel téléphonie sans personne, images versionnées (?v=) pour contourner le cache navigateur.
-const CONNECTIS_PAGES_VERSION = 3;
+// v4 : financement auprès des partenaires financiers ; visuel téléphonie d'origine rétabli.
+const CONNECTIS_PAGES_VERSION = 4;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -103,7 +103,7 @@ function cn_cta($title, $text = "Décrivez-nous votre projet : devis gratuit et 
 function cn_finance() {
     return "<div class='cn-finance'>" . cn_i('coins')
         . "<div><h3>Financez votre équipement</h3><p>Vous préférez étaler l'investissement ? Nous établissons des devis détaillés, poste par poste, "
-        . "utilisables pour une demande de financement en location (leasing, LOA, LLD) auprès de l'organisme de votre choix.</p></div>"
+        . "utilisables pour une demande de financement en location (leasing, LOA, LLD) auprès d'un de nos partenaires financiers.</p></div>"
         . "<a class='cn-btn cn-btn-ghost' href='/devis-contact/'>Parler financement</a></div>";
 }
 
@@ -163,7 +163,7 @@ function cn_faq_common() {
     return [
         ["Comment obtenir un devis ?", "Remplissez le formulaire ou écrivez-nous : nous revenons vers vous rapidement, puis nous nous déplaçons pour étudier votre besoin et établir un devis détaillé et gratuit."],
         ["Intervenez-vous directement chez nous ?", "Oui. Notre équipe se déplace dans vos locaux pour le conseil, l'installation et la mise en service."],
-        ["Puis-je financer l'équipement en location (leasing) ?", "Oui, c'est possible : nous établissons des devis détaillés, poste par poste, utilisables pour une demande de financement auprès de l'organisme de votre choix. Nos informations légales (SIREN, RCS) sont publiques, et un extrait Kbis peut être communiqué sur demande."],
+        ["Puis-je financer l'équipement en location (leasing) ?", "Oui, c'est possible : nous établissons des devis détaillés, poste par poste, utilisables pour une demande de financement auprès d'un de nos partenaires financiers. Nos informations légales (SIREN, RCS) sont publiques, et un extrait Kbis peut être communiqué sur demande."],
         ["Quelles garanties sur le matériel ?", "Le matériel installé bénéficie de la garantie constructeur. Un contrat de maintenance peut être souscrit séparément pour un suivi dans la durée."],
     ];
 }
