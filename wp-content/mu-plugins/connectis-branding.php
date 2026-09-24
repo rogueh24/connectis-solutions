@@ -104,3 +104,50 @@ add_action('wp_footer', function () {
 </script>
     <?php
 }, 100);
+
+// Menu : le logo ramène à l'accueil (pas d'entrée « Accueil »), ordre stable, « Devis & Contact » en appel à l'action.
+add_filter('wp_nav_menu_objects', function ($items) {
+    $front = (int) get_option('page_on_front');
+    $order = ['nos-solutions' => 1, 'a-propos' => 2, 'recrutement' => 3, 'devis-contact' => 4];
+
+    $top = [];
+    $children = [];
+    foreach ($items as $item) {
+        if ($item->object === 'page' && (int) $item->object_id === $front && !(int) $item->menu_item_parent) {
+            continue;
+        }
+        if ((int) $item->menu_item_parent) {
+            $children[(int) $item->menu_item_parent][] = $item;
+        } else {
+            $top[] = $item;
+        }
+    }
+    if (!$top) {
+        return $items;
+    }
+
+    $slug_of = function ($item) {
+        $page = ($item->object === 'page') ? get_post((int) $item->object_id) : null;
+        return $page ? $page->post_name : '';
+    };
+    usort($top, function ($a, $b) use ($order, $slug_of) {
+        return ($order[$slug_of($a)] ?? 50) <=> ($order[$slug_of($b)] ?? 50);
+    });
+
+    $sorted = [];
+    $i = 1;
+    $append = function ($item) use (&$sorted, &$i, &$append, $children, $slug_of) {
+        $item->menu_order = $i++;
+        if ($slug_of($item) === 'devis-contact' && !(int) $item->menu_item_parent) {
+            $item->classes[] = 'cn-menu-cta';
+        }
+        $sorted[] = $item;
+        foreach ($children[(int) $item->ID] ?? [] as $child) {
+            $append($child);
+        }
+    };
+    foreach ($top as $item) {
+        $append($item);
+    }
+    return $sorted;
+}, 20);
