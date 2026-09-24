@@ -104,6 +104,10 @@ add_action('rest_api_init', function () {
                 'content_seeded'    => (bool) get_option('connectis_content_seeded_v2'),
                 'content_seed_error' => get_option('connectis_content_seed_error', null),
                 'last_fatal_error'   => get_option('connectis_last_fatal_error', null),
+                'branding'           => [
+                    'ids'   => get_option('connectis_branding_ids', []),
+                    'error' => get_option('connectis_branding_error', null),
+                ],
                 'forms'              => [
                     'done'  => (bool) get_option('connectis_forms_v1'),
                     'ids'   => get_option('connectis_forms_ids', []),
