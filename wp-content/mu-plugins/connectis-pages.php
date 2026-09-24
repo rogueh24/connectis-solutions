@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v6 : page « À propos » renommée « Connectis » (titre et menu).
-const CONNECTIS_PAGES_VERSION = 6;
+// v7 : « Nos solutions » développée (méthode, atouts, FAQ, confiance), titres « Services complémentaires », grilles de 3.
+const CONNECTIS_PAGES_VERSION = 7;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -79,7 +79,8 @@ function cn_card($icon, $title, $text, $href = '', $more = 'En savoir plus') {
 }
 
 function cn_grid(array $cards) {
-    return "<div class='cn-grid'>" . implode('', $cards) . "</div>";
+    // Trois cartes : trois colonnes (jamais 2 + 1 orpheline) dès que la largeur le permet.
+    return "<div class='cn-grid" . (count($cards) === 3 ? " cn-grid-3" : "") . "'>" . implode('', $cards) . "</div>";
 }
 
 function cn_steps() {
@@ -324,7 +325,7 @@ function connectis_pages_definitions() {
             . "<p><a class='cn-btn' href='/devis-contact/'>Demander un devis</a> <a class='cn-btn cn-btn-ghost' href='/nos-solutions/'>Découvrir nos solutions</a></p></div>"
             . cn_strip()
             . "<h2>Nos expertises</h2>" . $expertises
-            . "<h2>Et aussi</h2>" . $also
+            . "<h2>Services complémentaires</h2>" . $also
             . "<h2>Comment ça se passe</h2>" . cn_steps()
             . "<h2>Pourquoi Connectis Solutions</h2>" . $why
             . cn_finance()
@@ -337,9 +338,14 @@ function connectis_pages_definitions() {
         'title'   => 'Nos solutions',
         'content' => "<!--cn-->"
             . "<p class='cn-lead'>Connectis Solutions accompagne les professionnels sur trois métiers principaux — l'<strong>informatique</strong>, la <strong>vidéosurveillance</strong> et la <strong>téléphonie</strong> — complétés par la fibre, les abonnements et la maintenance.</p>"
+            . cn_strip()
             . "<h2>Nos expertises</h2>" . $expertises
-            . "<h2>Et aussi</h2>" . $also
+            . "<h2>Services complémentaires</h2>" . $also
+            . "<h2>Comment ça se passe</h2>" . cn_steps()
+            . "<h2>Pourquoi Connectis Solutions</h2>" . $why
             . cn_finance()
+            . "<h2>Questions fréquentes</h2>" . cn_faq(cn_faq_common())
+            . cn_trust()
             . cn_cta("Un projet ? Parlons-en."),
     ];
 

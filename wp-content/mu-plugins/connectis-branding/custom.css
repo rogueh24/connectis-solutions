@@ -502,3 +502,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 #offcanvas .ct-sub-menu-parent > a { justify-content: center; }
 #offcanvas .ct-toggle-dropdown-mobile { position: absolute !important; left: 100% !important; top: 50% !important; transform: translateY(-50%) !important; margin: 0 0 0 8px !important; }
 .cn-topbar a:hover { color: var(--cn-cyan) !important; }
+
+/* Trois cartes : trois colonnes, sans carte orpheline */
+@media (min-width: 861px) { .cn-grid.cn-grid-3 { grid-template-columns: repeat(3, 1fr); } }
