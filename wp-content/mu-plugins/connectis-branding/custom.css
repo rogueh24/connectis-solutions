@@ -498,5 +498,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 #offcanvas .sub-menu { padding-inline: 0 !important; }
 
 /* « Solutions » exactement centré : la flèche sort du flux et se place juste à droite du texte */
-#offcanvas .ct-sub-menu-parent { display: inline-block !important; position: relative; }
-#offcanvas .ct-toggle-dropdown-mobile { position: absolute !important; left: 100%; top: 50%; transform: translateY(-50%); margin: 0 0 0 8px !important; }
+#offcanvas .ct-sub-menu-parent { display: block !important; width: fit-content !important; margin-inline: auto !important; position: relative; }
+#offcanvas .ct-sub-menu-parent > a { justify-content: center; }
+#offcanvas .ct-toggle-dropdown-mobile { position: absolute !important; left: 100% !important; top: 50% !important; transform: translateY(-50%) !important; margin: 0 0 0 8px !important; }
