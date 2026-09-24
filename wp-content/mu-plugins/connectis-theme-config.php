@@ -14,9 +14,11 @@ const CONNECTIS_THEME_CONFIG_VERSION = 1;
 // Pied de page : mention légale + liens réglementaires (appliqué au rendu tant qu'aucun texte
 // personnalisé n'a été saisi dans le Customizer).
 add_filter('blocksy:footer:copyright:default-value', function () {
-    return '&copy; {current_year} Connectis Solutions — SAS · 110 boulevard d\'Austrasie, 54000 Nancy<br>'
+    return '&copy; {current_year} Connectis Solutions — SAS · SIREN 103 370 557 · RCS Nancy<br>'
+        . '110 boulevard d\'Austrasie, 54000 Nancy · <a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a><br>'
         . '<a href="/mentions-legales/">Mentions légales</a> · <a href="/cgv/">CGV</a> · '
-        . '<a href="/confidentialite/">Politique de confidentialité</a>';
+        . '<a href="/confidentialite/">Politique de confidentialité</a> · '
+        . '<a href="https://annuaire-entreprises.data.gouv.fr/entreprise/connectis-solutions-103370557" target="_blank" rel="noopener">Vérifier l\'entreprise</a>';
 });
 
 add_action('init', function () {
