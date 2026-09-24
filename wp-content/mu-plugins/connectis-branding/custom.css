@@ -43,8 +43,9 @@
 #offcanvas .ct-panel-inner { background: linear-gradient(160deg, #070d1f 0%, #0c1730 100%) !important; }
 #offcanvas a, #offcanvas .ct-menu-link, #offcanvas .ct-toggle-dropdown-mobile { color: #fff !important; }
 #offcanvas .ct-icon, #offcanvas svg { fill: #fff !important; }
-#offcanvas nav > ul > li > a { font-weight: 600; letter-spacing: .3px; }
-#offcanvas nav > ul > li > a:hover { color: var(--cn-cyan) !important; }
+#offcanvas nav > ul > li .ct-menu-link { font-weight: 600 !important; letter-spacing: .3px; }
+#offcanvas nav > ul > li .ct-menu-link:hover { color: var(--cn-cyan) !important; }
+#offcanvas nav > ul > li.cn-menu-cta .ct-menu-link:hover { color: #fff !important; }
 #offcanvas .sub-menu a { color: var(--cn-grey) !important; }
 
 /* ── Accueil : le hero porte déjà le titre, on masque « Accueil » ── */
