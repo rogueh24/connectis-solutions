@@ -18,14 +18,15 @@
 #header [data-row] {
   background: linear-gradient(180deg, #070d1f 0%, #0a1430 100%) !important;
   border-bottom: 1px solid rgba(51, 208, 232, .18) !important;
-  --height: 108px !important;
+  --height: 92px !important;
 }
-#header [data-id="logo"] { --logo-max-height: 90px !important; }
+#header [data-id="logo"] { --logo-max-height: 60px !important; }
 #header .site-logo-container img,
 #header img.default-logo {
   height: auto !important;
-  max-height: 90px !important;
+  max-height: 60px !important;
   width: auto !important;
+  max-width: min(100%, 270px) !important;
   filter: drop-shadow(0 4px 14px rgba(27, 99, 230, .35));
 }
 #header a, #header .ct-label, #header .site-title a { color: #fff !important; }
@@ -105,9 +106,9 @@ div[style*="flex:1 1 280px"] a { text-decoration: none; font-weight: 600; }
 
 /* ── Mobile ── */
 @media (max-width: 999px) {
-  #header [data-row] { --height: 80px !important; }
-  #header [data-id="logo"] { --logo-max-height: 64px !important; }
-  #header .site-logo-container img, #header img.default-logo { max-height: 64px !important; }
+  #header [data-row] { --height: 72px !important; }
+  #header [data-id="logo"] { --logo-max-height: 44px !important; }
+  #header .site-logo-container img, #header img.default-logo { max-height: 44px !important; }
 }
 
 /* ══ THÈME SOMBRE — même ADN que la page en construction (marine, halos, verre dépoli) ══════════ */
@@ -475,3 +476,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 .cn-mini { flex-direction: column; text-align: center; justify-content: center; }
 .cn-mini > span:last-child { align-items: center; overflow-wrap: anywhere; }
 .wpcf7-submit:disabled, .wpcf7-submit[disabled] { opacity: .6; cursor: not-allowed; transform: none !important; box-shadow: none; }
+
+/* Menu : le logo remplace l'entrée « Accueil » (cliquable, ramène à l'accueil) */
+#offcanvas .menu > li.cn-menu-logo { margin-bottom: 14px; }
+#offcanvas .menu > li.cn-menu-logo > a { display: block !important; width: 230px; height: 62px; padding: 0 !important; font-size: 0 !important; line-height: 0; color: transparent !important; background: url('/wp-content/mu-plugins/connectis-branding/logo-horizontal.png') left center / contain no-repeat; transition: transform .2s ease, filter .2s ease; }
+#offcanvas .menu > li.cn-menu-logo > a:hover { transform: translateY(-2px); filter: drop-shadow(0 6px 16px rgba(27,99,230,.5)); }

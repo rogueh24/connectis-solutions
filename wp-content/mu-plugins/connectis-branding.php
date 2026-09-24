@@ -58,6 +58,50 @@ add_action('init', function () {
     update_option('connectis_branding_v1', 1);
 }, 40);
 
+// v2 : logo horizontal (symbole à gauche, nom sur deux lignes à droite) pour l'en-tête.
+add_action('init', function () {
+    if (get_option('connectis_branding_v2') || !get_option('connectis_branding_v1')) {
+        return;
+    }
+
+    try {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+
+        $path = __DIR__ . '/connectis-branding/logo-horizontal.png';
+        if (!is_readable($path)) {
+            throw new RuntimeException('Fichier introuvable : logo-horizontal.png');
+        }
+        $upload = wp_upload_bits('connectis-logo-horizontal.png', null, file_get_contents($path));
+        if (!empty($upload['error'])) {
+            throw new RuntimeException($upload['error']);
+        }
+        $id = wp_insert_attachment([
+            'post_mime_type' => 'image/png',
+            'post_title'     => 'Connectis Solutions',
+            'post_content'   => '',
+            'post_status'    => 'inherit',
+        ], $upload['file']);
+        if (is_wp_error($id) || !$id) {
+            throw new RuntimeException('Création de la pièce jointe impossible : logo horizontal');
+        }
+        wp_update_attachment_metadata($id, wp_generate_attachment_metadata($id, $upload['file']));
+        update_post_meta($id, '_wp_attachment_image_alt', 'Connectis Solutions');
+
+        set_theme_mod('custom_logo', (int) $id);
+        $ids = (array) get_option('connectis_branding_ids', []);
+        $ids['logo_horizontal'] = (int) $id;
+        update_option('connectis_branding_ids', $ids);
+        update_option('connectis_branding_v2_error', null);
+        update_option('connectis_branding_v2', 1);
+        do_action('litespeed_purge_all');
+    } catch (\Throwable $e) {
+        update_option('connectis_branding_v2_error', $e->getMessage());
+        update_option('connectis_branding_v2', 1);   // une seule tentative
+    }
+}, 41);
+
 // Charte graphique : injecte connectis-branding/custom.css dans <head>, après les styles du thème.
 add_action('wp_head', function () {
     $file = __DIR__ . '/connectis-branding/custom.css';
@@ -105,17 +149,14 @@ add_action('wp_footer', function () {
     <?php
 }, 100);
 
-// Menu : le logo ramène à l'accueil (pas d'entrée « Accueil »), ordre stable, « Devis & Contact » en appel à l'action.
+// Menu : le logo remplace l'entrée « Accueil » (cliquable, ramène à l'accueil), ordre stable, « Devis & Contact » en appel à l'action.
 add_filter('wp_nav_menu_objects', function ($items) {
     $front = (int) get_option('page_on_front');
-    $order = ['nos-solutions' => 1, 'a-propos' => 2, 'recrutement' => 3, 'devis-contact' => 4];
+    $order = ['nos-solutions' => 2, 'a-propos' => 3, 'recrutement' => 4, 'devis-contact' => 5];
 
     $top = [];
     $children = [];
     foreach ($items as $item) {
-        if ($item->object === 'page' && (int) $item->object_id === $front && !(int) $item->menu_item_parent) {
-            continue;
-        }
         if ((int) $item->menu_item_parent) {
             $children[(int) $item->menu_item_parent][] = $item;
         } else {
@@ -131,13 +172,22 @@ add_filter('wp_nav_menu_objects', function ($items) {
         return $page ? $page->post_name : '';
     };
     usort($top, function ($a, $b) use ($order, $slug_of) {
-        return ($order[$slug_of($a)] ?? 50) <=> ($order[$slug_of($b)] ?? 50);
+        $pa = ((int) $a->object_id === (int) get_option('page_on_front') && $a->object === 'page') ? 1 : ($order[$slug_of($a)] ?? 50);
+        $pb = ((int) $b->object_id === (int) get_option('page_on_front') && $b->object === 'page') ? 1 : ($order[$slug_of($b)] ?? 50);
+        return $pa <=> $pb;
     });
 
     $sorted = [];
     $i = 1;
     $append = function ($item) use (&$sorted, &$i, &$append, $children, $slug_of) {
         $item->menu_order = $i++;
+        if (!(int) $item->menu_item_parent && $item->object === 'page' && (int) $item->object_id === $front) {
+            $item->classes[] = 'cn-menu-logo';
+            $item->attr_title = 'Connectis Solutions — accueil';
+        }
+        if ($slug_of($item) === 'a-propos') {
+            $item->title = 'Connectis';
+        }
         if ($slug_of($item) === 'devis-contact' && !(int) $item->menu_item_parent) {
             $item->classes[] = 'cn-menu-cta';
         }

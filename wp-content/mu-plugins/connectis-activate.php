@@ -126,6 +126,8 @@ add_action('rest_api_init', function () {
                 'branding'           => [
                     'ids'   => get_option('connectis_branding_ids', []),
                     'error' => get_option('connectis_branding_error', null),
+                    'v2'    => (bool) get_option('connectis_branding_v2'),
+                    'v2_error' => get_option('connectis_branding_v2_error', null),
                 ],
                 'forms'              => [
                     'done'  => (bool) get_option('connectis_forms_v1'),
