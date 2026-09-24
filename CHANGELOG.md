@@ -11,7 +11,7 @@ format AAAA-MM-JJ.
 - Vérification de l'alerte « Site dangereux » Google Safe Browsing sur `wp-admin` (signalement de faux positif à déposer).
 - Relecture des CGV et des mentions légales par un professionnel ; capital social et n° de TVA à renseigner.
 
-## 2026-09-25 — Mise en ligne
+## [1.0.0] - 2026-09-25 — Mise en ligne
 
 ### Ajouté
 - **Site public** : interrupteur `CONNECTIS_MAINTENANCE` (`connectis-maintenance.php`) passé à `false`. Le fichier reste
@@ -29,7 +29,11 @@ format AAAA-MM-JJ.
   fichiers désactivée, tableau de bord épuré + mémo, page de connexion à l'image du site.
 - **Logo horizontal** (symbole à gauche, nom sur deux lignes à droite) dans l'en-tête ; le menu hamburger garde le
   logo d'origine, cliquable, à la place de l'entrée « Accueil ».
-- Menu : ordre fixe (Nos solutions, Connectis, Recrutement, Devis & Contact en bouton).
+- Menu hamburger centré : logo d'origine cliquable, « Solutions » (sous-menu sans puces), « Connectis »,
+  « Recrutement », « Devis & Contact » en bouton pleine largeur.
+- **Purge automatique du cache LiteSpeed** après chaque déploiement (empreinte des mu-plugins,
+  `connectis-admin.php`) : les visiteurs ne voient plus d'ancienne version.
+- Liens « Tableau de bord » vers `/wp-admin/` (l'adresse exacte `index.php` est signalée à tort par Google).
 
 ### Modifié
 - Page « À propos » renommée **« Connectis »** (URL `/a-propos/` inchangée).
