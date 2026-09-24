@@ -104,6 +104,12 @@ add_action('rest_api_init', function () {
                 'content_seeded'    => (bool) get_option('connectis_content_seeded_v2'),
                 'content_seed_error' => get_option('connectis_content_seed_error', null),
                 'last_fatal_error'   => get_option('connectis_last_fatal_error', null),
+                'pages'              => [
+                    'version' => (int) get_option('connectis_pages_version', 0),
+                    'error'   => get_option('connectis_pages_error', null),
+                    'forms_layout_done'  => (bool) get_option('connectis_forms_layout_v1'),
+                    'forms_layout_error' => get_option('connectis_forms_layout_error', null),
+                ],
                 'theme_config'       => [
                     'version' => (int) get_option('connectis_theme_config_version', 0),
                     'error'   => get_option('connectis_theme_config_error', null),

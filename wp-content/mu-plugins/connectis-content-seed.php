@@ -90,12 +90,12 @@ add_action('init', function () {
         ],
         'abonnements' => [
             'title' => 'Abonnements & forfaits',
-            'excerpt' => 'Formules mensuelles avec ou sans engagement.',
-            'intro' => "Des formules simples et transparentes pour votre internet, votre téléphonie ou votre vidéosurveillance, avec ou sans engagement, adaptées à la taille de votre structure.",
+            'excerpt' => 'Formules d\'abonnement adaptées à votre activité.',
+            'intro' => "Des formules simples et transparentes pour votre internet, votre téléphonie ou votre vidéosurveillance, adaptées à la taille de votre structure.",
             'points' => [
                 'Forfaits internet et téléphonie entreprise',
                 'Abonnements vidéosurveillance (stockage cloud, télésurveillance)',
-                'Formules avec ou sans engagement',
+                'Contrats clairs : durée et conditions détaillées dans votre devis',
                 'Facturation claire, un seul interlocuteur',
             ],
         ],
@@ -271,7 +271,7 @@ Contact : <a href="mailto:contact@connectis-solutions.fr">contact@connectis-solu
 <p>Les présentes conditions générales de vente régissent les relations contractuelles entre CONNECTIS SOLUTIONS et ses clients professionnels dans le cadre de la vente de matériel, d\'abonnements et de prestations de services (installation, maintenance) présentés sur le site connectis-solutions.fr ou proposés par son équipe commerciale.</p>
 
 <h2>Article 2 — Devis et commande</h2>
-<p>Toute prestation fait l\'objet d\'un devis préalable, gratuit et sans engagement, détaillant la nature des produits ou services, leur prix et les délais prévisionnels. La commande n\'est considérée comme ferme qu\'après acceptation écrite du devis par le client.</p>
+<p>Toute prestation fait l\'objet d\'un devis préalable, gratuit, détaillant la nature des produits ou services, leur prix et les délais prévisionnels. La commande n\'est considérée comme ferme qu\'après acceptation écrite du devis par le client.</p>
 
 <h2>Article 3 — Prix et paiement</h2>
 <p>Les prix sont exprimés en euros. Les modalités de paiement (comptant, échelonné, abonnement) sont précisées sur chaque devis.</p>
@@ -283,7 +283,7 @@ Contact : <a href="mailto:contact@connectis-solutions.fr">contact@connectis-solu
 <p>Le matériel installé bénéficie des garanties constructeur en vigueur. Un contrat de maintenance peut être souscrit séparément.</p>
 
 <h2>Article 6 — Résiliation des abonnements</h2>
-<p>Les conditions de résiliation (avec ou sans engagement) sont précisées sur chaque contrat d\'abonnement.</p>
+<p>Les conditions de durée et de résiliation sont précisées sur chaque contrat d\'abonnement.</p>
 
 <h2>Article 7 — Litiges</h2>
 <p>En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents seront ceux du ressort du siège social de CONNECTIS SOLUTIONS.</p>
