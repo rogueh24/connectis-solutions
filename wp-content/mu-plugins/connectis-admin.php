@@ -53,6 +53,26 @@ add_action('init', function () {
     }
 }, 80);
 
+/* ───────────────────────── Cache : purge automatique après déploiement ───────────────────────── */
+
+// Les pages publiques sont servies par LiteSpeed (cache d'une semaine) : sans purge, les visiteurs voient
+// l'ancien HTML/CSS après chaque déploiement. Empreinte = taille + date de chaque fichier des mu-plugins.
+add_action('init', function () {
+    $sig = '';
+    foreach (glob(__DIR__ . '/*.php') as $file) {
+        $sig .= basename($file) . filesize($file) . filemtime($file);
+    }
+    foreach (array_merge(glob(__DIR__ . '/connectis-branding/*') ?: [], glob(__DIR__ . '/connectis-content-seed/images/*') ?: []) as $file) {
+        $sig .= basename($file) . filesize($file) . filemtime($file);
+    }
+    $hash = md5($sig);
+
+    if (get_option('connectis_deploy_hash') !== $hash) {
+        do_action('litespeed_purge_all');
+        update_option('connectis_deploy_hash', $hash, false);
+    }
+}, 5);
+
 /* ───────────────────────── Durcissement ───────────────────────── */
 
 // Commentaires et rétroliens : inutiles sur un site vitrine.
