@@ -235,6 +235,7 @@ function connectis_pages_definitions() {
                 ['network', 'Box entreprise & secours', "Box adaptées aux professionnels et solutions de secours 4G/5G."],
                 ['cable', 'Câblage réseau', "Prises, baies et brassage propres et documentés."],
                 ['wrench', 'Mise en service', "Tests, réglages et validation avec vous."],
+                ['pin', 'Étude sur site', "Analyse de vos locaux et de vos usages avant toute proposition."],
             ],
             'finance' => false, 'cta' => "Un besoin en connexion ?",
         ],
@@ -247,6 +248,7 @@ function connectis_pages_definitions() {
                 ['camera', 'Vidéosurveillance', "Abonnements de stockage et de suivi."],
                 ['doc', 'Contrats clairs', "Durée, prix et conditions détaillés dans votre devis."],
                 ['coins', 'Facturation claire', "Une facture lisible et un seul interlocuteur."],
+                ['sliders', 'Formules adaptées', "Une offre dimensionnée selon la taille de votre structure."],
             ],
             'finance' => true, 'cta' => "Un projet d'abonnement ?",
         ],
@@ -259,6 +261,7 @@ function connectis_pages_definitions() {
                 ['bolt', 'Dépannage réactif', "Une intervention rapide quand un équipement s'arrête."],
                 ['headset', 'Contrats SAV', "Un suivi contractuel et une assistance dédiée."],
                 ['clock', 'Suivi dans la durée', "Un interlocuteur qui connaît votre dossier."],
+                ['doc', 'Devis détaillé', "Chaque intervention ou contrat est chiffré clairement avant de démarrer."],
             ],
             'finance' => false, 'cta' => "Un besoin de maintenance ?",
         ],
@@ -308,6 +311,8 @@ function connectis_pages_definitions() {
         cn_card('clock', 'Réactivité', "Des rendez-vous et des interventions sous délai court, sans centre d'appels national."),
         cn_card('sliders', 'Sur mesure', "Des solutions adaptées à votre activité, pas un forfait imposé."),
         cn_card('users', 'Guichet unique', "Informatique, vidéosurveillance et téléphonie : un seul interlocuteur pour tout gérer."),
+        cn_card('doc', 'Devis clair', "Un chiffrage détaillé poste par poste, pour savoir précisément ce que vous financez."),
+        cn_card('headset', 'Suivi après installation', "Maintenance, dépannage et assistance : nous restons votre interlocuteur une fois le projet livré."),
     ]);
     $pages['accueil'] = [
         'title'   => 'Accueil',
