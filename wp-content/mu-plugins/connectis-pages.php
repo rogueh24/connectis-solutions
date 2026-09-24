@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v4 : financement auprès des partenaires financiers ; visuel téléphonie d'origine rétabli.
-const CONNECTIS_PAGES_VERSION = 4;
+// v5 : recrutement enrichi (métiers), bloc de confiance raccourci, visuel recrutement.
+const CONNECTIS_PAGES_VERSION = 5;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -131,7 +131,7 @@ function cn_trust() {
         $c .= "<li>" . cn_i('check') . "<span>" . $t . "</span></li>";
     }
     return "<div class='cn-trust'><div class='cn-trust-id'><div class='cn-trust-head'>" . cn_i('building')
-        . "<div><h3>Une entreprise identifiable et vérifiable</h3><p>Nos informations légales sont publiques : vous pouvez les contrôler à tout moment.</p></div></div>"
+        . "<div><h3>Une entreprise vérifiable</h3><p>Nos informations légales sont publiques : vous pouvez les contrôler à tout moment.</p></div></div>"
         . "<ul class='cn-facts'>" . $li . "</ul>"
         . "<a class='cn-btn cn-btn-ghost' href='https://annuaire-entreprises.data.gouv.fr/entreprise/connectis-solutions-103370557' target='_blank' rel='noopener'>Vérifier sur l'Annuaire des Entreprises</a></div>"
         . "<div class='cn-trust-commit'><h3>Nos engagements</h3><ul>" . $c . "</ul></div></div>";
@@ -377,9 +377,14 @@ function connectis_pages_definitions() {
     // Recrutement
     $pages['recrutement'] = [
         'title'   => 'Recrutement',
-        'content' => "<!--cn-->" . cn_hero('recrutement', 'Bureau avec poste informatique')
-            . "<div class='cn-narrow'><p class='cn-lead'>Connectis Solutions recrute une équipe commerciale et technique de terrain, animée par la proximité et la réactivité. Envoyez-nous votre candidature, même spontanée.</p>"
-            . "<div class='cn-form-card'><h2>Candidater</h2>" . $shortcode($f_cand, 'Candidature') . "</div></div>",
+        'content' => "<!--cn-->" . cn_hero('recrutement', 'Poste de travail informatique')
+            . "<p class='cn-lead'>Connectis Solutions recrute une équipe commerciale et technique de terrain, animée par la proximité et la réactivité. Envoyez-nous votre candidature, même spontanée.</p>"
+            . "<h2>Les métiers</h2>" . cn_grid([
+                cn_card('pin', 'Conseil commercial de terrain', "Rencontrer les entreprises, comprendre leur besoin et établir des devis détaillés."),
+                cn_card('wrench', 'Installation et configuration', "Installer, câbler et configurer le matériel chez nos clients."),
+                cn_card('users', 'Candidature spontanée', "Aucune offre ne correspond ? Présentez-vous : nous étudions chaque profil."),
+            ])
+            . "<div class='cn-narrow'><div class='cn-form-card'><h2>Candidater</h2>" . $shortcode($f_cand, 'Candidature') . "</div></div>",
     ];
 
     if (function_exists('connectis_legal_definitions')) {

@@ -52,7 +52,7 @@
 /* ── Boutons (liens boutons du contenu + Contact Form 7) ── */
 a[style*="background:#1b63e6"],
 .wpcf7-submit {
-  background: linear-gradient(90deg, var(--cn-blue), var(--cn-blue-dark)) !important;
+  background: linear-gradient(135deg, var(--cn-blue), #2f80ff) !important;
   color: #fff !important;
   border: 0 !important;
   border-radius: 10px !important;
@@ -463,3 +463,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 .cn-updated { margin-top: 20px; color: #8fa3c4; font-size: .85rem; }
 
 @media print { .cn-js .cn-reveal:not(.in) { opacity: 1 !important; translate: none !important; } }
+
+/* Menu : « Devis & Contact » en appel à l'action */
+#offcanvas .menu > li.cn-menu-cta { margin-top: 18px; }
+#offcanvas .menu > li.cn-menu-cta > a { display: inline-flex !important; align-items: center; width: auto !important; padding: 13px 26px !important; border-radius: 14px; background: linear-gradient(135deg, var(--cn-blue), #2f80ff); box-shadow: 0 12px 30px rgba(27,99,230,.4); transition: transform .2s ease, box-shadow .2s ease; }
+#offcanvas .menu > li.cn-menu-cta > a:hover { color: #fff !important; transform: translateY(-2px); box-shadow: 0 16px 36px rgba(27,99,230,.55); }
+
+/* Cohérence : titres de section dans les colonnes étroites, blocs de confiance et contacts empilés */
+.cn-narrow > h2 { text-align: center; }
+.cn-narrow .cn-trust { grid-template-columns: 1fr; }
+.cn-mini { flex-direction: column; text-align: center; justify-content: center; }
+.cn-mini > span:last-child { align-items: center; overflow-wrap: anywhere; }
+.wpcf7-submit:disabled, .wpcf7-submit[disabled] { opacity: .6; cursor: not-allowed; transform: none !important; box-shadow: none; }
