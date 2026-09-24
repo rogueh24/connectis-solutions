@@ -113,7 +113,7 @@ add_action('wp_head', function () {
 // Barre d'accès rapide au-dessus du menu (métiers, contact, devis). L'identité légale (SAS, SIREN, RCS) est dans le pied de page.
 add_action('wp_body_open', function () {
     echo '<div class="cn-topbar"><div class="cn-topbar-in">'
-        . '<span><strong>Informatique</strong> · <strong>Vidéosurveillance</strong> · <strong>Téléphonie</strong> — Nancy</span>'
+        . '<span><strong>Informatique</strong> · <strong>Vidéosurveillance</strong> · <strong>Téléphonie</strong></span>'
         . '<span class="cn-tb-right"><a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a> · <a href="/devis-contact/">Devis gratuit</a></span>'
         . '</div></div>';
 });
