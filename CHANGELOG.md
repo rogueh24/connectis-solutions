@@ -6,9 +6,40 @@ format AAAA-MM-JJ.
 ## [Non publié]
 
 ### À venir
-- Import et personnalisation du starter template Blocksy.
-- Arborescence complète des pages (Accueil, Nos solutions ×6, À propos, Devis & Contact, Recrutement, mentions légales).
-- Formulaires de devis/contact + conformité RGPD (bandeau cookies).
+- Configuration SMTP de SureMail (délivrabilité des e-mails de devis) — nécessite les identifiants de la boîte contact@.
+- Vraies photos de l'équipe / des chantiers (À propos, accueil).
+- Vérification de l'alerte « Site dangereux » Google Safe Browsing sur `wp-admin` (signalement de faux positif à déposer).
+- Relecture des CGV et des mentions légales par un professionnel ; capital social et n° de TVA à renseigner.
+
+## 2026-09-25 — Mise en ligne
+
+### Ajouté
+- **Site public** : interrupteur `CONNECTIS_MAINTENANCE` (`connectis-maintenance.php`) passé à `false`. Le fichier reste
+  déployé (le déploiement n'efface rien côté serveur).
+- **Pages en composants** (`connectis-pages.php`, versionné par `CONNECTIS_PAGES_VERSION`) : cartes à icônes animées,
+  étapes, bloc financement (leasing/LOA/LLD auprès de partenaires financiers), bloc de confiance (identité légale,
+  lien Annuaire des Entreprises, engagements), FAQ, bandeau d'identité en haut de page, apparition au défilement
+  (avec filet de sécurité).
+- **Pages légales** rédigées (`connectis-legal.php`) : mentions légales, CGV (B2B), confidentialité (RGPD).
+- **Formulaires** en une colonne : devis en 3 étapes avec choix du service, consentement RGPD.
+- **Référencement** (`connectis-seo.php`) : titre et description par page (métadonnées SEOPress), plan du site,
+  données structurées « entreprise locale » (SIREN/SIRET, adresse).
+- **Administration et durcissement** (`connectis-admin.php`) : commentaires/pings fermés, comptes non énumérables
+  (REST `users` et `?author=`), XML-RPC et flux coupés, en-têtes de sécurité, révisions limitées, édition de
+  fichiers désactivée, tableau de bord épuré + mémo, page de connexion à l'image du site.
+- **Logo horizontal** (symbole à gauche, nom sur deux lignes à droite) dans l'en-tête ; le menu hamburger garde le
+  logo d'origine, cliquable, à la place de l'entrée « Accueil ».
+- Menu : ordre fixe (Nos solutions, Connectis, Recrutement, Devis & Contact en bouton).
+
+### Modifié
+- Page « À propos » renommée **« Connectis »** (URL `/a-propos/` inchangée).
+- Photos À propos / Recrutement : postes de travail, sans personnes (crédibilité).
+- Images versionnées (`?v=`) pour contourner le cache navigateur.
+
+### Corrigé
+- Doublons de pages issus des premières exécutions du contenu de départ (10 mis à la corbeille, 2 restent à trier).
+- Texte d'introduction collé à gauche sur les pages d'offres (règle CSS) ; cartes orphelines ; titres non centrés.
+- Sélecteurs CSS du menu adaptés au balisage réel de Blocksy (`<ul>` sans classe `.menu`).
 
 ## 2026-09-24
 

@@ -95,7 +95,8 @@ l'humain les place lui-même.
 ## 7. Design, aperçu et mode construction
 
 - **Mode construction** : `connectis-maintenance.php` sert la page d'attente (HTTP 503) à tout visiteur non
-  connecté. Pour **mettre le site en ligne**, retirer ce mu-plugin (un commit) ou le renommer en `.off`.
+  connecté quand `CONNECTIS_MAINTENANCE` vaut `true`. Le site est **en ligne** depuis 2026-09-25 (`false`).
+  Ne pas supprimer le fichier : le déploiement (`lftp mirror` sans `--delete`) ne retire rien du serveur.
 - **Mode aperçu** : `https://connectis-solutions.fr/?cp=<jeton>` montre le vrai site sans compte (cookie 12 h).
   Le jeton est le réglage REST `connectis_preview_token` (base de données, **jamais dans Git**) ; le
   changer = `settings/update`. Les réponses d'aperçu sont `no-cache` pour ne jamais être servies au public.
@@ -115,3 +116,28 @@ l'humain les place lui-même.
 `connectis-activate.php` a activé Blocksy et les premières extensions au premier chargement. L'activation
 se fait désormais **par l'API** (plus contrôlée, cf. §3). Le fichier reste utile pour son endpoint de
 diagnostic et son filet d'erreurs.
+
+## 9. Contenu versionné, SEO et administration (mu-plugins)
+
+| Fichier | Rôle | Réapplication |
+|---|---|---|
+| `connectis-pages.php` | Contenu des pages (composants) | Incrémenter `CONNECTIS_PAGES_VERSION` — **écrase** les modifications faites dans l'éditeur |
+| `connectis-legal.php` | Textes légaux (utilisés par `connectis-pages.php`) | idem |
+| `connectis-forms.php` | Formulaires CF7 + mises en page | `connectis_forms_layout_v1` |
+| `connectis-seo.php` | Titres/descriptions SEOPress, plan du site, JSON-LD | `CONNECTIS_SEO_VERSION` |
+| `connectis-admin.php` | Réglages, durcissement, tableau de bord, connexion | `CONNECTIS_ADMIN_VERSION` |
+| `connectis-branding.php` | CSS, bandeau d'identité, menu, import des logos | `connectis_branding_v1/v2` |
+
+Leçons :
+- **Le déploiement compare la taille des fichiers** : passer `= 1` à `= 2` ne change pas la taille, le fichier n'est
+  pas renvoyé. Toujours modifier aussi un commentaire (ex. « v2 : … ») quand on incrémente une version.
+- **Les pages se réappliquent à la première requête suivant le déploiement** ; vérifier `/wp-json/connectis/v1/status`
+  (`pages.version`, `seo`, `admin`, `branding`).
+- **Cache LiteSpeed** (`public,max-age=604800`) : tester avec un paramètre `?t=` ; les images portent `?v=<version>`.
+- **Balisage Blocksy** : le `<ul>` du menu hors-toile n'a pas de classe `.menu` — cibler `#offcanvas nav > ul`.
+- **Lien « Accueil »** du menu = lien personnalisé (pas une page) : détecter par URL, pas par `object_id`.
+- **Anti-spam WP Armour** : exige le JavaScript du navigateur ; un test de formulaire par l'API REST échoue
+  volontairement (`validation_failed`). Tester l'envoi depuis le navigateur.
+- Doublons de pages : chaque exécution partielle du contenu de départ a recréé des pages ; les identifiants
+  32 à 43 étaient des doublons. Le contenu de départ n'est plus rejoué (indicateur `connectis_content_seeded_v2`).
+

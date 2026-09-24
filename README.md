@@ -21,7 +21,7 @@ abonnements, services & maintenance.
 ├── wp-content/                Tout ce qui est versionné côté WordPress (voir ENGINEERING.md)
 │   ├── themes/blocksy/        Thème principal
 │   ├── plugins/                Extensions installées (cf. tableau ci-dessous)
-│   └── mu-plugins/             Page « site en construction », toujours active, invisible aux admins connectés
+│   └── mu-plugins/             Contenu, SEO, administration, identité visuelle, formulaires, interrupteur de mise en ligne (voir ENGINEERING §9)
 └── .github/workflows/         Pipeline de déploiement SFTP
 ```
 
