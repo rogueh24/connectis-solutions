@@ -93,6 +93,8 @@ add_action('rest_api_init', function () {
     register_rest_route('connectis/v1', '/status', [
         'methods'  => 'GET',
         'callback' => function () {
+            nocache_headers();
+            do_action('litespeed_control_set_nocache', 'connectis status');
             return [
                 'wp_version'  => get_bloginfo('version'),
                 'php_version' => phpversion(),
