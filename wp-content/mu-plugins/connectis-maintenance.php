@@ -14,7 +14,8 @@ add_action('template_redirect', function () {
         return;
     }
 
-    $logo_url = content_url('mu-plugins/connectis-maintenance/logo-icon.jpeg');
+    $logo_full_url = content_url('mu-plugins/connectis-maintenance/logo-full.png');
+    $favicon_url = content_url('mu-plugins/connectis-maintenance/favicon.png');
     $contact_email = get_option('admin_email', 'contact@connectis-solutions.fr');
 
     header('HTTP/1.1 503 Service Temporarily Unavailable');
@@ -27,7 +28,7 @@ add_action('template_redirect', function () {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connectis Solutions — Site en construction</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="<?php echo esc_url($logo_url); ?>" type="image/jpeg">
+<link rel="icon" href="<?php echo esc_url($favicon_url); ?>" type="image/png">
 <style>
   :root{
     --navy:#070d1f;
@@ -38,17 +39,19 @@ add_action('template_redirect', function () {
     --grey:#cfd8e8;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{height:100%;}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:var(--navy);
     color:#fff;
     min-height:100vh;
+    min-height:100dvh;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:24px;
-    overflow:hidden;
+    gap:20px;
+    padding:clamp(16px,3vw,28px);
+    overflow-x:hidden;
     position:relative;
   }
 
@@ -71,12 +74,12 @@ add_action('template_redirect', function () {
   @keyframes drift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-40px,30px) scale(1.08);}}
 
   .card{
-    position:relative;z-index:1;
-    max-width:640px;width:100%;text-align:center;
+    position:relative;z-index:1;min-width:0;
+    max-width:620px;width:100%;text-align:center;
     background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
     border:1px solid rgba(255,255,255,0.1);
     border-radius:28px;
-    padding:56px 40px;
+    padding:40px 36px;
     backdrop-filter:blur(22px);
     -webkit-backdrop-filter:blur(22px);
     box-shadow:0 30px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
@@ -84,25 +87,26 @@ add_action('template_redirect', function () {
   }
   @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
-  .logo-ring{
-    position:relative;width:220px;height:220px;margin:0 auto 32px;
+  .logo-wrap{
+    position:relative;display:flex;justify-content:center;
+    width:100%;margin:0 auto clamp(14px,3vw,22px);
   }
-  .logo-ring::before{
-    content:"";position:absolute;inset:-10px;border-radius:50%;
-    background:conic-gradient(from 0deg, var(--blue), var(--cyan), var(--blue));
-    filter:blur(2px);opacity:0.55;
-    animation:spin 8s linear infinite;
+  .logo-wrap::before{
+    content:"";position:absolute;left:50%;top:50%;
+    width:min(460px,110%);aspect-ratio:1;transform:translate(-50%,-50%);
+    background:radial-gradient(closest-side, rgba(27,99,230,0.40), rgba(51,208,232,0.10) 55%, transparent 75%);
+    animation:halo 4.5s ease-in-out infinite;pointer-events:none;
   }
-  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes halo{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(.96);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.04);}}
   .logo{
-    position:relative;width:220px;height:220px;border-radius:50%;object-fit:contain;background:#01040d;padding:14px;
-    box-shadow:0 0 0 4px var(--navy), 0 20px 60px rgba(27,99,230,0.4);
-    display:block;
+    position:relative;display:block;
+    width:min(290px,70vw);height:auto;
+    filter:drop-shadow(0 12px 36px rgba(27,99,230,0.35));
   }
 
-  h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;letter-spacing:0.5px;line-height:1.3;margin-bottom:12px;}
+  h1{font-size:clamp(1.4rem,3.2vw,1.9rem);font-weight:700;letter-spacing:0.3px;line-height:1.25;margin-bottom:12px;text-wrap:balance;}
   .badge{
-    display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+    display:flex;width:fit-content;margin-left:auto;margin-right:auto;align-items:center;gap:8px;font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
     color:var(--cyan);border:1px solid rgba(51,208,232,0.4);background:rgba(51,208,232,0.08);
     padding:7px 18px;border-radius:999px;margin-bottom:22px;
     box-shadow:0 0 0 0 rgba(51,208,232,0.5);
@@ -111,12 +115,12 @@ add_action('template_redirect', function () {
   .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
   @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(51,208,232,0.35);}50%{box-shadow:0 0 0 8px rgba(51,208,232,0);}}
 
-  p.tag{color:var(--grey);font-size:1rem;line-height:1.6;margin-bottom:36px;}
-  .services{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px;}
+  p.tag{color:var(--grey);font-size:1rem;line-height:1.6;margin-bottom:28px;text-wrap:balance;}
+  .services{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px;}
   .services span{font-size:0.82rem;color:var(--grey);border:1px solid rgba(207,216,232,0.25);background:rgba(255,255,255,0.03);padding:6px 14px;border-radius:999px;transition:border-color .2s ease, color .2s ease;}
   .services span:hover{border-color:var(--cyan);color:#fff;}
 
-  .progress{width:100%;max-width:360px;height:6px;background:rgba(255,255,255,0.08);border-radius:999px;margin:0 auto 40px;overflow:hidden;}
+  .progress{width:100%;max-width:360px;height:6px;background:rgba(255,255,255,0.08);border-radius:999px;margin:0 auto 28px;overflow:hidden;}
   .progress-bar{height:100%;width:65%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan));animation:pulse 2.4s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:0.85;}50%{opacity:1;}}
 
@@ -136,12 +140,21 @@ add_action('template_redirect', function () {
   .contact a.primary:hover::after{animation:shine .9s ease;}
   @keyframes shine{to{left:125%;}}
 
-  footer{margin-top:48px;color:rgba(207,216,232,0.5);font-size:0.78rem;position:relative;z-index:1;}
+  footer{color:rgba(207,216,232,0.5);font-size:0.78rem;position:relative;z-index:1;text-align:center;}
 
-  @media (max-width:480px){
-    .card{padding:40px 24px;border-radius:22px;}
-    .logo-ring, .logo{width:150px;height:150px;}
+  @media (max-width:520px){
+    .card{padding:36px 20px;border-radius:22px;}
+    p.tag{font-size:.95rem;margin-bottom:26px;}
+    .services{margin-bottom:28px;gap:8px;}
+    .progress{margin-bottom:28px;}
+    .contact a{width:100%;text-align:center;padding:14px 16px;word-break:break-word;}
+    footer{margin-top:0;}
   }
+  @media (max-height:640px) and (orientation:landscape){
+    .logo{width:min(200px,40vh);}
+    .card{padding:24px 28px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
 </style>
 </head>
 <body>
@@ -151,14 +164,13 @@ add_action('template_redirect', function () {
     <div class="blob blob-3"></div>
   </div>
   <div class="card">
-    <div class="logo-ring">
-      <img src="<?php echo esc_url($logo_url); ?>" alt="Connectis Solutions" class="logo">
+    <div class="logo-wrap">
+      <img src="<?php echo esc_url($logo_full_url); ?>" alt="Connectis Solutions" class="logo" width="815" height="715">
     </div>
     <div class="badge">Site en construction</div>
     <h1>Notre nouveau site arrive bientôt</h1>
     <p class="tag">
-      Connectis Solutions accompagne les professionnels dans la sécurisation, la connectivité<br>
-      et l'équipement de leurs locaux. Proximité, réactivité, solutions sur mesure.
+      Connectis Solutions accompagne les professionnels dans la sécurisation, la connectivité et l'équipement de leurs locaux. Proximité, réactivité, solutions sur mesure.
     </p>
     <div class="services">
       <span>Vidéosurveillance</span>
