@@ -68,7 +68,21 @@ Les commits assistés par un agent Claude portent `Co-Authored-By: Claude Sonnet
   un répertoire non vide. Si une page d'attente statique y est déjà déployée, la retirer avant
   l'installation (elle est de toute façon remplacée par le mu-plugin `wp-content/mu-plugins/connectis-maintenance.php`).
 
-## 6. Accès & sécurité
+## 6. Activation des thèmes/extensions
+
+Déposer les fichiers d'un thème ou d'une extension via le pipeline SFTP ne l'active **pas** —
+l'activation est un état stocké en base de données (`active_plugins`, `stylesheet`), pas un fichier.
+`wp-content/mu-plugins/connectis-activate.php` s'en charge automatiquement au premier chargement du
+site après un déploiement (idempotent, `activate_plugin()` / `switch_theme()`).
+
+## 7. Déploiement — limite connue
+
+Le pipeline actuel réenvoie l'intégralité de `wp-content/*` à chaque exécution (~20 minutes, même
+pour un changement d'un seul fichier), car `SFTP-Deploy-Action` n'est pas incrémental sur ce mode
+d'utilisation. Pour un projet qui grossit, envisager une synchronisation différentielle (rsync via
+SSH, ou une action GitHub dédiée au diff Git) plutôt que d'optimiser prématurément maintenant.
+
+## 8. Accès & sécurité
 
 - Aucun agent IA n'entre de mot de passe dans un formulaire, un terminal SSH, ou un fichier de
   configuration — quelle que soit la demande. L'authentification initiale (hébergement, WordPress,

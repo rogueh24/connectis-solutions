@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 
 add_action('init', function () {
 
-    if (get_option('connectis_content_seeded_v1')) {
+    if (get_option('connectis_content_seeded_v2')) {
         return;
     }
 
@@ -229,10 +229,7 @@ FORM;
     // Helper : crée la page si elle n'existe pas déjà, retourne son ID.
     $make_page = function ($slug, $title, $content, $parent_id = 0) {
         $existing = get_page_by_path($slug);
-        if ($existing) {
-            return $existing->ID;
-        }
-        return wp_insert_post([
+        $data = [
             'post_title'   => $title,
             'post_name'    => $slug,
             'post_content' => $content,
@@ -240,7 +237,12 @@ FORM;
             'post_type'    => 'page',
             'post_parent'  => $parent_id,
             'comment_status' => 'closed',
-        ]);
+        ];
+        if ($existing) {
+            $data['ID'] = $existing->ID;
+            return wp_update_post($data);
+        }
+        return wp_insert_post($data);
     };
 
     // --- Accueil ---
@@ -475,5 +477,15 @@ Contact : <a href="mailto:contact@connectis-solutions.fr">contact@connectis-solu
         set_theme_mod('nav_menu_locations', $locations);
     }
 
-    update_option('connectis_content_seeded_v1', 1);
+    // Nettoyage du contenu de démonstration WordPress par défaut.
+    $sample = get_page_by_path('sample-page');
+    if ($sample) {
+        wp_delete_post($sample->ID, true);
+    }
+    $hello_posts = get_posts(['post_type' => 'post', 'title' => 'Hello world!', 'numberposts' => 1, 'post_status' => 'any']);
+    if (!empty($hello_posts)) {
+        wp_delete_post($hello_posts[0]->ID, true);
+    }
+
+    update_option('connectis_content_seeded_v2', 1);
 }, 20);
