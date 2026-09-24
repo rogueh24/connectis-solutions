@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// v2 : grilles de cartes complétées, textes centrés.
 const CONNECTIS_PAGES_VERSION = 2;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
