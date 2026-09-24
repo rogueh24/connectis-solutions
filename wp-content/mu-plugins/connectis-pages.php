@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v2 : grilles de cartes complétées, textes centrés.
-const CONNECTIS_PAGES_VERSION = 2;
+// v3 : visuel téléphonie sans personne, images versionnées (?v=) pour contourner le cache navigateur.
+const CONNECTIS_PAGES_VERSION = 3;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -169,7 +169,7 @@ function cn_faq_common() {
 }
 
 function cn_img($name) {
-    return content_url('mu-plugins/connectis-content-seed/images/' . $name . '.jpg');
+    return content_url('mu-plugins/connectis-content-seed/images/' . $name . '.jpg?v=' . CONNECTIS_PAGES_VERSION);
 }
 
 function cn_hero($image, $alt) {
