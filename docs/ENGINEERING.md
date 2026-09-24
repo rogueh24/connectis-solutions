@@ -1,92 +1,99 @@
 # Conventions d'ingénierie — Connectis Solutions
 
 Règles de fonctionnement du dépôt `connectis-solutions`. Objectif : que n'importe qui (humain ou
-agent) reprenne le projet sans avoir à redécouvrir les mêmes pièges.
+agent) reprenne le projet sans redécouvrir les mêmes pièges.
 
 ## 1. Ce qui est versionné, et ce qui ne l'est pas
 
-WordPress se sépare en deux mondes, et ce dépôt ne suit que le second :
-
 | | Versionné ici ? | Où ça vit |
 |---|---|---|
-| Cœur WordPress (`wp-admin/`, `wp-includes/`, `index.php`, `wp-config.php`) | **Non** | Serveur uniquement, installé via le panneau d'hébergement (Softaculous/NOC WP) |
-| `wp-content/uploads/` (médias) | **Non** (`.gitignore`) | Serveur uniquement — trop volumineux, change en permanence |
-| `wp-content/themes/`, `wp-content/plugins/`, `wp-content/mu-plugins/` | **Oui** | Ce dépôt → déployé sur le serveur |
-
-Raison : le cœur WordPress et les uploads n'ont rien à faire dans un historique Git (gros volume,
-zéro valeur de diff, régénérable à volonté). Ce qui a de la valeur à versionner, c'est ce qu'on a
-choisi d'installer et personnalisé : thème, extensions, mu-plugins.
+| Cœur WordPress (`wp-admin/`, `wp-includes/`, `index.php`, `wp-config.php`) | **Non** | Serveur uniquement (installé via le panneau NOC WP) |
+| `wp-content/uploads/` (médias) | **Non** | Serveur uniquement |
+| `wp-content/themes/`, `plugins/`, `mu-plugins/` | **Oui** | Ce dépôt → déployé sur le serveur |
+| Contenu éditorial (pages, menus, réglages) | **Non** (base de données) | Base MySQL. Le mu-plugin `connectis-content-seed.php` n'est qu'un **amorçage initial** : une fois le site vivant, la base est la source de vérité |
 
 ## 2. Déploiement
 
 Pipeline : `.github/workflows/deploy-wp-content.yml`.
 
 - **Déclencheur :** push sur `main` touchant `wp-content/**`, ou manuel (`gh workflow run deploy-wp-content.yml`).
-- **Mécanisme :** [`wlixcc/SFTP-Deploy-Action`](https://github.com/wlixcc/SFTP-Deploy-Action) envoie
-  le contenu de `wp-content/*` (local) vers `<SFTP_REMOTE_PATH>/wp-content` (serveur). C'est un envoi
-  additif : les fichiers existants côté serveur (uploads, cache, etc.) ne sont **pas** supprimés
-  (`delete_remote_files: false`).
+- **Mécanisme :** `lftp mirror --reverse --ignore-time` (SFTP). Compare **la taille** des fichiers et ne
+  transfère que ce qui diffère (≈ 2 min au total). `--ignore-time` est indispensable : un checkout Git
+  donne à tous les fichiers un mtime « maintenant ». **Aucune suppression distante** (pas de `--delete`) :
+  supprimer un fichier du dépôt ne le supprime pas du serveur → utiliser l'API WordPress
+  (`plugins/delete`) ou le File Manager du panneau.
+- **Limite connue :** la comparaison par taille manque une modification qui conserverait exactement la
+  même taille. En cas de doute, supprimer le fichier côté serveur puis redéployer.
 - **Secrets** (GitHub → *Settings → Secrets and variables → Actions*) : `SFTP_SERVER`, `SFTP_USERNAME`,
-  `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_REMOTE_PATH` (= `public_html`, chemin **relatif** au dossier
-  personnel du compte SFTP — un `/` en tête sort du chroot et fait échouer le déploiement avec
-  `Permission denied`).
-- **Aucun identifiant ne doit jamais apparaître en clair** dans ce dépôt, un commit, ou un fichier de
-  config. Le mot de passe d'hébergement n'est saisi que par un humain, jamais par un agent.
+  `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_REMOTE_PATH` (= `public_html`, chemin **relatif** au home du compte).
+  Un mot de passe contenant une virgule casserait la syntaxe `open -u user,pass` de lftp.
+- **Aucun identifiant en clair** dans le dépôt, un commit ou un fichier de config. Le dépôt est **public**.
 
 ## 3. Ajouter une extension ou un thème
 
-1. Vérifier le slug exact sur WordPress.org (`https://api.wordpress.org/plugins/info/1.2/?action=query_plugins&request[search]=<nom>`)
-   ou sur le dépôt GitHub du projet s'il n'est pas dans l'annuaire officiel.
-2. Télécharger le zip officiel (`https://downloads.wordpress.org/plugin/<slug>.zip` ou release GitHub).
-3. Décompresser dans `wp-content/plugins/<slug>/` (ou `wp-content/themes/<slug>/` pour un thème).
-4. Commit + push sur `main` → déploiement automatique.
-5. Activer le plugin/thème depuis l'admin WordPress (l'activation n'est pas versionnable, c'est un
-   état de la base de données).
+1. **Vérifier l'identité, pas seulement l'existence.** Un HTTP 200 sur
+   `downloads.wordpress.org/plugin/<slug>.zip` ne prouve rien : le slug `seopress` est un vieux plugin
+   ThemeKraft abandonné, le vrai SEOPress est `wp-seopress`. Contrôler `name`, `author` et
+   `active_installs` via `https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&slug=<slug>`
+   ou la page GitHub officielle.
+2. Télécharger le zip officiel (wordpress.org ou *release* GitHub), décompresser dans
+   `wp-content/plugins/<slug>/`.
+3. **Vérifier que rien n'est ignoré** : `git status --ignored wp-content/plugins/<slug>` — les extensions
+   embarquent leur propre `vendor/` (autoload PHP) qui **doit** être déployé.
+4. Commit + push → déploiement.
+5. **Activer par l'API** (`plugins/activate`, une extension à la fois) puis vérifier la santé (`/`,
+   `/wp-json/…`, `/wp-json/connectis/v1/status?t=<timestamp>`). Une extension défectueuse peut provoquer
+   un fatal sur tous les hooks : ne jamais en activer plusieurs d'un coup.
 
 ## 4. Convention de commit
 
-Message court à l'impératif, en français, décrivant le *pourquoi* plus que le *quoi* :
+Message court à l'impératif, en français, décrivant le *pourquoi* ; **un commit par sujet**.
+Les commits assistés par un agent portent `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`.
 
-```
-Corrige la syntaxe YAML du workflow (deux-points non échappé dans le nom de l'étape)
-```
+## 5. Leçons apprises (post-mortems)
 
-Les commits assistés par un agent Claude portent `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`.
+- **`.gitignore` : ancrer les règles à la racine.** `vendor/` et `*.sql` (sans `/` initial) excluaient les
+  dépendances embarquées des extensions → Contact Form 7 impossible à activer
+  (`require 'vendor/autoload.php'`). Règle : `/vendor/`, `/*.sql`, jamais à toute profondeur.
+- **YAML : quoter toute valeur de `name:` contenant `:`** — sinon GitHub n'enregistre pas le workflow, sans
+  message d'erreur exploitable (nom affiché = chemin du fichier, `workflow_dispatch` refusé).
+- **SFTP : chemin relatif** (`public_html`), un `/` initial sort du chroot (`Permission denied`).
+- **Installeur NOC WP : dossier cible vide requis.**
+- **Déployer ≠ activer.** L'activation est un état en base (`active_plugins`, `stylesheet`).
+- **Un fatal dans le hook d'une extension tue toute la requête, REST compris**, hors de portée d'un
+  `try/catch` de mu-plugin. Le filet `register_shutdown_function` de `connectis-activate.php` enregistre la
+  dernière erreur fatale (lisible sur `/wp-json/connectis/v1/status`) ; PHP n'écrit aucun log
+  (`log_errors=Off`, `error_log=/dev/null`). Dernier recours : phpMyAdmin, lire `wp_options`
+  (`connectis_last_fatal_error`) et remettre `active_plugins` à `a:0:{}`.
+- **L'ancien déploiement complet n'était pas atomique** : des fichiers PHP réécrits pendant qu'ils sont
+  chargés donnaient des erreurs 500 / « classe introuvable » transitoires. Résolu par l'incrémental.
+- **LiteSpeed Cache met en cache des réponses REST GET** (diagnostic périmé). L'endpoint de statut envoie
+  `nocache_headers()` ; ajouter `?t=<timestamp>` pour tester.
+- **CSS : ne jamais laisser une image et un badge `inline` sur la même ligne.** Cause réelle du logo
+  « décentré » de la page d'attente pendant plusieurs itérations : le badge (inline-block) se plaçait à
+  droite de l'image. Et un masque circulaire (`border-radius: 50%`) rogne tout rectangle plus large que
+  son diamètre inscrit. Toujours **vérifier par un rendu réel** (Chrome headless avec
+  `--virtual-time-budget` pour laisser finir les animations ; émuler le mobile via une `<iframe>` de 390 px
+  car Chrome refuse les fenêtres de moins de 500 px).
+- **Alpha sur JPEG : le bruit de compression** du fond devient visible dès qu'on rend le fond transparent
+  (petits carrés sombres autour de l'icône) → seuil d'alpha élevé + filtre médian.
 
-## 5. Leçons apprises (post-mortems courts)
+## 6. Accès
 
-- **YAML — toujours quoter une valeur de `name:` contenant `:`.**
-  `- name: Déploiement SFTP (wp-content : thème...)` casse le parseur (« mapping values are not
-  allowed here ») car le second `:` est lu comme un nouveau séparateur clé/valeur. GitHub échoue
-  alors silencieusement à enregistrer le workflow (nom affiché = chemin du fichier au lieu du champ
-  `name:`, `workflow_dispatch` inutilisable) sans message d'erreur exploitable dans les runs.
-  **Règle :** toute valeur de `name:` (workflow ou step) contenant `:`, `#`, ou commençant par un
-  caractère spécial doit être entre guillemets.
-- **SFTP — chemin relatif, pas absolu.** `SFTP_REMOTE_PATH` doit être relatif au home du compte SFTP
-  (`public_html`), pas préfixé par `/` (`/public_html` sort du chroot → `Permission denied`).
-- **Installeur WordPress — dossier cible vide requis.** L'installeur NOC WP refuse d'installer dans
-  un répertoire non vide. Si une page d'attente statique y est déjà déployée, la retirer avant
-  l'installation (elle est de toute façon remplacée par le mu-plugin `wp-content/mu-plugins/connectis-maintenance.php`).
+| Accès | Usage |
+|---|---|
+| GitHub (`gh`) | push, workflows, dépôt |
+| API / MCP WordPress | alias **`connectis`** dans `C:\Users\rogue\Claude\wp-sites.json` (mot de passe d'application) |
+| SFTP | uniquement via GitHub Actions (secrets), jamais en direct |
+| phpMyAdmin / panneau NOC | humain uniquement |
 
-## 6. Activation des thèmes/extensions
+**Règle de sécurité :** le site par défaut du connecteur MCP est **rogueh24.fr** (autre projet). Tout appel
+`mcp__wordpress__*` sur ce projet doit passer explicitement `site: "connectis"`.
+Un agent IA ne saisit jamais un mot de passe ou un jeton dans un fichier, un formulaire ou un terminal :
+l'humain les place lui-même.
 
-Déposer les fichiers d'un thème ou d'une extension via le pipeline SFTP ne l'active **pas** —
-l'activation est un état stocké en base de données (`active_plugins`, `stylesheet`), pas un fichier.
-`wp-content/mu-plugins/connectis-activate.php` s'en charge automatiquement au premier chargement du
-site après un déploiement (idempotent, `activate_plugin()` / `switch_theme()`).
+## 7. Activation automatique (historique)
 
-## 7. Déploiement — limite connue
-
-Le pipeline actuel réenvoie l'intégralité de `wp-content/*` à chaque exécution (~20 minutes, même
-pour un changement d'un seul fichier), car `SFTP-Deploy-Action` n'est pas incrémental sur ce mode
-d'utilisation. Pour un projet qui grossit, envisager une synchronisation différentielle (rsync via
-SSH, ou une action GitHub dédiée au diff Git) plutôt que d'optimiser prématurément maintenant.
-
-## 8. Accès & sécurité
-
-- Aucun agent IA n'entre de mot de passe dans un formulaire, un terminal SSH, ou un fichier de
-  configuration — quelle que soit la demande. L'authentification initiale (hébergement, WordPress,
-  GitHub) reste un geste humain.
-- Le connecteur MCP WordPress disponible dans cet environnement pointe vers un **autre** site
-  (rogueh24.fr) : ne jamais l'utiliser sur ce projet tant qu'il n'a pas été explicitement reconfiguré
-  pour connectis-solutions.fr.
+`connectis-activate.php` a activé Blocksy et les premières extensions au premier chargement. L'activation
+se fait désormais **par l'API** (plus contrôlée, cf. §3). Le fichier reste utile pour son endpoint de
+diagnostic et son filet d'erreurs.

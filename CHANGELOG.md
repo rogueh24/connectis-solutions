@@ -12,7 +12,24 @@ format AAAA-MM-JJ.
 
 ## 2026-09-24
 
-### Ajouté
+### Ajouté (session du soir)
+- **SEOPress** (`wp-seopress` 10.2, le vrai) et **MCP Adapter** 0.6.1 : les 8 extensions demandées sont actives.
+- **Contact Form 7** actif ; mu-plugin `connectis-forms.php` (auto-réparateur) : formulaires devis / contact /
+  candidature créés et branchés dans les pages « Devis & Contact » et « Recrutement ».
+- Connexion **API/MCP WordPress** au site (alias `connectis`).
+- **Déploiement incrémental** (`lftp mirror`) : ≈ 2 min au lieu de 20 à 28 min.
+- Page en construction : fond animé, carte en verre dépoli, **logo complet d'origine** (PNG transparent),
+  responsive (vérifié en 1440×900, 390×844 et 320×568), favicon carré.
+- Documentation d'ingénierie réécrite (leçons apprises, procédure d'ajout d'extension, accès).
+
+### Corrigé (session du soir)
+- **Site en panne (HTTP 500)** : extension `seopress` installée par erreur (mauvais slug, vieux plugin
+  ThemeKraft multisite), remplacée par `wp-seopress` et supprimée du serveur via l'API.
+- **`.gitignore`** excluait `vendor/` et `*.sql` des extensions (Contact Form 7 inactivable) : règles ancrées à la racine.
+- **Logo décentré** : la cause réelle était un badge inline à côté de l'image ; badge désormais en bloc centré.
+- Endpoint de diagnostic mis en cache par LiteSpeed : `nocache_headers()`.
+
+### Ajouté (journée)
 - Cahier des charges et dossier de projet commercial (PDF + script de génération) dans `docs/`.
 - Dépôt GitHub public [`rogueh24/connectis-solutions`](https://github.com/rogueh24/connectis-solutions).
 - Pipeline de déploiement SFTP via GitHub Actions (secrets chiffrés, aucun identifiant en clair).

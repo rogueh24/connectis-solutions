@@ -35,9 +35,11 @@ abonnements, services & maintenance.
 |---|---|
 | Blocksy Companion | Starter templates & fonctionnalités du thème Blocksy |
 | LiteSpeed Cache | Cache & performance (compatible Planet Hoster / LiteSpeed) |
-| SEOPress | Référencement local |
+| SEOPress (`wp-seopress`) | Référencement (SEO) |
 | SureMail | Fiabilité de l'envoi d'e-mails (formulaires, notifications) |
 | WP Armour — Honeypot Anti Spam | Anti-spam sur les formulaires |
+| Contact Form 7 | Formulaires de devis, contact et candidature (avec dépôt de CV) |
+| MCP Adapter | Expose les *abilities* WordPress comme outils MCP (pilotage par un agent IA, authentifié) |
 | Abilities API | Successeur maintenu de « WordPress Feature API », expose les fonctionnalités du site pour un pilotage structuré (base d'une future intégration MCP) |
 
 ## Déploiement
@@ -46,7 +48,8 @@ Le déploiement se fait via **GitHub Actions → SFTP**, sans qu'aucun identifia
 les secrets (`SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_REMOTE_PATH`) sont
 stockés côté GitHub (*Settings → Secrets and variables → Actions*).
 
-- Tout push sur `main` touchant `wp-content/**` déclenche `.github/workflows/deploy-wp-content.yml`.
+- Tout push sur `main` touchant `wp-content/**` déclenche `.github/workflows/deploy-wp-content.yml`
+  (synchronisation **incrémentale** via `lftp mirror` : seuls les fichiers dont la taille change sont envoyés).
 - Déclenchement manuel possible : `gh workflow run deploy-wp-content.yml`.
 
 Détails complets, conventions et leçons apprises : **[docs/ENGINEERING.md](docs/ENGINEERING.md)**.
@@ -61,9 +64,14 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - [x] Dépôt GitHub + pipeline de déploiement SFTP
 - [x] Hébergement + WordPress installés (Planet Hoster)
 - [x] Thème Blocksy + extensions déployés
-- [x] Page « site en construction » en ligne (mu-plugin, logo Connectis)
+- [x] Page « site en construction » en ligne (mu-plugin, logo complet, responsive)
+- [x] Les 8 extensions demandées actives (LiteSpeed, SEOPress, SureMail, WP Armour, Abilities API, MCP Adapter, Contact Form 7, Blocksy Companion)
+- [x] 14 pages + 3 formulaires créés ; connexion API/MCP WordPress opérationnelle
+- [x] Déploiement incrémental (≈ 2 min au lieu de 20+)
 - [ ] Starter template Blocksy importé et personnalisé (couleurs, sections)
-- [ ] Arborescence de pages créée (Accueil, Nos solutions ×6, À propos, Devis & Contact, Recrutement, mentions légales)
+- [x] Arborescence de pages créée (Accueil, Nos solutions ×6, À propos, Devis & Contact, Recrutement, mentions légales)
 - [ ] Contenus intégrés (textes, photos, logos partenaires)
-- [ ] Formulaires de devis / contact + RGPD (bandeau cookies)
+- [x] Formulaires de devis / contact / candidature (Contact Form 7)
+- [ ] Configuration d'envoi des e-mails (SureMail) et bandeau cookies RGPD
+- [ ] Charte graphique du site public (header/menu hamburger, boutons, pied de page) aux couleurs du logo
 - [ ] Recette & mise en ligne définitive
