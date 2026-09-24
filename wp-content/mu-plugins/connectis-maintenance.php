@@ -54,7 +54,7 @@ add_action('template_redirect', function () {
   }
   .wrap{max-width:640px;width:100%;text-align:center;}
   .logo{
-    width:140px;height:140px;border-radius:50%;object-fit:cover;
+    width:220px;height:220px;border-radius:50%;object-fit:cover;background:#01040d;
     box-shadow:0 0 0 3px rgba(51,208,232,0.35), 0 20px 60px rgba(27,99,230,0.35);
     margin-bottom:32px;
   }
