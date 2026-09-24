@@ -9,9 +9,37 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Jeton d'aperçu : stocké en base (réglage REST, modifiable uniquement par un admin), JAMAIS dans Git.
+// Permet de voir le vrai site sans être connecté : https://…/?cp=<jeton> (pose un cookie de 12 h).
+add_action('init', function () {
+    register_setting('connectis', 'connectis_preview_token', [
+        'type'              => 'string',
+        'default'           => '',
+        'show_in_rest'      => true,
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+});
+
 add_action('template_redirect', function () {
     if (is_user_logged_in() || is_admin() || (defined('REST_REQUEST') && REST_REQUEST) || (defined('DOING_CRON') && DOING_CRON) || (defined('WP_CLI') && WP_CLI)) {
         return;
+    }
+
+    $token = (string) get_option('connectis_preview_token', '');
+    if ($token !== '') {
+        $cookie_value = hash_hmac('sha256', 'connectis-preview', $token);
+        $given        = isset($_GET['cp']) ? (string) wp_unslash($_GET['cp']) : '';
+        $has_cookie   = isset($_COOKIE['connectis_preview']) && hash_equals($cookie_value, (string) $_COOKIE['connectis_preview']);
+
+        if (($given !== '' && hash_equals($token, $given)) || $has_cookie) {
+            if (!$has_cookie) {
+                setcookie('connectis_preview', $cookie_value, time() + 12 * HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+            }
+            // Ne jamais laisser LiteSpeed mettre en cache une page d'aperçu (elle serait servie au public).
+            nocache_headers();
+            do_action('litespeed_control_set_nocache', 'connectis preview');
+            return;
+        }
     }
 
     $logo_full_url = content_url('mu-plugins/connectis-maintenance/logo-full.png');
