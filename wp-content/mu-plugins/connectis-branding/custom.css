@@ -531,3 +531,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 .ct-header-account-dropdown { background: linear-gradient(160deg, #0a1430, #0c1730) !important; border: 1px solid rgba(255,255,255,.14); border-radius: 16px !important; box-shadow: 0 20px 50px rgba(0,0,0,.5) !important; color: #dbe4f3 !important; --theme-text-color: #dbe4f3; --theme-link-initial-color: #dbe4f3; }
 .ct-header-account-dropdown a, .ct-header-account-dropdown .ct-menu-link { color: #fff !important; }
 .ct-header-account-dropdown a:hover { color: #33d0e8 !important; }
+
+/* Hiérarchie des titres : le titre de page domine les titres de section (ordinateur et mobile) */
+h1.page-title, .hero-section .page-title, .hero-section h1 { font-size: clamp(2.1rem, 5vw, 2.9rem) !important; letter-spacing: -.01em; }
+.entry-content h2 { font-size: clamp(1.55rem, 3.6vw, 2.05rem); text-wrap: balance; }
+.cn-lead, .cn-hero-home p, .entry-content > p { text-wrap: pretty; }
+@media (max-width: 700px) {
+  .cn-hero-home { padding: 44px 20px 30px; }
+  .cn-hero-home p { font-size: 1.02rem; }
+  .cn-kicker { font-size: .7rem; letter-spacing: 1.2px; }
+  .entry-content h2 { margin-top: 38px; }
+}
+.wpcf7-submit:disabled, .wpcf7-submit[disabled] { opacity: .72; }

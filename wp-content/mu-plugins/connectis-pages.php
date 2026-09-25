@@ -431,3 +431,15 @@ add_action('init', function () {
     }
     update_option('connectis_pages_version', CONNECTIS_PAGES_VERSION);
 }, 60);
+
+// Typographie française : espace insécable avant « : ; ! ? » et à l'intérieur des guillemets (aucun retour à la ligne devant un deux-points).
+add_filter('the_content', function ($content) {
+    if (!is_page()) {
+        return $content;
+    }
+    return preg_replace_callback('/>([^<]+)</u', function ($m) {
+        $text = preg_replace('/ ([:;!?»])/u', "\u{00A0}$1", $m[1]);
+        $text = preg_replace('/« /u', "«\u{00A0}", $text);
+        return '>' . $text . '<';
+    }, $content);
+}, 30);
