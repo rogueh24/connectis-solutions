@@ -11,6 +11,18 @@ format AAAA-MM-JJ.
 - Vérification de l'alerte « Site dangereux » Google Safe Browsing sur `wp-admin` (signalement de faux positif à déposer).
 - Relecture des CGV et des mentions légales par un professionnel ; capital social et n° de TVA à renseigner.
 
+## [Non publié — après 1.0.0]
+
+### Modifié
+- Barre du haut (au-dessus du menu) supprimée ; pied de page réduit à « © année Connectis Solutions » + liens légaux
+  (identité complète dans les mentions légales et les blocs de confiance).
+- « devis gratuit » remplacé par « devis détaillé et solutions de financement » (site, SEO).
+- « Nos solutions » développée ; « Et aussi » → « Services complémentaires » ; grilles de 3 cartes en 3 colonnes.
+- Blocs de confiance : icône au-dessus du titre, texte aligné à gauche (ordinateur et mobile).
+- Hiérarchie des titres (titre de page > titre de section), espace insécable avant « : ; ! ? », hero mobile resserré.
+- Fenêtre de connexion et liste déroulante du compte en thème sombre, avec le logo.
+- Menu : « Nos solutions » → « Solutions », menu hamburger centré.
+
 ## [1.0.0] - 2026-09-25 — Mise en ligne
 
 ### Ajouté

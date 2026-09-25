@@ -543,3 +543,5 @@ h1.page-title, .hero-section .page-title, .hero-section h1 { font-size: clamp(2.
   .entry-content h2 { margin-top: 38px; }
 }
 .wpcf7-submit:disabled, .wpcf7-submit[disabled] { opacity: .72; }
+
+.nb { white-space: nowrap; }

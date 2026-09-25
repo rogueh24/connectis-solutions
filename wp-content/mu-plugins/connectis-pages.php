@@ -440,6 +440,6 @@ add_filter('the_content', function ($content) {
     return preg_replace_callback('/>([^<]+)</u', function ($m) {
         $text = preg_replace('/ ([:;!?»])/u', "\u{00A0}$1", $m[1]);
         $text = preg_replace('/« /u', "«\u{00A0}", $text);
-        return '>' . $text . '<';
+        return '>' . str_replace('Wi-Fi', '<span class="nb">Wi-Fi</span>', $text) . '<';
     }, $content);
 }, 30);
