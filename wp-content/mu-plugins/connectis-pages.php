@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v14 : pages Connectis et Recrutement enrichies (contenu, liens internes) pour l'analyse SEO.
-const CONNECTIS_PAGES_VERSION = 14;
+// v15 : liens internes et sortants (Pour aller plus loin, Recrutement, CGV) pour l'analyse SEO.
+const CONNECTIS_PAGES_VERSION = 15;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -271,6 +271,17 @@ function connectis_pages_definitions() {
         ],
     ];
 
+
+    // Liens utiles par offre : 1 lien sortant vers une source officielle + liens internes vers les offres liées et le devis.
+    $more = [
+        'materiel' => "Pour connaître les bonnes pratiques numériques d'une entreprise, consultez <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Votre installation gagne à être associée à une <a href='/nos-solutions/fibre/'>connexion fibre</a> adaptée et à un <a href='/nos-solutions/services/'>contrat de maintenance</a>. Un projet ? <a href='/devis-contact/'>Demandez un devis</a>.",
+        'videosurveillance' => "La vidéosurveillance de locaux professionnels est encadrée par la loi : la <a href='https://www.cnil.fr/' target='_blank' rel='noopener'>CNIL</a> détaille les règles à respecter. Pensez aussi au stockage des images avec nos <a href='/nos-solutions/abonnements/'>abonnements</a> et au suivi par un <a href='/nos-solutions/services/'>contrat de maintenance</a>. <a href='/devis-contact/'>Demandez votre devis</a>.",
+        'telephonie' => "Les règles de numérotation et de portabilité des lignes sont encadrées par l'<a href='https://www.arcep.fr/' target='_blank' rel='noopener'>ARCEP</a>. Une téléphonie IP demande une bonne connexion : découvrez notre offre <a href='/nos-solutions/fibre/'>Internet et fibre optique</a> et nos <a href='/nos-solutions/abonnements/'>abonnements et forfaits</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'fibre' => "Vérifiez la couverture fibre de votre adresse sur la <a href='https://cartefibre.arcep.fr/' target='_blank' rel='noopener'>carte de la fibre de l'ARCEP</a>. Associez la fibre à notre <a href='/nos-solutions/telephonie/'>téléphonie IP</a>, à des <a href='/nos-solutions/abonnements/'>abonnements</a> adaptés et à un <a href='/nos-solutions/services/'>contrat de maintenance</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'abonnements' => "Les règles applicables aux opérateurs et aux abonnements sont publiées par l'<a href='https://www.arcep.fr/' target='_blank' rel='noopener'>ARCEP</a>. Nous vous aidons à choisir la bonne formule pour votre <a href='/nos-solutions/fibre/'>fibre</a>, votre <a href='/nos-solutions/telephonie/'>téléphonie</a> ou votre <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'services' => "Les bonnes pratiques et l'assistance en cas d'incident numérique sont détaillées sur <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Nos interventions couvrent le <a href='/nos-solutions/materiel/'>matériel informatique</a>, la <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a> et la <a href='/nos-solutions/telephonie/'>téléphonie</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+    ];
+
     $pages = [];
 
     $faq_extra = [
@@ -294,6 +305,7 @@ function connectis_pages_definitions() {
                 . "<h2>Ce que nous proposons</h2>" . cn_grid($cards)
                 . "<h2>Comment ça se passe</h2>" . cn_steps()
                 . ($s['finance'] ? cn_finance() : '')
+                . "<h2>Pour aller plus loin</h2><div class='cn-narrow'><p>" . $more[$key] . "</p></div>"
                 . "<h2>Questions fréquentes</h2>" . cn_faq(array_merge([$faq_extra[$key]], cn_faq_common()))
                 . cn_cta($s['cta']),
         ];
@@ -408,6 +420,7 @@ function connectis_pages_definitions() {
                 cn_card('clock', 'Nous étudions votre profil', "Chaque candidature, spontanée ou non, est lue par l'équipe."),
                 cn_card('users', 'Échangeons', "Si votre profil correspond, nous revenons vers vous pour un premier échange."),
             ])
+            . "<div class='cn-narrow'><p>Vous souhaitez découvrir le marché de l'emploi ? Consultez <a href='https://www.francetravail.fr/' target='_blank' rel='noopener'>France Travail</a>. Pour mieux connaître l'entreprise, parcourez <a href='/nos-solutions/'>nos solutions</a> et <a href='/a-propos/'>notre présentation</a>.</p></div>"
             . "<div class='cn-narrow'><div class='cn-form-card'><h2>Candidater</h2>" . $shortcode($f_cand, 'Candidature') . "</div></div>",
     ];
 

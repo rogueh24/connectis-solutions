@@ -222,6 +222,7 @@ HTML;
 <p><span class='cn-cl'>19.1</span> Toute réclamation peut être adressée par écrit à <a href='mailto:contact@connectis-solutions.fr'>contact@connectis-solutions.fr</a> ; les parties s'efforcent de résoudre à l'amiable tout différend avant toute action judiciaire.</p>
 <p><span class='cn-cl'>19.2</span> Les CGV et les contrats conclus sont soumis au <strong>droit français</strong>. À défaut d'accord amiable, <strong>le tribunal de commerce de Nancy est seul compétent</strong>, y compris en cas de référé, d'appel en garantie, de pluralité de défendeurs ou de procédure d'urgence, nonobstant toute clause contraire des conditions du Client.</p>
 </section>
+<p>Pour aller plus loin : les règles applicables aux relations entre professionnels (délais de paiement, facturation) sont présentées sur <a href='https://www.service-public.fr/professionnels-entreprises' target='_blank' rel='noopener'>Service-public.fr</a>. Vous pouvez aussi consulter <a href='/nos-solutions/'>nos solutions</a>, nos <a href='/mentions-legales/'>mentions légales</a> ou <a href='/devis-contact/'>demander un devis</a>.</p>
 <p class='cn-updated'>Version en vigueur au 25 septembre 2026.</p>
 </div>
 HTML;
