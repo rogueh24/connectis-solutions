@@ -49,7 +49,7 @@
 #offcanvas .sub-menu a { color: var(--cn-grey) !important; }
 
 /* ── Accueil : le hero porte déjà le titre, on masque « Accueil » ── */
-.home .hero-section { display: none !important; }
+.home .hero-section { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ── Boutons (liens boutons du contenu + Contact Form 7) ── */
 a[style*="background:#1b63e6"],
@@ -298,7 +298,7 @@ div[style*="linear-gradient(135deg,#070d1f"] {
   background: radial-gradient(60% 80% at 50% 0%, rgba(27,99,230,.45), transparent 70%), linear-gradient(135deg, rgba(7,13,31,.92), rgba(18,58,140,.6));
   border: 1px solid rgba(255,255,255,.12); box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 0 80px rgba(27,99,230,.2);
 }
-.cn-hero-home h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); margin: 16px auto 14px; max-width: 900px; text-wrap: balance; }
+.cn-hero-home .cn-h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: #fff; margin: 16px auto 14px; max-width: 900px; text-wrap: balance; }
 .cn-hero-home p { color: #dbe4f3; max-width: 640px; margin: 0 auto 22px; font-size: 1.12rem; }
 .cn-kicker { display: inline-block; font-size: .78rem; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; color: var(--cn-cyan); border: 1px solid rgba(51,208,232,.4); background: rgba(51,208,232,.08); padding: 6px 16px; border-radius: 999px; }
 

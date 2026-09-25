@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v8 : plus de « gratuit » (devis détaillé, solutions de financement).
-const CONNECTIS_PAGES_VERSION = 8;
+// v9 : unique H1 sur l'accueil (titre de page), image d'en-tête chargée en priorité.
+const CONNECTIS_PAGES_VERSION = 9;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -174,7 +174,7 @@ function cn_img($name) {
 }
 
 function cn_hero($image, $alt) {
-    return "<figure class='cn-hero'><img src='" . cn_img($image) . "' alt='" . $alt . "' loading='lazy'></figure>";
+    return "<figure class='cn-hero'><img src='" . cn_img($image) . "' alt='" . $alt . "' width='1600' height='1000' fetchpriority='high' decoding='async'></figure>";
 }
 
 /* ───────────────────────── Contenu des pages ───────────────────────── */
@@ -316,11 +316,12 @@ function connectis_pages_definitions() {
         cn_card('doc', 'Devis clair', "Un chiffrage détaillé poste par poste, pour savoir précisément ce que vous financez."),
         cn_card('headset', 'Suivi après installation', "Maintenance, dépannage et assistance : nous restons votre interlocuteur une fois le projet livré."),
     ]);
+    // Le titre de la page d'accueil est l'unique H1 du site (masqué visuellement par le thème, lu par les moteurs de recherche).
     $pages['accueil'] = [
-        'title'   => 'Accueil',
+        'title'   => 'Informatique, vidéosurveillance et téléphonie pour votre entreprise',
         'content' => "<!--cn-->"
             . "<div class='cn-hero-home'><span class='cn-kicker'>Informatique · Vidéosurveillance · Téléphonie</span>"
-            . "<h1>Informatique, vidéosurveillance et téléphonie pour votre entreprise</h1>"
+            . "<div class='cn-h1'>Informatique, vidéosurveillance et téléphonie pour votre entreprise</div>"
             . "<p>Un seul interlocuteur local : nous conseillons, installons et assurons le suivi directement chez vous.</p>"
             . "<p><a class='cn-btn' href='/devis-contact/'>Demander un devis</a> <a class='cn-btn cn-btn-ghost' href='/nos-solutions/'>Découvrir nos solutions</a></p></div>"
             . cn_strip()

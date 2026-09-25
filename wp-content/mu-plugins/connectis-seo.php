@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v2 : descriptions sans « gratuit » (devis détaillé, financement).
-const CONNECTIS_SEO_VERSION = 2;
+// v3 : mots-clés cibles, plan du site sans taxonomies, image de partage, pièces jointes désactivées, fil d'Ariane et services (JSON-LD).
+const CONNECTIS_SEO_VERSION = 3;
 
 /**
  * Métadonnées par page : chemin => [titre (≈60 car.), description (≈155 car.)].
@@ -76,6 +76,25 @@ function connectis_seo_definitions() {
     ];
 }
 
+/**
+ * Mot-clé principal par page (analyse SEOPress ; les « meta keywords » n'existent plus, Google les ignore).
+ */
+function connectis_seo_keywords() {
+    return [
+        'accueil'                          => 'informatique vidéosurveillance téléphonie Nancy',
+        'nos-solutions'                    => 'solutions informatique vidéosurveillance téléphonie entreprise',
+        'nos-solutions/materiel'           => 'matériel informatique entreprise',
+        'nos-solutions/videosurveillance'  => 'vidéosurveillance professionnelle',
+        'nos-solutions/telephonie'         => 'téléphonie entreprise standard VoIP',
+        'nos-solutions/fibre'              => 'fibre optique entreprise',
+        'nos-solutions/abonnements'        => 'abonnements internet téléphonie professionnels',
+        'nos-solutions/services'           => 'maintenance informatique installation',
+        'a-propos'                         => 'Connectis Solutions Nancy',
+        'devis-contact'                    => 'devis informatique vidéosurveillance téléphonie',
+        'recrutement'                      => 'recrutement technicien commercial informatique Nancy',
+    ];
+}
+
 add_action('init', function () {
     if ((int) get_option('connectis_seo_version', 0) >= CONNECTIS_SEO_VERSION) {
         return;
@@ -102,6 +121,32 @@ add_action('init', function () {
         $sitemap['seopress_xml_sitemap_general_enable'] = '1';
         $sitemap['seopress_xml_sitemap_post_types_list'] = ['page' => ['include' => '1']];
         update_option('seopress_xml_sitemap_option_name', $sitemap);
+
+        foreach (connectis_seo_keywords() as $path => $keyword) {
+            $page = get_page_by_path($path);
+            if ($page) {
+                update_post_meta($page->ID, '_seopress_analysis_target_kw', $keyword);
+            }
+        }
+
+        // Plan du site : pas de taxonomies (aucun article), pages seulement.
+        $sitemap = (array) get_option('seopress_xml_sitemap_option_name', []);
+        $sitemap['seopress_xml_sitemap_taxonomies_list'] = ['category' => ['include' => ''], 'post_tag' => ['include' => '']];
+        update_option('seopress_xml_sitemap_option_name', $sitemap);
+
+        // Partage sur les réseaux : image par défaut 1200×630, cartes Twitter/X en grand format.
+        $og = content_url('mu-plugins/connectis-branding/og-image.jpg');
+        $social = (array) get_option('seopress_social_option_name', []);
+        $social['seopress_social_facebook_og']       = '1';
+        $social['seopress_social_facebook_img']      = $og;
+        $social['seopress_social_twitter_card']      = '1';
+        $social['seopress_social_twitter_card_og']   = '1';
+        $social['seopress_social_twitter_card_img']  = $og;
+        $social['seopress_social_twitter_card_img_size'] = 'large';
+        update_option('seopress_social_option_name', $social);
+
+        // Pas de pages « pièce jointe » indexables.
+        update_option('wp_attachment_pages_enabled', 0);
 
         update_option('connectis_seo_pages_done', $done);
         update_option('connectis_seo_error', null);
@@ -143,4 +188,43 @@ add_action('wp_head', function () {
     ];
 
     echo '<script type="application/ld+json">' . wp_json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</script>\n";
+}, 20);
+
+// Données structurées des pages intérieures : fil d'Ariane, et « Service » pour les six offres.
+add_action('wp_head', function () {
+    if (!is_page() || is_front_page()) {
+        return;
+    }
+    $page = get_queried_object();
+    if (!$page) {
+        return;
+    }
+
+    $trail = [['name' => 'Accueil', 'url' => home_url('/')]];
+    $ancestors = array_reverse(get_post_ancestors($page));
+    foreach ($ancestors as $id) {
+        $trail[] = ['name' => get_the_title($id), 'url' => get_permalink($id)];
+    }
+    $trail[] = ['name' => get_the_title($page), 'url' => get_permalink($page)];
+
+    $items = [];
+    foreach ($trail as $i => $crumb) {
+        $items[] = ['@type' => 'ListItem', 'position' => $i + 1, 'name' => wp_strip_all_tags($crumb['name']), 'item' => $crumb['url']];
+    }
+    $graph = [['@type' => 'BreadcrumbList', 'itemListElement' => $items]];
+
+    if (strpos(get_page_uri($page), 'nos-solutions/') === 0) {
+        $graph[] = [
+            '@type'       => 'Service',
+            'name'        => wp_strip_all_tags(get_the_title($page)),
+            'description' => (string) get_post_meta($page->ID, '_seopress_titles_desc', true),
+            'url'         => get_permalink($page),
+            'provider'    => ['@id' => home_url('/#entreprise')],
+            'areaServed'  => 'FR',
+            'audience'    => ['@type' => 'BusinessAudience', 'audienceType' => 'Professionnels'],
+        ];
+    }
+
+    echo '<script type="application/ld+json">' . wp_json_encode(['@context' => 'https://schema.org', '@graph' => $graph], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</script>
+";
 }, 20);
