@@ -10,7 +10,8 @@ agent) reprenne le projet sans redécouvrir les mêmes pièges.
 | Cœur WordPress (`wp-admin/`, `wp-includes/`, `index.php`, `wp-config.php`) | **Non** | Serveur uniquement (installé via le panneau NOC WP) |
 | `wp-content/uploads/` (médias) | **Non** | Serveur uniquement |
 | `wp-content/themes/`, `plugins/`, `mu-plugins/` | **Oui** | Ce dépôt → déployé sur le serveur |
-| Contenu éditorial (pages, menus, réglages) | **Non** (base de données) | Base MySQL. Le mu-plugin `connectis-content-seed.php` n'est qu'un **amorçage initial** : une fois le site vivant, la base est la source de vérité |
+| Contenu des pages, SEO, réglages | **Oui, en code** (mu-plugins, §9) | Réappliqué à chaque incrément de version (`CONNECTIS_PAGES_VERSION`, `CONNECTIS_SEO_VERSION`, …) : une modification manuelle dans l'éditeur est écrasée |
+| Médias, menus, comptes, entrées de formulaires | **Non** (base de données / uploads) | Serveur. Le mu-plugin `connectis-content-seed.php` n'est qu'un amorçage initial historique |
 
 ## 2. Déploiement
 
@@ -140,4 +141,30 @@ Leçons :
   volontairement (`validation_failed`). Tester l'envoi depuis le navigateur.
 - Doublons de pages : chaque exécution partielle du contenu de départ a recréé des pages ; les identifiants
   32 à 43 étaient des doublons. Le contenu de départ n'est plus rejoué (indicateur `connectis_content_seeded_v2`).
+
+### Tableau de bord des mu-plugins (état v1.1.0)
+
+| Fichier | Version courante | Particularités |
+|---|---|---|
+| `connectis-pages.php` | 11 | Composants (cartes, étapes, FAQ, confiance), filtre typographique (espace insécable, « Wi-Fi »), unique H1 |
+| `connectis-legal.php` | — | CGV (19 art.), mentions légales (9 sections), confidentialité ; constante `CONNECTIS_CAPITAL_SOCIAL` |
+| `connectis-seo.php` | 3 | Métadonnées SEOPress, mots-clés cibles, plan du site, image de partage, JSON-LD, redirection des doublons `-2` |
+| `connectis-admin.php` | 1 | Réglages, durcissement, tableau de bord, connexion, **purge du cache à chaque déploiement**, barre d'administration réservée aux administrateurs |
+| `connectis-branding.php` | logo v2 | CSS, menu (logo cliquable, ordre, bouton), apparition au défilement |
+| `connectis-theme-config.php` | 1 | Configuration Blocksy (en-tête, palette), pied de page |
+| `connectis-maintenance.php` | — | Interrupteur `CONNECTIS_MAINTENANCE` (`false` = site public) |
+
+Autres leçons de la mise en ligne :
+- **Le cache LiteSpeed sert l'ancien HTML/CSS aux visiteurs** après un déploiement : `connectis-admin.php` compare une
+  empreinte (taille + date des fichiers des mu-plugins) à chaque requête et purge le cache si elle change.
+- **La comparaison par taille** : incrémenter une constante de version sans changer la taille du fichier ne le
+  redéploie pas → modifier aussi un commentaire (« v11 : … »).
+- **Les données officielles** de l'entreprise se lisent via l'API publique
+  `https://recherche-entreprises.api.gouv.fr/search?q=<SIREN>` (la page de l'Annuaire est rendue en JavaScript).
+  Le capital et la date d'immatriculation figurent au RNE (INPI) ; le n° de TVA intracommunautaire se calcule
+  (`FR` + clé + SIREN) et doit être confirmé.
+- **L'adresse exacte `/wp-admin/index.php`** a été signalée à tort par la navigation sécurisée de Google : les liens
+  « Tableau de bord » pointent vers `/wp-admin/` ; signalement de faux positif à déposer sur
+  `safebrowsing.google.com/safebrowsing/report_error/`.
+- **Aucun loueur n'est cité** sur le site (décision commerciale) : formulation « partenaires financiers ».
 

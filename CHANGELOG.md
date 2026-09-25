@@ -6,17 +6,26 @@ format AAAA-MM-JJ.
 ## [Non publié]
 
 ### À venir
-- Configuration SMTP de SureMail (délivrabilité des e-mails de devis) — nécessite les identifiants de la boîte contact@.
-- Vraies photos de l'équipe / des chantiers (À propos, accueil).
-- Vérification de l'alerte « Site dangereux » Google Safe Browsing sur `wp-admin` (signalement de faux positif à déposer).
-- Relecture des CGV et des mentions légales par un professionnel ; capital social et n° de TVA à renseigner.
+- Peaufinages demandés au fil de l'eau.
+- Fiche Google Business Profile (description prête).
+- Relecture juridique des CGV et mentions légales ; confirmation du n° de TVA.
+- Vraies photos de l'équipe ; numéro de téléphone de l'entreprise.
 
-## [Non publié — après 1.0.0]
+## [1.1.0] - 2026-09-25 — Finitions, SEO, textes légaux
 
 ### Ajouté
+- **Textes légaux réécrits** : CGV en 19 articles (financement en location sans citer de loueur, réserve de propriété,
+  responsabilité, sous-traitance RGPD), mentions légales en 9 sections (capital social 10 000 €, immatriculation
+  14 avril 2026, TVA, hébergeur avec téléphone).
+- Barre d'administration réservée aux administrateurs, sans le logo WordPress.
+- Description prête pour la fiche Google Business Profile.
 - Extension **WordPress Feature API** 0.1.8 (Automattic), activée seule puis contrôlée : site sain, endpoints protégés (401 en anonyme).
 - SEO : mots-clés cibles, plan du site sans taxonomies, image de partage (Open Graph / Twitter), fil d'Ariane et services en JSON-LD,
   un seul H1 par page, redirection 301 et noindex des pages en double `-2`.
+
+### Corrigé
+- Pages en double « Vidéosurveillance » (ids 32-33) et brouillon « Privacy Policy » mis à la corbeille : 14 pages publiées.
+- Formulaire de devis vérifié en conditions réelles ; Search Console connectée via Site Kit.
 
 ### Modifié
 - Barre du haut (au-dessus du menu) supprimée ; pied de page réduit à « © année Connectis Solutions » + liens légaux
