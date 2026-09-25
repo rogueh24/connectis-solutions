@@ -228,3 +228,34 @@ add_action('wp_head', function () {
     echo '<script type="application/ld+json">' . wp_json_encode(['@context' => 'https://schema.org', '@graph' => $graph], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</script>
 ";
 }, 20);
+
+// Pages en double issues des premières exécutions du contenu de départ (ex. « videosurveillance-2 ») :
+// redirigées en 301 vers la page officielle et exclues de l'indexation, tant qu'elles n'ont pas été mises à la corbeille.
+add_action('template_redirect', function () {
+    if (!is_page()) {
+        return;
+    }
+    $page = get_queried_object();
+    if ($page && preg_match('#^nos-solutions/(materiel|videosurveillance|telephonie|fibre|abonnements|services)-\d+$#', get_page_uri($page), $m)) {
+        wp_safe_redirect(home_url('/nos-solutions/' . $m[1] . '/'), 301);
+        exit;
+    }
+}, 1);
+
+add_action('init', function () {
+    if (get_option('connectis_seo_dupes_v1')) {
+        return;
+    }
+    $dupes = get_posts([
+        'post_type'   => 'page',
+        'post_status' => 'publish',
+        'numberposts' => 50,
+        'fields'      => 'ids',
+    ]);
+    foreach ($dupes as $id) {
+        if (preg_match('#^nos-solutions/(materiel|videosurveillance|telephonie|fibre|abonnements|services)-\d+$#', get_page_uri($id))) {
+            update_post_meta($id, '_seopress_robots_index', 'yes'); // « yes » = noindex dans SEOPress
+        }
+    }
+    update_option('connectis_seo_dupes_v1', 1);
+}, 90);
