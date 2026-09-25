@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v11 : capital social, date d'immatriculation et téléphone de l'hébergeur dans les mentions légales.
-const CONNECTIS_PAGES_VERSION = 11;
+// v12 : images compressées et recadrées (performance), URL d'images renouvelées (?v=).
+const CONNECTIS_PAGES_VERSION = 12;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 

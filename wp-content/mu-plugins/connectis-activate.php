@@ -110,6 +110,10 @@ add_action('rest_api_init', function () {
                     'forms_layout_done'  => (bool) get_option('connectis_forms_layout_v1'),
                     'forms_layout_error' => get_option('connectis_forms_layout_error', null),
                 ],
+                'cache_settings'     => [
+                    'version' => (int) get_option('connectis_cache_version', 0),
+                    'error'   => get_option('connectis_cache_error', null),
+                ],
                 'litespeed'          => (function () {
                     $out = [];
                     foreach (['cache', 'cache-priv', 'cache-rest', 'cache-browser', 'cache-mobile', 'cache-ttl_pub', 'cache-ttl_browser',
