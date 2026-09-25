@@ -110,6 +110,16 @@ add_action('rest_api_init', function () {
                     'forms_layout_done'  => (bool) get_option('connectis_forms_layout_v1'),
                     'forms_layout_error' => get_option('connectis_forms_layout_error', null),
                 ],
+                'litespeed'          => (function () {
+                    $out = [];
+                    foreach (['cache', 'cache-priv', 'cache-rest', 'cache-browser', 'cache-mobile', 'cache-ttl_pub', 'cache-ttl_browser',
+                              'optm-css_min', 'optm-css_comb', 'optm-js_min', 'optm-js_comb', 'optm-html_min', 'optm-emoji_rm', 'optm-qs_rm',
+                              'optm-ggfonts_rm', 'optm-js_defer', 'media-lazy', 'guest', 'object', 'crawler', 'cdn', 'esi', 'debug',
+                              'misc-heartbeat_front', 'misc-heartbeat_back', 'misc-heartbeat_editor', 'purge-stale'] as $id) {
+                        $out[$id] = apply_filters('litespeed_conf', $id);
+                    }
+                    return $out;
+                })(),
                 'seo'                => [
                     'version' => (int) get_option('connectis_seo_version', 0),
                     'pages'   => (int) get_option('connectis_seo_pages_done', 0),
