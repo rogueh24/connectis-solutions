@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v10 : CGV et mentions légales réécrites (rédaction complète, financement en location sans citer de loueur).
-const CONNECTIS_PAGES_VERSION = 10;
+// v11 : capital social, date d'immatriculation et téléphone de l'hébergeur dans les mentions légales.
+const CONNECTIS_PAGES_VERSION = 11;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 

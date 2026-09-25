@@ -9,9 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Capital social (mention obligatoire pour une SAS) : à renseigner d'après le Kbis, ex. '1 000 €'.
-// Tant que la valeur est vide, la ligne n'est pas affichée.
-const CONNECTIS_CAPITAL_SOCIAL = '';
+// Capital social (mention obligatoire pour une SAS), d'après le RNE (INPI). Vide = ligne non affichée.
+const CONNECTIS_CAPITAL_SOCIAL = '10 000 €';
 
 function connectis_legal_definitions() {
 
@@ -29,7 +28,7 @@ function connectis_legal_definitions() {
 {{CAPITAL_LI}}<li><span>Siège social</span><strong>110 boulevard d'Austrasie, 54000 Nancy, France</strong></li>
 <li><span>SIREN</span><strong>103 370 557</strong></li>
 <li><span>SIRET (siège)</span><strong>103 370 557 00011</strong></li>
-<li><span>Immatriculation</span><strong>Registre du commerce et des sociétés de Nancy</strong></li>
+<li><span>Immatriculation</span><strong>RCS de Nancy — immatriculée le 14 avril 2026</strong></li>
 <li><span>TVA intracommunautaire</span><strong>FR64 103 370 557</strong></li>
 <li><span>Code APE / NAF</span><strong>62.02A — Conseil en systèmes et logiciels informatiques</strong></li>
 <li><span>Date de création</span><strong>26 mars 2026</strong></li>
@@ -48,7 +47,7 @@ function connectis_legal_definitions() {
 
 <section id='hebergeur' class='cn-legal-sec'>
 <h2>3. Hébergement</h2>
-<p>Le site est hébergé par <strong>PlanetHoster</strong>, 4416 rue Louis B. Mayer, Laval (Québec) H7P 0G1, Canada — <a href='https://www.planethoster.com' target='_blank' rel='noopener'>www.planethoster.com</a>.</p>
+<p>Le site est hébergé par <strong>PlanetHoster</strong>, 4416 rue Louis B. Mayer, Laval (Québec) H7P 0G1, Canada — téléphone : +33 1 76 60 41 43 — <a href='https://www.planethoster.com' target='_blank' rel='noopener'>www.planethoster.com</a>.</p>
 </section>
 
 <section id='propriete' class='cn-legal-sec'>
