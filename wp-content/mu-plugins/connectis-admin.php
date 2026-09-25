@@ -206,3 +206,20 @@ document.querySelectorAll('a[href="index.php"], a[href$="/wp-admin/index.php"]')
 </script>
     <?php
 });
+
+/* ───────────────────────── Barre d'administration ───────────────────────── */
+
+// Barre visible uniquement pour les administrateurs (jamais pour un autre rôle), sans le logo WordPress.
+add_filter('show_admin_bar', function ($show) {
+    return current_user_can('manage_options') ? $show : false;
+}, 20);
+
+add_action('admin_bar_menu', function ($bar) {
+    $bar->remove_node('wp-logo');
+}, 999);
+
+add_action('wp_head', 'connectis_hide_wp_logo_css', 99);
+add_action('admin_head', 'connectis_hide_wp_logo_css', 99);
+function connectis_hide_wp_logo_css() {
+    echo '<style>#wpadminbar #wp-admin-bar-wp-logo{display:none!important}</style>' . "\n";
+}
