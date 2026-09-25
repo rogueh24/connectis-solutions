@@ -505,3 +505,29 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
 /* Trois cartes : trois colonnes, sans carte orpheline */
 @media (min-width: 861px) { .cn-grid.cn-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+/* Barre du haut supprimée */
+.cn-topbar { display: none !important; }
+
+/* Bloc de confiance : icône au-dessus du titre, texte aligné à gauche (ordinateur et mobile) */
+.cn-trust-head { flex-direction: column; align-items: flex-start; gap: 14px; text-align: left; }
+.cn-trust-head h3 { text-wrap: balance; }
+.cn-finance { text-align: left; }
+.cn-finance .cn-ico { margin-bottom: 4px; }
+@media (max-width: 700px) {
+  .cn-finance { flex-direction: column; align-items: flex-start; }
+  .cn-finance .cn-btn { align-self: stretch; text-align: center; }
+}
+
+/* Connexion : fenêtre sombre avec le logo (visiteur) et liste déroulante sombre (compte connecté) */
+#account-modal .ct-panel-inner, #account-modal .ct-account-modal { background: linear-gradient(160deg, #070d1f 0%, #0c1730 100%) !important; color: #dbe4f3 !important; }
+#account-modal .ct-account-forms::before { content: ""; display: block; width: 150px; height: 132px; margin: 0 auto 22px; background: url('/wp-content/mu-plugins/connectis-maintenance/logo-full.png') center / contain no-repeat; }
+#account-modal label, #account-modal p { color: #dbe4f3 !important; }
+#account-modal input.input, #account-modal input[type=text], #account-modal input[type=password] { background: rgba(255,255,255,.06) !important; border: 1px solid rgba(255,255,255,.16) !important; color: #fff !important; border-radius: 10px !important; }
+#account-modal input:focus { border-color: #33d0e8 !important; box-shadow: 0 0 0 3px rgba(51,208,232,.2) !important; }
+#account-modal a { color: #6ab7ff !important; }
+#account-modal .ct-button { background: linear-gradient(135deg, #1b63e6, #2f80ff) !important; color: #fff !important; border: 0 !important; border-radius: 12px !important; }
+#account-modal .ct-toggle-close, #account-modal .ct-toggle-close svg { color: #fff !important; fill: #fff !important; }
+.ct-header-account-dropdown { background: linear-gradient(160deg, #0a1430, #0c1730) !important; border: 1px solid rgba(255,255,255,.14); border-radius: 16px !important; box-shadow: 0 20px 50px rgba(0,0,0,.5) !important; color: #dbe4f3 !important; --theme-text-color: #dbe4f3; --theme-link-initial-color: #dbe4f3; }
+.ct-header-account-dropdown a, .ct-header-account-dropdown .ct-menu-link { color: #fff !important; }
+.ct-header-account-dropdown a:hover { color: #33d0e8 !important; }

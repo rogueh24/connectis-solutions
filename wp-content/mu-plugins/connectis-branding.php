@@ -110,13 +110,7 @@ add_action('wp_head', function () {
     }
 }, 100);
 
-// Barre d'accès rapide au-dessus du menu (métiers, contact, devis). L'identité légale (SAS, SIREN, RCS) est dans le pied de page.
-add_action('wp_body_open', function () {
-    echo '<div class="cn-topbar"><div class="cn-topbar-in">'
-        . '<span><strong>Informatique</strong> · <strong>Vidéosurveillance</strong> · <strong>Téléphonie</strong></span>'
-        . '<span class="cn-tb-right"><a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a> · <a href="/devis-contact/">Devis &amp; financement</a></span>'
-        . '</div></div>';
-});
+// (Barre d'accès rapide au-dessus du menu retirée : l'en-tête commence directement par le logo.)
 
 // Apparition douce des blocs au défilement. Sans JavaScript, tout reste visible.
 add_action('wp_footer', function () {
