@@ -13,6 +13,11 @@ format AAAA-MM-JJ.
 
 ## [Non publié — après 1.0.0]
 
+### Ajouté
+- Extension **WordPress Feature API** 0.1.8 (Automattic), activée seule puis contrôlée : site sain, endpoints protégés (401 en anonyme).
+- SEO : mots-clés cibles, plan du site sans taxonomies, image de partage (Open Graph / Twitter), fil d'Ariane et services en JSON-LD,
+  un seul H1 par page, redirection 301 et noindex des pages en double `-2`.
+
 ### Modifié
 - Barre du haut (au-dessus du menu) supprimée ; pied de page réduit à « © année Connectis Solutions » + liens légaux
   (identité complète dans les mentions légales et les blocs de confiance).

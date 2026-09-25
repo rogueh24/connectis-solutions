@@ -41,6 +41,7 @@ abonnements, services & maintenance.
 | Contact Form 7 | Formulaires de devis, contact et candidature (avec dépôt de CV) |
 | MCP Adapter | Expose les *abilities* WordPress comme outils MCP (pilotage par un agent IA, authentifié) |
 | Abilities API | Successeur maintenu de « WordPress Feature API », expose les fonctionnalités du site pour un pilotage structuré (base d'une future intégration MCP) |
+| WordPress Feature API | Version 0.1.8 d'Automattic (installée à la demande) : expose les fonctionnalités du site aux agents IA via l'API REST, authentification requise (`/wp/v2/features` → 401 en anonyme). Le projet annonce son remplacement par l'Abilities API ci-dessus. |
 
 ## Déploiement
 
