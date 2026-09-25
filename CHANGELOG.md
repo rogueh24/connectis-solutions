@@ -5,7 +5,14 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+### Ajouté (performance)
+- `connectis-cache.php` : réglages LiteSpeed Cache versionnés (cache navigateur 30 jours, minification HTML/CSS/JS, emojis retirés),
+  appliqués par l'interface interne de LiteSpeed ; réglages courants visibles dans `/wp-json/connectis/v1/status`.
+- Images du site recadrées, compressées et servies en **WebP** (1,18 Mo → 0,76 Mo) ; JPEG conservé pour l'image de partage.
+- Purge automatique du cache à chaque déploiement.
+
 ### À venir
+- Cache d'objet Redis (socket NOC) à activer dans LiteSpeed Cache.
 - Peaufinages demandés au fil de l'eau.
 - Fiche Google Business Profile (description prête).
 - Relecture juridique des CGV et mentions légales ; confirmation du n° de TVA.

@@ -152,6 +152,7 @@ Leçons :
 | `connectis-admin.php` | 1 | Réglages, durcissement, tableau de bord, connexion, **purge du cache à chaque déploiement**, barre d'administration réservée aux administrateurs |
 | `connectis-branding.php` | logo v2 | CSS, menu (logo cliquable, ordre, bouton), apparition au défilement |
 | `connectis-theme-config.php` | 1 | Configuration Blocksy (en-tête, palette), pied de page |
+| `connectis-cache.php` | 1 | Réglages LiteSpeed Cache (cache navigateur, minification) — CSS critique/UCSS non activés (gain faible, risque de flash sans style) |
 | `connectis-maintenance.php` | — | Interrupteur `CONNECTIS_MAINTENANCE` (`false` = site public) |
 
 Autres leçons de la mise en ligne :
