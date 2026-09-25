@@ -88,6 +88,11 @@ Les commits assistés par un agent portent `Co-Authored-By: Claude Sonnet 5 <nor
 | SFTP | uniquement via GitHub Actions (secrets), jamais en direct |
 | phpMyAdmin / panneau NOC | humain uniquement |
 
+**Rotation du mot de passe d'application (« Claude MCP »)** : wp-admin → Comptes → Profil → Mots de passe d'application →
+créer un nouveau mot de passe, le placer soi-même dans `wp-sites.json` (jamais dans un chat ni dans Git), vérifier que
+l'accès fonctionne, puis révoquer l'ancien. Un mot de passe collé dans une conversation est à considérer comme exposé : le conserver est une décision du client,
+assumée ; la rotation reste recommandée dès qu'un doute existe.
+
 **Règle de sécurité :** le site par défaut du connecteur MCP est **rogueh24.fr** (autre projet). Tout appel
 `mcp__wordpress__*` sur ce projet doit passer explicitement `site: "connectis"`.
 Un agent IA ne saisit jamais un mot de passe ou un jeton dans un fichier, un formulaire ou un terminal :

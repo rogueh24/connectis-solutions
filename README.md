@@ -59,7 +59,7 @@ Détails complets, conventions et leçons apprises : **[docs/ENGINEERING.md](doc
 
 Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 
-### Ce qui est livré (v1.1.0)
+### Ce qui est livré (v1.2.0)
 
 - **Site public** en thème sombre aux couleurs du logo : 14 pages (accueil, Solutions + 6 offres, Connectis, Devis & Contact,
   Recrutement, mentions légales, CGV, confidentialité), en-tête avec logo horizontal, menu hamburger centré (logo cliquable,
@@ -76,6 +76,8 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - **Administration** : commentaires fermés, comptes non énumérables, en-têtes de sécurité, barre d'administration
   réservée aux administrateurs, tableau de bord épuré, page de connexion à l'image du site, purge automatique du cache
   après chaque déploiement.
+- **Performance** : cache de page LiteSpeed purgé à chaque déploiement, cache navigateur (30 jours), minification
+  HTML/CSS/JS, images WebP, Brotli, OPcache, cache d'objet Redis (socket NOC).
 - **Ingénierie** : contenu, SEO et réglages **versionnés dans Git** (mu-plugins), déploiement incrémental
   (≈ 2 min), interrupteur de mise en ligne, endpoint de diagnostic `/wp-json/connectis/v1/status`.
 
@@ -85,12 +87,14 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - [x] Dépôt GitHub + pipeline de déploiement SFTP incrémental
 - [x] Hébergement + WordPress installés (Planet Hoster) ; thème Blocksy et extensions actifs
 - [x] Charte graphique, pages, formulaires, textes légaux, SEO, durcissement
-- [x] **Mise en ligne** (2026-09-25) — v1.0.0, puis v1.1.0
+- [x] **Mise en ligne** (2026-09-25) — v1.0.0, v1.1.0, v1.2.0 (performance)
 - [x] Google Search Console (Site Kit) ; plan du site envoyé
 - [x] Formulaire de devis vérifié (SureMail)
-- [ ] Alerte « Site dangereux » de Chrome sur `wp-admin` : signalement de faux positif déposé, en attente de Google
-- [ ] Fiche Google Business Profile (description prête, à créer)
-- [ ] Relecture des CGV et mentions légales par un avocat ; confirmation du n° de TVA `FR64 103 370 557`
+- [x] Performance : cache de page + navigateur, minification, WebP, Brotli, OPcache, cache d'objet Redis
+- [x] Numéro de TVA confirmé ; CGV et mentions légales relues par un avocat
+- [x] Extensions inactives de l'hébergeur supprimées ; « Sign in with Google » (Site Kit) désactivé
+- [x] Signalement du faux positif « Site dangereux » déposé ; fiche Google Business Profile créée
+- [x] Mot de passe d'application « Claude MCP » : **conservé** (décision du client) ; procédure de rotation documentée (ENGINEERING §6)
+- [ ] Alerte Chrome sur `wp-admin` : vérifier sa disparition (24 à 72 h)
 - [ ] Vraies photos de l'équipe et des chantiers ; numéro de téléphone de l'entreprise
-- [ ] Suppression des extensions inactives de l'hébergeur (Akismet, BeyondSEO, Extendify, MonsterInsights, Hello Dolly, Really Simple Security, Site Assistant)
 - [ ] Peaufinages au fil des demandes
