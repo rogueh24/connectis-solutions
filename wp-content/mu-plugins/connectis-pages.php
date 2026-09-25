@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v12 : images compressées et recadrées (performance), URL d'images renouvelées (?v=).
-const CONNECTIS_PAGES_VERSION = 12;
+// v13 : images des pages servies en WebP.
+const CONNECTIS_PAGES_VERSION = 13;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -170,7 +170,9 @@ function cn_faq_common() {
 }
 
 function cn_img($name) {
-    return content_url('mu-plugins/connectis-content-seed/images/' . $name . '.jpg?v=' . CONNECTIS_PAGES_VERSION);
+    // WebP quand il existe (plus léger), JPEG sinon ; l'image de partage et les données structurées restent en JPEG.
+    $ext = file_exists(__DIR__ . '/connectis-content-seed/images/' . $name . '.webp') ? 'webp' : 'jpg';
+    return content_url('mu-plugins/connectis-content-seed/images/' . $name . '.' . $ext . '?v=' . CONNECTIS_PAGES_VERSION);
 }
 
 function cn_hero($image, $alt) {
