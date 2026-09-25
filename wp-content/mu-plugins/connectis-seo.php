@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v3 : mots-clés cibles, plan du site sans taxonomies, image de partage, pièces jointes désactivées, fil d'Ariane et services (JSON-LD).
-const CONNECTIS_SEO_VERSION = 3;
+// v4 : titres ≤ 60 caractères, descriptions 120-155, mots-clés courts présents dans titre/description/H1.
+const CONNECTIS_SEO_VERSION = 4;
 
 /**
  * Métadonnées par page : chemin => [titre (≈60 car.), description (≈155 car.)].
@@ -18,80 +18,81 @@ const CONNECTIS_SEO_VERSION = 3;
 function connectis_seo_definitions() {
     return [
         'accueil' => [
-            'Informatique, vidéosurveillance, téléphonie à Nancy | Connectis',
-            "Connectis Solutions installe et maintient l'informatique, la vidéosurveillance et la téléphonie des professionnels à Nancy. Devis détaillé et solutions de financement.",
+            "Connectis – Informatique, vidéosurveillance, téléphonie",
+            "Connectis Solutions installe et maintient l'informatique, la vidéosurveillance et la téléphonie des professionnels à Nancy. Solutions de financement.",
         ],
         'nos-solutions' => [
-            'Nos solutions pour professionnels | Connectis Solutions',
-            "Informatique, vidéosurveillance, téléphonie, fibre, abonnements et maintenance : découvrez les solutions Connectis Solutions pour votre entreprise.",
+            "Solutions informatique, vidéosurveillance, téléphonie",
+            "Toutes nos solutions pour les professionnels : informatique, vidéosurveillance, téléphonie, fibre, abonnements et maintenance. Devis et financement.",
         ],
         'nos-solutions/materiel' => [
-            'Informatique et matériel pour entreprises | Connectis',
-            "Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration par notre équipe à Nancy. Devis détaillé et solutions de financement.",
+            "Informatique et matériel pour entreprises | Connectis",
+            "Informatique et matériel : postes de travail, réseau, serveurs et périphériques, installés et configurés par notre équipe. Devis détaillé et financement.",
         ],
         'nos-solutions/videosurveillance' => [
-            'Vidéosurveillance professionnelle | Connectis Solutions',
-            "Caméras IP, enregistreurs, accès à distance, alarme et contrôle d'accès pour vos locaux professionnels. Installation sur site et devis détaillé.",
+            "Vidéosurveillance professionnelle et caméras IP",
+            "Vidéosurveillance professionnelle : caméras IP, enregistreurs, accès à distance, alarme et contrôle d'accès. Installation sur site et devis détaillé.",
         ],
         'nos-solutions/telephonie' => [
-            "Téléphonie d'entreprise, standard et VoIP | Connectis",
-            "Standard téléphonique, téléphonie IP, lignes fixes et mobiles pour professionnels : installation, paramétrage et suivi par Connectis Solutions.",
+            "Téléphonie d'entreprise : standard et VoIP | Connectis",
+            "Téléphonie d'entreprise : standard téléphonique, VoIP, lignes fixes et mobiles. Installation, paramétrage et suivi par Connectis Solutions.",
         ],
         'nos-solutions/fibre' => [
-            'Internet et fibre optique pour entreprises | Connectis',
-            "Raccordement fibre professionnel, Wi-Fi, box entreprise et solutions de secours : Connectis Solutions s'occupe de la connexion de vos locaux.",
+            "Internet et fibre optique pour entreprises | Connectis",
+            "Internet et fibre optique pour les professionnels : raccordement, Wi-Fi, box entreprise et solutions de secours. Étude sur site et mise en service.",
         ],
         'nos-solutions/abonnements' => [
-            'Abonnements et forfaits professionnels | Connectis',
-            "Formules d'abonnement internet, téléphonie et vidéosurveillance adaptées à votre activité, avec un interlocuteur unique du devis au suivi.",
+            "Abonnements et forfaits professionnels | Connectis",
+            "Abonnements et forfaits professionnels : internet, téléphonie et vidéosurveillance adaptés à votre activité, avec un seul interlocuteur.",
         ],
         'nos-solutions/services' => [
-            'Installation et maintenance informatique | Connectis',
-            "Installation sur site, maintenance préventive, dépannage réactif et contrats SAV pour vos équipements, par l'équipe Connectis Solutions.",
+            "Maintenance et services informatiques | Connectis",
+            "Maintenance et services : installation sur site, maintenance préventive, dépannage réactif et contrats SAV pour vos équipements informatiques et télécoms.",
         ],
         'a-propos' => [
-            'À propos de Connectis Solutions | Nancy',
+            "Connectis Solutions à Nancy : qui sommes-nous ?",
             "Connectis Solutions, SAS basée à Nancy : conseil, installation et maintenance en informatique, vidéosurveillance et téléphonie pour les professionnels.",
         ],
         'devis-contact' => [
-            'Devis, financement et contact | Connectis Solutions',
-            "Décrivez votre projet informatique, vidéosurveillance ou téléphonie : réponse rapide, devis détaillé et solutions de financement de Connectis Solutions à Nancy.",
+            "Devis, financement et contact | Connectis Solutions",
+            "Demandez un devis détaillé pour votre projet informatique, vidéosurveillance ou téléphonie, avec solutions de financement. Contact : réponse rapide.",
         ],
         'recrutement' => [
-            'Recrutement | Rejoindre Connectis Solutions',
-            "Connectis Solutions recrute une équipe commerciale et technique de terrain à Nancy. Envoyez votre candidature, même spontanée.",
+            "Recrutement et candidature | Connectis Solutions",
+            "Recrutement : Connectis Solutions cherche une équipe commerciale et technique de terrain à Nancy. Envoyez votre candidature, même spontanée.",
         ],
         'mentions-legales' => [
-            'Mentions légales | Connectis Solutions',
+            "Mentions légales | Connectis Solutions",
             "Mentions légales du site connectis-solutions.fr : éditeur, hébergeur, propriété intellectuelle, données personnelles et droit applicable.",
         ],
         'cgv' => [
-            'Conditions générales de vente | Connectis Solutions',
+            "Conditions générales de vente | Connectis Solutions",
             "Conditions générales de vente de Connectis Solutions applicables aux professionnels : devis, prix, paiement, livraison, garanties et maintenance.",
         ],
         'confidentialite' => [
-            'Politique de confidentialité | Connectis Solutions',
+            "Politique de confidentialité | Connectis Solutions",
             "Comment Connectis Solutions utilise vos données personnelles (devis, contact, candidature), durées de conservation et exercice de vos droits.",
         ],
     ];
 }
 
 /**
- * Mot-clé principal par page (analyse SEOPress ; les « meta keywords » n'existent plus, Google les ignore).
+ * Mots-clés cibles par page, séparés par des virgules (analyse SEOPress ; les « meta keywords » n'existent plus, Google les ignore).
+ * Courts et présents tels quels dans le titre, la description et le H1, comme l'analyse les cherche.
  */
 function connectis_seo_keywords() {
     return [
-        'accueil'                          => 'informatique vidéosurveillance téléphonie Nancy',
-        'nos-solutions'                    => 'solutions informatique vidéosurveillance téléphonie entreprise',
-        'nos-solutions/materiel'           => 'matériel informatique entreprise',
-        'nos-solutions/videosurveillance'  => 'vidéosurveillance professionnelle',
-        'nos-solutions/telephonie'         => 'téléphonie entreprise standard VoIP',
-        'nos-solutions/fibre'              => 'fibre optique entreprise',
-        'nos-solutions/abonnements'        => 'abonnements internet téléphonie professionnels',
-        'nos-solutions/services'           => 'maintenance informatique installation',
-        'a-propos'                         => 'Connectis Solutions Nancy',
-        'devis-contact'                    => 'devis informatique vidéosurveillance téléphonie',
-        'recrutement'                      => 'recrutement technicien commercial informatique Nancy',
+        'accueil' => "informatique, vidéosurveillance, téléphonie, connectis",
+        'nos-solutions' => "solutions, informatique, vidéosurveillance, téléphonie",
+        'nos-solutions/materiel' => "informatique, matériel",
+        'nos-solutions/videosurveillance' => "vidéosurveillance, caméras",
+        'nos-solutions/telephonie' => "téléphonie, standard",
+        'nos-solutions/fibre' => "fibre optique, internet",
+        'nos-solutions/abonnements' => "abonnements, forfaits",
+        'nos-solutions/services' => "maintenance, services",
+        'a-propos' => "connectis, nancy",
+        'devis-contact' => "devis, contact",
+        'recrutement' => "recrutement, candidature",
     ];
 }
 

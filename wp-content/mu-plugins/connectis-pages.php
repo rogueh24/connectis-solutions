@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v13 : images des pages servies en WebP.
-const CONNECTIS_PAGES_VERSION = 13;
+// v14 : pages Connectis et Recrutement enrichies (contenu, liens internes) pour l'analyse SEO.
+const CONNECTIS_PAGES_VERSION = 14;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -363,6 +363,14 @@ function connectis_pages_definitions() {
                 cn_card('clock', 'Réactivité', "Des délais courts, sans passer par un centre d'appels national."),
                 cn_card('sliders', 'Sur mesure', "Des solutions pensées pour votre activité, pas un forfait imposé."),
             ])
+            . "<h2>Trois métiers, un seul interlocuteur</h2>"
+            . "<p>Connectis Solutions intervient sur les trois sujets qui font fonctionner une entreprise au quotidien : le parc informatique, la protection des locaux par la vidéosurveillance, et les communications téléphoniques. Réunir ces métiers chez un seul prestataire évite de multiplier les contacts, les devis et les factures : une seule équipe étudie votre besoin, installe le matériel et assure le suivi.</p>"
+            . cn_grid([
+                cn_card('monitor', 'Informatique', "Postes de travail, réseau, serveurs et périphériques.", '/nos-solutions/materiel/', 'Voir l’offre'),
+                cn_card('camera', 'Vidéosurveillance', "Caméras IP, enregistrement, accès à distance et alarme.", '/nos-solutions/videosurveillance/', 'Voir l’offre'),
+                cn_card('phone', 'Téléphonie', "Standard, VoIP, lignes fixes et mobiles.", '/nos-solutions/telephonie/', 'Voir l’offre'),
+            ])
+            . "<h2>Notre méthode</h2>" . cn_steps()
             . cn_trust()
             . cn_cta("Travaillons ensemble."),
     ];
@@ -392,6 +400,13 @@ function connectis_pages_definitions() {
                 cn_card('pin', 'Conseil commercial de terrain', "Rencontrer les entreprises, comprendre leur besoin et établir des devis détaillés."),
                 cn_card('wrench', 'Installation et configuration', "Installer, câbler et configurer le matériel chez nos clients."),
                 cn_card('users', 'Candidature spontanée', "Aucune offre ne correspond ? Présentez-vous : nous étudions chaque profil."),
+            ])
+            . "<h2>Notre façon de travailler</h2>"
+            . "<p>Chez Connectis Solutions, le travail se fait sur le terrain, au contact des entreprises : on écoute le besoin, on chiffre un projet clair, on installe et on reste disponible ensuite. Nous recherchons des personnes fiables, autonomes et à l'aise avec le contact client, qu'elles viennent du commerce ou de la technique, et qui veulent contribuer à une petite structure où chaque mission compte.</p>"
+            . "<h2>Comment candidater</h2>" . cn_grid([
+                cn_card('mail', 'Envoyez votre candidature', "Renseignez le formulaire ci-dessous et joignez votre CV au format PDF."),
+                cn_card('clock', 'Nous étudions votre profil', "Chaque candidature, spontanée ou non, est lue par l'équipe."),
+                cn_card('users', 'Échangeons', "Si votre profil correspond, nous revenons vers vous pour un premier échange."),
             ])
             . "<div class='cn-narrow'><div class='cn-form-card'><h2>Candidater</h2>" . $shortcode($f_cand, 'Candidature') . "</div></div>",
     ];
