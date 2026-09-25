@@ -208,3 +208,28 @@ add_filter('wp_nav_menu_objects', function ($items) {
     }
     return $sorted;
 }, 20);
+
+// Icône du site : jeu d'icônes carrées (multiples de 48 px, exigés par Google) déclarées avec leurs vraies tailles,
+// à la place des vignettes WordPress (150 px déclarée 32 px, 300 px déclarée 192 px). /favicon.ico est servi directement.
+add_action('init', function () {
+    remove_action('wp_head', 'wp_site_icon', 99);
+});
+
+add_action('wp_head', function () {
+    $base = content_url('mu-plugins/connectis-branding/icons/');
+    $v = '?v=2';
+    echo '<link rel="icon" type="image/png" sizes="48x48" href="' . esc_url($base . 'favicon-48.png' . $v) . '">' . "\n"
+        . '<link rel="icon" type="image/png" sizes="96x96" href="' . esc_url($base . 'favicon-96.png' . $v) . '">' . "\n"
+        . '<link rel="icon" type="image/png" sizes="192x192" href="' . esc_url($base . 'favicon-192.png' . $v) . '">' . "\n"
+        . '<link rel="apple-touch-icon" sizes="180x180" href="' . esc_url($base . 'apple-touch-icon.png' . $v) . '">' . "\n";
+}, 5);
+
+add_action('do_faviconico', function () {
+    $file = __DIR__ . '/connectis-branding/icons/favicon.ico';
+    if (is_readable($file)) {
+        header('Content-Type: image/x-icon');
+        header('Cache-Control: public, max-age=604800');
+        readfile($file);
+        exit;
+    }
+}, 1);
