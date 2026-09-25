@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v9 : unique H1 sur l'accueil (titre de page), image d'en-tête chargée en priorité.
-const CONNECTIS_PAGES_VERSION = 9;
+// v10 : CGV et mentions légales réécrites (rédaction complète, financement en location sans citer de loueur).
+const CONNECTIS_PAGES_VERSION = 10;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
