@@ -578,8 +578,8 @@ h1.page-title, .hero-section .page-title, .hero-section h1 { font-size: clamp(2.
 
 /* Page « Résultats de recherche » : cartes cohérentes avec le reste du site */
 .entries[data-archive] { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; margin-top: 8px; }
-.entry-card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.10); border-radius: 20px; padding: 26px; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
-.entry-card:hover { transform: translateY(-3px); border-color: rgba(51,208,232,.35); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+.entry-card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)) !important; border: 1px solid rgba(255,255,255,.10) !important; border-radius: 20px !important; padding: 26px !important; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.entry-card:hover { transform: translateY(-3px); border-color: rgba(51,208,232,.35) !important; box-shadow: 0 16px 40px rgba(0,0,0,.35) !important; }
 .entry-card .entry-title { margin: 0 0 10px; font-size: 1.15rem; }
 .entry-card .entry-title a { color: #fff !important; text-decoration: none !important; }
 .entry-card .entry-title a:hover { color: var(--cn-cyan) !important; }
