@@ -260,3 +260,14 @@ add_action('init', function () {
     }
     update_option('connectis_seo_dupes_v1', 1);
 }, 90);
+
+// Extraits (résultats de recherche) : la description SEO déjà rédigée, plutôt que la concaténation brute
+// des blocs de la page (bande de confiance, étapes, FAQ…), illisible une fois les balises retirées.
+add_filter('get_the_excerpt', function ($excerpt, $post = null) {
+    $post = $post ?: get_post();
+    if (!$post || $post->post_type !== 'page') {
+        return $excerpt;
+    }
+    $desc = get_post_meta($post->ID, '_seopress_titles_desc', true);
+    return $desc !== '' ? $desc : $excerpt;
+}, 10, 2);
