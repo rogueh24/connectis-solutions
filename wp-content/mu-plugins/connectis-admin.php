@@ -175,18 +175,62 @@ add_filter('login_headertext', function () {
     return 'Connectis Solutions';
 });
 
+// Icône de la page de connexion : le même jeu que le reste du site (WordPress y met par défaut
+// les anciennes vignettes 150/300 px de la médiathèque).
+add_action('login_head', function () {
+    remove_action('login_head', 'wp_site_icon');
+    $base = content_url('mu-plugins/connectis-branding/icons/');
+    echo '<link rel="icon" type="image/png" sizes="48x48" href="' . esc_url($base . 'favicon-48.png?v=2') . '">' . "\n"
+        . '<link rel="icon" type="image/png" sizes="192x192" href="' . esc_url($base . 'favicon-192.png?v=2') . '">' . "\n";
+}, 1);
+
+// v2 : la page de connexion a changé avec WordPress 7 (nouvelle palette « Modern », carte blanche par
+// défaut) : styles renforcés (!important) pour rester dans le thème sombre du site quel que soit l'ordre
+// de chargement des feuilles de style de cœur.
 add_action('login_enqueue_scripts', function () {
     $logo = esc_url(content_url('mu-plugins/connectis-maintenance/logo-full.png'));
     ?>
 <style>
-  body.login { background: radial-gradient(1200px 600px at 50% -10%, #123a8c 0%, #070d1f 60%); }
-  .login h1 a { background: url('<?php echo $logo; ?>') center / contain no-repeat; width: 240px; height: 120px; }
-  .login form { border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: rgba(255,255,255,.06); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
-  .login label, .login #nav a, .login #backtoblog a, .login .privacy-policy-page-link a { color: #dbe4f3; }
-  .login #nav a:hover, .login #backtoblog a:hover { color: #33d0e8; }
-  .login form .input, .login input[type=text], .login input[type=password] { border-radius: 10px; }
-  .wp-core-ui .button-primary { background: #1b63e6; border-color: #1b63e6; border-radius: 10px; }
-  .wp-core-ui .button-primary:hover { background: #123a8c; border-color: #123a8c; }
+  body.login { background: radial-gradient(1200px 600px at 50% -10%, #123a8c 0%, #070d1f 60%) !important; }
+  body.login * { --form-input-text-color: #fff; --form-input-border-color: rgba(255,255,255,.2); }
+  #login { width: 380px !important; }
+  .login h1 a { background: url('<?php echo $logo; ?>') center / contain no-repeat !important; width: 220px !important; height: 110px !important; margin: 0 auto 14px !important; }
+  #login .googlesitekit-sign-in-with-google__frontend-output-button { margin: 0 auto 18px !important; }
+  .login form#loginform,
+  .login form#lostpasswordform,
+  .login form#registerform,
+  .login form#resetpassform {
+    border: 1px solid rgba(255,255,255,.14) !important;
+    border-radius: 16px !important;
+    background: rgba(10,20,48,.55) !important;
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.35) !important;
+    padding: 26px 24px !important;
+  }
+  .login form label { color: #dbe4f3 !important; }
+  .login #nav a, .login #backtoblog a, .login .privacy-policy-page-link a { color: #9db0cf !important; }
+  .login #nav a:hover, .login #backtoblog a:hover, .login .privacy-policy-page-link a:hover { color: var(--cn-cyan, #33d0e8) !important; }
+  .login form .input,
+  .login input[type=text],
+  .login input[type=password],
+  .login input[type=email] {
+    background: rgba(255,255,255,.06) !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    box-shadow: none !important;
+  }
+  .login form .input:focus,
+  .login input[type=text]:focus,
+  .login input[type=password]:focus,
+  .login input[type=email]:focus { border-color: var(--cn-cyan, #33d0e8) !important; box-shadow: 0 0 0 1px var(--cn-cyan, #33d0e8) !important; }
+  .login .wp-pwd { background: transparent !important; border: 0 !important; }
+  .login .wp-hide-pw .dashicons, .login .wp-tooltip__toggle .dashicons { color: #9db0cf !important; }
+  .login .wp-tooltip__bubble { background: #0c1730 !important; color: #dbe4f3 !important; border: 1px solid rgba(255,255,255,.14) !important; }
+  .login .forgetmenot label { color: #dbe4f3 !important; }
+  .wp-core-ui .button-primary { background: #1b63e6 !important; border-color: #1b63e6 !important; border-radius: 10px !important; box-shadow: none !important; text-shadow: none !important; }
+  .wp-core-ui .button-primary:hover { background: #123a8c !important; border-color: #123a8c !important; }
+  .login .message, .login #login_error { background: rgba(255,255,255,.08) !important; border-left-color: var(--cn-cyan, #33d0e8) !important; color: #fff !important; }
 </style>
     <?php
 });
