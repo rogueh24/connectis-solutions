@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v1 : cache navigateur (30 jours), minification HTML/CSS/JS, emojis retirés.
-const CONNECTIS_CACHE_VERSION = 1;
+// v2 : script de connexion Google (Site Kit) exclu de toute optimisation JS.
+const CONNECTIS_CACHE_VERSION = 2;
 
 /**
  * Réglages voulus. Non activés volontairement : la combinaison CSS/JS (risque de casse), le chargement différé
@@ -18,6 +18,9 @@ const CONNECTIS_CACHE_VERSION = 1;
  * ou modules serveur externes).
  */
 function connectis_cache_settings() {
+    // Le script de connexion Google (bouton « Se connecter avec Google », One Tap) doit s'exécuter tel quel :
+    // le minifier, le combiner, le différer ou le reporter en mode invité l'empêche de fonctionner.
+    $google_gsi = ['accounts.google.com/gsi/client'];
     return [
         'cache-browser'     => 1,
         'cache-ttl_browser' => 2592000, // 30 jours : les logos et images statiques changent rarement
@@ -25,6 +28,9 @@ function connectis_cache_settings() {
         'optm-css_min'      => 1,
         'optm-js_min'       => 1,
         'optm-emoji_rm'     => 1,
+        'optm-js_exc'       => $google_gsi,
+        'optm-js_defer_exc' => $google_gsi,
+        'optm-gm_js_exc'    => $google_gsi,
     ];
 }
 
