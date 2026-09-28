@@ -9,13 +9,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v3 : page jamais mise en cache pour un visiteur porteur d'un cookie Site Kit ou de connexion WordPress.
-const CONNECTIS_CACHE_VERSION = 3;
+// v4 : trois options sans risque du préréglage « Avancé » (police, préconnexion, noscript).
+const CONNECTIS_CACHE_VERSION = 4;
 
 /**
- * Réglages voulus. Non activés volontairement : la combinaison CSS/JS (risque de casse), le chargement différé
- * des images (déjà natif dans Blocksy), le mode invité, la file d'exploration et le cache d'objet (services
- * ou modules serveur externes).
+ * Réglages voulus. Non activés volontairement :
+ * - la suppression des paramètres `?…` des fichiers statiques : casserait le contournement de cache
+ *   utilisé sur les images et les icônes (`?v=<version>`), qui sert justement à forcer le navigateur
+ *   à recharger un fichier changé ;
+ * - le report du JS (« JS Defer ») : risque réel sur les scripts de connexion (compte, Google), de
+ *   validation des formulaires et l'anti-spam, non testé ;
+ * - la combinaison CSS/JS (risque de casse) ;
+ * - le mode invité, la file d'exploration et le cache d'objet (déjà couvert par Redis) : services ou
+ *   modules serveur externes, sans besoin ici.
  */
 function connectis_cache_settings() {
     // Le script de connexion Google (bouton « Se connecter avec Google », One Tap) doit s'exécuter tel quel :
@@ -34,6 +40,10 @@ function connectis_cache_settings() {
         // Un visiteur porteur d'un de ces cookies (venant de se connecter avec Google, ou déjà connecté à
         // WordPress) ne doit jamais recevoir une page mise en cache pour quelqu'un d'autre.
         'cache-exc_cookies' => ['googlesitekit', 'wordpress_logged_in'],
+        // Trois options du préréglage « Avancé » de LiteSpeed, sans risque de casse.
+        'optm-css_font_display' => 1,      // affiche le texte avec une police de secours pendant le chargement des polices
+        'optm-dns_prefetch_ctrl' => 1,     // pré-résout les domaines externes utilisés (Google, Pexels…)
+        'optm-noscript_rm'       => 1,     // retire les balises <noscript>, inutiles ici (aucun contenu dégradé prévu)
     ];
 }
 
