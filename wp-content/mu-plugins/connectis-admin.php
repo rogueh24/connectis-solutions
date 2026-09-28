@@ -130,7 +130,9 @@ add_action('send_headers', function () {
     }
     header('X-Content-Type-Options: nosniff');
     header('Referrer-Policy: strict-origin-when-cross-origin');
-    header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()');
+    // identity-credentials-get=(self) : autorise explicitement le One Tap de Google (Site Kit), qui utilise
+    // FedCM, une permission de navigateur récente absente du reste de la liste ci-dessous par défaut.
+    header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), identity-credentials-get=(self)');
     if (is_ssl()) {
         header('Strict-Transport-Security: max-age=15552000');
     }
