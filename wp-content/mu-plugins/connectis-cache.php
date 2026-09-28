@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v2 : script de connexion Google (Site Kit) exclu de toute optimisation JS.
-const CONNECTIS_CACHE_VERSION = 2;
+// v3 : page jamais mise en cache pour un visiteur porteur d'un cookie Site Kit ou de connexion WordPress.
+const CONNECTIS_CACHE_VERSION = 3;
 
 /**
  * Réglages voulus. Non activés volontairement : la combinaison CSS/JS (risque de casse), le chargement différé
@@ -31,6 +31,9 @@ function connectis_cache_settings() {
         'optm-js_exc'       => $google_gsi,
         'optm-js_defer_exc' => $google_gsi,
         'optm-gm_js_exc'    => $google_gsi,
+        // Un visiteur porteur d'un de ces cookies (venant de se connecter avec Google, ou déjà connecté à
+        // WordPress) ne doit jamais recevoir une page mise en cache pour quelqu'un d'autre.
+        'cache-exc_cookies' => ['googlesitekit', 'wordpress_logged_in'],
     ];
 }
 
