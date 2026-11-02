@@ -5,25 +5,22 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
-### Ajouté (2026-11-02) — Photocopieurs & impression
-- **Nouvelle offre** `Photocopieurs & impression` (`/nos-solutions/photocopieurs/`) : page sur le même modèle que les autres offres
-  (cartes, étapes, financement en location, liens utiles, FAQ), photo libre de droits (Pexels, WebP + JPEG). La page est **créée par
-  le code** si elle n'existe pas (`connectis-pages.php`).
-- **Accueil** : titre, accroche et « Nos expertises » passent à quatre métiers (4e carte, quatre colonnes sur grand écran) ; page
-  « Solutions », « Connectis » (quatre métiers, quatre cartes), « Guichet unique » et page « Services & maintenance » mises à jour.
-- **Menu** : sous-menu « Solutions » trié par le code, Photocopieurs placé après la téléphonie.
-- **Formulaire de devis** : choix « Photocopieurs et impression » (icône dédiée) ; formulaire réappliqué (`connectis_forms_layout_v2`).
-- **SEO** : titre et description de la nouvelle page, descriptions d'accueil / solutions / connectis / devis, JSON-LD (`knowsAbout`).
-- **Textes légaux** : activité (mentions légales), objet des CGV (reprographie, photocopieurs), art. 10.4 (achat ou location, contrat de
-  maintenance, copies relevées au compteur le cas échéant), art. 13.4 (documents mémorisés par les appareils). **À faire relire par
-  l'avocat** : les CGV avaient été relues avant cet ajout.
+### Ajouté (2026-11-02) — offre Bureautique
+- **Nouvelle offre « Bureautique »** (`/nos-solutions/bureautique/`, d'abord publiée sous `/photocopieurs/`, redirigée en 301) : multifonctions et
+  copieurs professionnels **Canon et HP**, gestion documentaire (planche 5 et 7 de la présentation d'entreprise du 31/10). Même modèle que les
+  autres offres (cartes, étapes, liens utiles, FAQ), **sans mention d'achat ni de location** : « demande de devis » simplement (pas de bloc
+  financement, pas de question « financement » dans la FAQ). Page créée / renommée par le code (`connectis-pages.php`).
+- **Accueil** : titre, accroche et « Nos expertises » à quatre métiers (4e carte, quatre colonnes sur grand écran) ; Solutions et Connectis aussi.
+- **Menu** : « Bureautique » dans le sous-menu Solutions, après la téléphonie (ordre fixé par le code ; élément de menu = base de données).
+- **Formulaire de devis** : choix « Bureautique » (icône dédiée). **SEO** : titre, description et mot-clé de la page, descriptions mises à jour.
+- **Textes légaux** : bureautique dans l'activité et l'objet des CGV, art. 10.4 (conditions de fourniture, maintenance, copies relevées au
+  compteur), art. 13.4 (documents mémorisés par les appareils). **À faire relire par l'avocat** : les CGV avaient été relues avant cet ajout.
 
-### À venir
-- Vérifier la disparition de l'alerte Chrome sur `wp-admin`.
-- Vraies photos de l'équipe ; numéro de téléphone de l'entreprise.
-- Peaufinages demandés au fil de l'eau.
-
-## [1.2.0] - 2026-09-25 — Performance et clôture des tâches
+### Retiré (2026-11-02) — « on se justifie pour rien »
+- Bloc « Une entreprise vérifiable » (identité légale + bouton Annuaire des Entreprises) retiré de l'accueil, Solutions, Connectis et
+  Devis ; il ne reste que « Nos engagements ». Mention « Société immatriculée · RCS · SIREN » de la bande d'assurance remplacée par
+  « Équipe locale · Basée à Nancy ». Phrases « informations publiques / Kbis sur demande » retirées (FAQ, CGV art. 12, mentions légales).
+  L'identité légale reste dans les **mentions légales** (obligatoire) et dans les données structurées (invisibles).
 
 ### Ajouté (performance)
 - `connectis-cache.php` : réglages LiteSpeed Cache versionnés (cache navigateur 30 jours, minification HTML/CSS/JS, emojis retirés),

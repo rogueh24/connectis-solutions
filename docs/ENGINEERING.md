@@ -151,9 +151,9 @@ Leçons :
 
 | Fichier | Version courante | Particularités |
 |---|---|---|
-| `connectis-pages.php` | 16 | Composants (cartes, étapes, FAQ, confiance), filtre typographique (espace insécable, « Wi-Fi »), unique H1 |
+| `connectis-pages.php` | 17 | Composants (cartes, étapes, FAQ, confiance), filtre typographique (espace insécable, « Wi-Fi »), unique H1 |
 | `connectis-legal.php` | — | CGV (19 art.), mentions légales (9 sections), confidentialité ; constante `CONNECTIS_CAPITAL_SOCIAL` |
-| `connectis-seo.php` | 5 | Métadonnées SEOPress, mots-clés cibles, plan du site, image de partage, JSON-LD, redirection des doublons `-2` |
+| `connectis-seo.php` | 6 | Métadonnées SEOPress, mots-clés cibles, plan du site, image de partage, JSON-LD, redirection des doublons `-2` |
 | `connectis-admin.php` | 1 | Réglages, durcissement, tableau de bord, connexion, **purge du cache à chaque déploiement**, barre d'administration réservée aux administrateurs |
 | `connectis-branding.php` | logo v2 | CSS, menu (logo cliquable, ordre, bouton), apparition au défilement |
 | `connectis-theme-config.php` | 1 | Configuration Blocksy (en-tête, palette), pied de page |
@@ -174,10 +174,10 @@ Autres leçons de la mise en ligne :
   `safebrowsing.google.com/safebrowsing/report_error/`.
 - **Aucun loueur n'est cité** sur le site (décision commerciale) : formulation « partenaires financiers ».
 
-### Ajouter une nouvelle offre (exemple : Photocopieurs, 2026-11-02)
+### Ajouter une nouvelle offre (exemple : Bureautique, 2026-11-02)
 1. Entrée dans `$services` (`connectis-pages.php`) + `$more` (liens) + `$faq_extra` ; icône manquante dans `connectis_icons()`.
 2. Image dans `connectis-content-seed/images/` : `.webp` **et** `.jpg` (`cn_img()` sert le WebP s'il existe).
-3. La page est créée par le code à l'incrément de `CONNECTIS_PAGES_VERSION` (elle n'existe pas encore en base).
+3. La page est créée par le code à l'incrément de `CONNECTIS_PAGES_VERSION` (elle n'existe pas encore en base). Pour **renommer** une page déjà publiée : table `$legacy` (ancienne → nouvelle adresse, la page est renommée, pas recréée) + redirection 301 de l'ancienne adresse dans `connectis-seo.php`.
 4. **Menu = base de données** : ajouter l'élément sous « Solutions » via l'API (`menus/create_menu_item`, site `connectis`) ;
    l'ordre des sous-menus est fixé dans `connectis-branding.php` (`$child_order`).
 5. Formulaire de devis : option dans `connectis_forms_layouts()` + icône `nth-child(n)` dans `custom.css`, puis incrémenter le drapeau
@@ -185,3 +185,8 @@ Autres leçons de la mise en ligne :
 6. SEO : entrée dans `connectis_seo_definitions()` (titre ≤ 60, description 120-155, mot-clé présent dans les deux) + version.
 7. Mettre à jour les textes qui énumèrent les métiers (accueil, Solutions, Connectis, CGV, mentions légales, JSON-LD).
 
+
+**Règle éditoriale (2026-11-02)** : le site ne « se justifie » pas (pas de bloc « entreprise vérifiable », pas d'Annuaire, pas de « Kbis sur demande »).
+L'identité légale n'est que dans les mentions légales. Ne pas citer de loueur ; ne pas préciser « achat / location » sur les offres matériel
+qui ne le demandent pas (la bureautique = « demande de devis »). Les documents internes du client (présentation d'entreprise : chiffres,
+partenaires financiers) ne servent pas de source de contenu public.
