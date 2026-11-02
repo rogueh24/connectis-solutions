@@ -35,9 +35,7 @@ function connectis_legal_definitions() {
 <li><span>Président</span><strong>Arno Dessalle</strong></li>
 <li><span>Contact</span><strong><a href='mailto:contact@connectis-solutions.fr'>contact@connectis-solutions.fr</a></strong></li>
 </ul>
-<p>Activité : conseil, fourniture, installation et maintenance de solutions informatiques, de vidéosurveillance, de téléphonie et de photocopieurs à destination des professionnels. L'activité n'est soumise à aucune autorisation administrative particulière ni à aucun ordre professionnel.</p>
-<p>Ces informations sont publiques et vérifiables à tout moment auprès des registres officiels.</p>
-<p><a class='cn-btn cn-btn-ghost' href='https://annuaire-entreprises.data.gouv.fr/entreprise/connectis-solutions-103370557' target='_blank' rel='noopener'>Vérifier ces informations sur l'Annuaire des Entreprises</a></p>
+<p>Activité : conseil, fourniture, installation et maintenance de solutions informatiques, de vidéosurveillance, de téléphonie et de bureautique à destination des professionnels. L'activité n'est soumise à aucune autorisation administrative particulière ni à aucun ordre professionnel.</p>
 </section>
 
 <section id='publication' class='cn-legal-sec'>
@@ -59,7 +57,7 @@ function connectis_legal_definitions() {
 
 <section id='liens' class='cn-legal-sec'>
 <h2>5. Liens hypertextes</h2>
-<p><span class='cn-cl'>5.1</span> Le site peut renvoyer vers des sites tiers (par exemple l'Annuaire des Entreprises de l'État). CONNECTIS SOLUTIONS n'exerce aucun contrôle sur leur contenu et décline toute responsabilité quant aux informations, produits ou services qui y sont proposés.</p>
+<p><span class='cn-cl'>5.1</span> Le site peut renvoyer vers des sites tiers. CONNECTIS SOLUTIONS n'exerce aucun contrôle sur leur contenu et décline toute responsabilité quant aux informations, produits ou services qui y sont proposés.</p>
 <p><span class='cn-cl'>5.2</span> Un lien vers la page d'accueil du site est autorisé à condition qu'il ne porte pas atteinte à l'image de CONNECTIS SOLUTIONS, n'induise pas en erreur sur l'origine du contenu et n'emploie pas de technique de cadrage (framing). Toute autre utilisation nécessite une autorisation écrite.</p>
 </section>
 
@@ -92,13 +90,13 @@ HTML;
     $cgv = <<<'HTML'
 <!--cn-->
 <div class='cn-narrow cn-legal'>
-<p class='cn-lead'>Conditions générales de vente de <strong>CONNECTIS SOLUTIONS</strong> applicables aux clients professionnels pour la vente de matériels, la fourniture d'abonnements et les prestations d'installation et de maintenance en informatique, vidéosurveillance, téléphonie et photocopieurs.</p>
+<p class='cn-lead'>Conditions générales de vente de <strong>CONNECTIS SOLUTIONS</strong> applicables aux clients professionnels pour la vente de matériels, la fourniture d'abonnements et les prestations d'installation et de maintenance en informatique, vidéosurveillance, téléphonie et bureautique.</p>
 <nav class='cn-toc' aria-label='Sommaire'><a href='#art-1'>Art. 1</a><a href='#art-2'>Art. 2</a><a href='#art-3'>Art. 3</a><a href='#art-4'>Art. 4</a><a href='#art-5'>Art. 5</a><a href='#art-6'>Art. 6</a><a href='#art-7'>Art. 7</a><a href='#art-8'>Art. 8</a><a href='#art-9'>Art. 9</a><a href='#art-10'>Art. 10</a><a href='#art-11'>Art. 11</a><a href='#art-12'>Art. 12</a><a href='#art-13'>Art. 13</a><a href='#art-14'>Art. 14</a><a href='#art-15'>Art. 15</a><a href='#art-16'>Art. 16</a><a href='#art-17'>Art. 17</a><a href='#art-18'>Art. 18</a><a href='#art-19'>Art. 19</a></nav>
 
 <section id='art-1' class='cn-legal-sec'>
 <h2>Article 1 — Objet, champ d'application et définitions</h2>
 <p><span class='cn-cl'>1.1</span> Les présentes conditions générales de vente (les « CGV ») régissent les relations contractuelles entre la société <strong>CONNECTIS SOLUTIONS</strong>, société par actions simplifiée dont le siège social est situé 110 boulevard d'Austrasie, 54000 Nancy, immatriculée au RCS de Nancy sous le numéro 103 370 557 (le « Prestataire »), et toute personne physique ou morale agissant à titre professionnel (le « Client ») qui lui commande des produits ou des services.</p>
-<p><span class='cn-cl'>1.2</span> Elles s'appliquent à la vente de matériels informatiques, de vidéosurveillance, de téléphonie et de reprographie, dont les photocopieurs multifonctions (les « Produits »), et à la fourniture de prestations d'étude, d'installation, de configuration, de maintenance, d'assistance, ainsi que d'abonnements et services récurrents (les « Services »).</p>
+<p><span class='cn-cl'>1.2</span> Elles s'appliquent à la vente de matériels informatiques, de vidéosurveillance, de téléphonie et de bureautique, dont les copieurs et multifonctions (les « Produits »), et à la fourniture de prestations d'étude, d'installation, de configuration, de maintenance, d'assistance, ainsi que d'abonnements et services récurrents (les « Services »).</p>
 <p><span class='cn-cl'>1.3</span> Les CGV sont destinées exclusivement aux professionnels. Elles constituent le socle unique de la négociation commerciale et sont communiquées à tout Client qui en fait la demande, conformément à l'article L.441-1 du Code de commerce. Elles prévalent sur toute condition générale d'achat du Client, sauf dérogation expresse et écrite du Prestataire.</p>
 </section>
 
@@ -164,7 +162,7 @@ HTML;
 <p><span class='cn-cl'>10.1</span> La durée, le prix, la périodicité de facturation, les conditions de renouvellement et de résiliation de chaque abonnement (internet, téléphonie, vidéosurveillance, stockage, supervision et services associés) sont précisés au devis et au contrat. À défaut de stipulation contraire, l'abonnement est conclu pour la durée initiale indiquée puis se renouvelle tacitement par périodes successives d'égale durée, sauf résiliation notifiée par lettre recommandée ou courrier électronique avec accusé de réception moyennant un préavis de trois (3) mois avant l'échéance.</p>
 <p><span class='cn-cl'>10.2</span> Les Services fournis par des opérateurs, éditeurs ou hébergeurs tiers sont en outre soumis à leurs propres conditions, que le Client reconnaît avoir consultées et acceptées. Le Prestataire n'est pas responsable des interruptions, restrictions ou évolutions décidées par ces tiers, ni des défaillances des réseaux de télécommunications.</p>
 <p><span class='cn-cl'>10.3</span> Le Prestataire peut suspendre l'accès aux Services récurrents en cas d'utilisation illicite ou contraire au contrat, ou de défaut de paiement persistant après mise en demeure.</p>
-<p><span class='cn-cl'>10.4</span> Pour les photocopieurs et appareils d'impression, le devis précise le mode d'acquisition (achat ou location), le contrat de maintenance et, le cas échéant, les conditions de facturation des copies et impressions réalisées, relevées au compteur de l'appareil.</p>
+<p><span class='cn-cl'>10.4</span> Pour les copieurs, multifonctions et appareils d'impression, le devis précise les conditions de fourniture, le contrat de maintenance et, le cas échéant, les conditions de facturation des copies et impressions réalisées, relevées au compteur de l'appareil.</p>
 </section>
 
 <section id='art-11' class='cn-legal-sec'>
@@ -177,7 +175,7 @@ HTML;
 <h2>Article 12 — Financement en location (crédit-bail, LOA, LLD)</h2>
 <p><span class='cn-cl'>12.1</span> Le Client peut financer tout ou partie de l'équipement par un contrat de location avec option d'achat, de crédit-bail ou de location longue durée, conclu avec l'un des <strong>établissements ou sociétés de financement partenaires</strong> du Prestataire ou avec tout autre organisme de son choix.</p>
 <p><span class='cn-cl'>12.2</span> Le Prestataire intervient exclusivement en qualité de <strong>fournisseur du matériel</strong> : il n'est ni prêteur, ni bailleur, et n'est pas partie au contrat de financement, dont les conditions (loyers, durée, assurance, valeur résiduelle, option d'achat, résiliation) relèvent uniquement de la relation entre le Client et l'organisme de financement. Le Prestataire n'assure aucun conseil en financement.</p>
-<p><span class='cn-cl'>12.3</span> À la demande du Client, le Prestataire établit un devis détaillé poste par poste et fournit à l'organisme de financement les documents usuels (devis, bon de commande, facture, procès-verbal de livraison et de conformité). Les informations juridiques d'identification du Prestataire sont publiques (voir les <a href='/mentions-legales/'>mentions légales</a>) et un extrait Kbis peut être communiqué sur demande.</p>
+<p><span class='cn-cl'>12.3</span> À la demande du Client, le Prestataire établit un devis détaillé poste par poste et fournit à l'organisme de financement les documents usuels (devis, bon de commande, facture, procès-verbal de livraison et de conformité).</p>
 <p><span class='cn-cl'>12.4</span> Lorsque l'organisme de financement acquiert les Produits, la propriété lui est transférée dans les conditions de la vente conclue avec lui ; le paiement du prix est alors effectué par l'organisme, sur présentation du procès-verbal de livraison signé par le Client. <strong>L'obtention du financement peut être stipulée comme condition suspensive de la commande</strong> ; à défaut de mention au devis, la commande est ferme.</p>
 <p><span class='cn-cl'>12.5</span> Le Client reste tenu de ses obligations envers l'organisme de financement, notamment le paiement des loyers, qui est indépendant de l'exécution du contrat conclu avec le Prestataire, sauf stipulation contraire du contrat de financement.</p>
 </section>
