@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v6 : page « Bureautique » (renommée depuis Photocopieurs), descriptions pour quatre métiers.
-const CONNECTIS_SEO_VERSION = 6;
+// v7 : page « Bureautique & impression » sans marques ; descriptions pour quatre métiers.
+const CONNECTIS_SEO_VERSION = 7;
 
 /**
  * Métadonnées par page : chemin => [titre (≈60 car.), description (≈155 car.)].
@@ -38,8 +38,8 @@ function connectis_seo_definitions() {
             "Téléphonie d'entreprise : standard téléphonique, VoIP, lignes fixes et mobiles. Installation, paramétrage et suivi par Connectis Solutions.",
         ],
         'nos-solutions/bureautique' => [
-            "Bureautique : copieurs et multifonctions Canon, HP",
-            "Bureautique pour les professionnels : copieurs et multifonctions Canon et HP, étude de vos volumes, installation sur votre réseau et maintenance.",
+            "Bureautique et impression : copieurs, multifonctions",
+            "Bureautique et impression pour les professionnels : copieurs et multifonctions, étude de vos volumes, installation sur votre réseau et maintenance.",
         ],
         'nos-solutions/fibre' => [
             "Internet et fibre optique pour entreprises | Connectis",
