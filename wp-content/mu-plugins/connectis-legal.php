@@ -33,6 +33,7 @@ function connectis_legal_definitions() {
 <li><span>Code APE / NAF</span><strong>62.02A — Conseil en systèmes et logiciels informatiques</strong></li>
 <li><span>Date de création</span><strong>26 mars 2026</strong></li>
 <li><span>Président</span><strong>Arno Dessalle</strong></li>
+<li><span>Téléphone</span><strong><a href='tel:+33187668469'>01 87 66 84 69</a></strong></li>
 <li><span>Contact</span><strong><a href='mailto:contact@connectis-solutions.fr'>contact@connectis-solutions.fr</a></strong></li>
 </ul>
 <p>Activité : conseil, fourniture, installation et maintenance de solutions informatiques, de vidéosurveillance, de téléphonie et de bureautique à destination des professionnels. L'activité n'est soumise à aucune autorisation administrative particulière ni à aucun ordre professionnel.</p>

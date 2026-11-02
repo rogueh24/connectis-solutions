@@ -5,6 +5,11 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+### Ajouté (2026-11-02) — numéro de téléphone
+- **01 87 66 84 69** (lien `tel:+33187668469`) : tuile « Téléphone » en tête de « Nous contacter directement » (Devis & Contact),
+  ligne « Téléphone » dans les mentions légales (éditeur du site), champ `telephone` des données structurées « entreprise locale ».
+  `connectis-pages.php` passe en version 21.
+
 ### Ajouté (2026-11-02) — offre Bureautique
 - **Nouvelle offre « Bureautique »** (`/nos-solutions/bureautique/`, d'abord publiée sous `/photocopieurs/`, redirigée en 301) : multifonctions et
   copieurs professionnels, gestion documentaire (planche 5 et 7 de la présentation d'entreprise du 31/10). Même modèle que les

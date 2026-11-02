@@ -178,6 +178,7 @@ add_action('wp_head', function () {
         'logo'        => content_url('mu-plugins/connectis-maintenance/logo-full.png'),
         'image'       => content_url('mu-plugins/connectis-content-seed/images/materiel.jpg'),
         'email'       => 'contact@connectis-solutions.fr',
+        'telephone'   => '+33187668469',
         'description' => "Installation et maintenance d'informatique, de vidéosurveillance, de téléphonie et de bureautique pour les professionnels.",
         'address'     => [
             '@type'           => 'PostalAddress',

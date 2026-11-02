@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v20 : visuel téléphonie = personne avec casque-micro (photo choisie par le client), cadrage sur le visage ; offre « Bureautique & impression » sans marque.
-const CONNECTIS_PAGES_VERSION = 20;
+// v21 : numéro de téléphone 01 87 66 84 69 (page Devis & Contact, mentions légales) ; visuel téléphonie = personne avec casque-micro.
+const CONNECTIS_PAGES_VERSION = 21;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -399,6 +399,7 @@ function connectis_pages_definitions() {
             . "<ul class='cn-chips'><li>" . cn_i('check') . "Devis détaillé et financement</li><li>" . cn_i('clock') . "Réponse rapide</li><li>" . cn_i('users') . "Interlocuteur unique</li></ul>"
             . "<div class='cn-form-card'><h2>Demande de devis</h2>" . $shortcode($f_devis, 'Demande de devis') . "<div class='cn-secure'><div class='cn-secure-in'>" . cn_i('lock') . "<span class='cn-secure-t'>Vos données servent uniquement à traiter votre demande. Aucune revente, aucune newsletter non sollicitée.</span></div></div></div>"
             . "<h2>Nous contacter directement</h2><div class='cn-contact-row'>"
+            . "<a class='cn-mini' href='tel:+33187668469'>" . cn_i('phone') . "<span><strong>Téléphone</strong>01 87 66 84 69</span></a>"
             . "<a class='cn-mini' href='mailto:contact@connectis-solutions.fr'>" . cn_i('mail') . "<span><strong>E-mail</strong>contact@connectis-solutions.fr</span></a>"
             . "<div class='cn-mini'>" . cn_i('pin') . "<span><strong>Adresse</strong>110 boulevard d'Austrasie, 54000 Nancy</span></div>"
             . "<div class='cn-mini'>" . cn_i('wrench') . "<span><strong>Sur site</strong>Nous nous déplaçons dans vos locaux</span></div></div>"
