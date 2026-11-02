@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v17 : offre « Bureautique » (Canon et HP, sans achat/location), bloc « entreprise vérifiable » retiré, page renommée depuis /photocopieurs/.
-const CONNECTIS_PAGES_VERSION = 17;
+// v18 : offre « Bureautique & impression » (sans marque, sans achat/location), bloc « entreprise vérifiable » retiré, page renommée depuis /photocopieurs/.
+const CONNECTIS_PAGES_VERSION = 18;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -217,10 +217,10 @@ function connectis_pages_definitions() {
             'finance' => true, 'cta' => "Un besoin en téléphonie ?",
         ],
         'bureautique' => [
-            'path' => 'nos-solutions/bureautique', 'title' => 'Bureautique', 'image' => 'bureautique', 'alt' => 'Écran tactile de multifonction de bureau',
-            'intro' => "Multifonctions et copieurs professionnels des marques Canon et HP : copie, impression, numérisation et gestion documentaire, choisis selon vos volumes, installés sur votre réseau et suivis dans la durée par une seule équipe.",
+            'path' => 'nos-solutions/bureautique', 'title' => 'Bureautique & impression', 'image' => 'bureautique', 'alt' => 'Écran tactile de multifonction de bureau',
+            'intro' => "Multifonctions et copieurs professionnels : copie, impression, numérisation et gestion documentaire, choisis selon vos volumes, installés sur votre réseau et suivis dans la durée par une seule équipe.",
             'cards' => [
-                ['printer', 'Multifonctions et copieurs', "Copie, impression et numérisation sur un seul appareil, des marques Canon et HP."],
+                ['printer', 'Multifonctions et copieurs', "Copie, impression et numérisation sur un seul appareil, choisi selon votre usage."],
                 ['pin', 'Étude de vos besoins', "Analyse sur site de vos volumes et de vos usages pour dimensionner l'appareil au plus juste."],
                 ['network', 'Intégration à votre réseau', "Raccordement et configuration des postes, pour imprimer et numériser sans y penser."],
                 ['doc', 'Gestion documentaire', "Numérisation vers e-mail ou dossier partagé, classement et circulation de vos documents."],
@@ -318,7 +318,7 @@ function connectis_pages_definitions() {
         . "<div class='cn-feature'><figure><img src='" . cn_img('materiel') . "' alt='Informatique' loading='lazy'></figure><div class='cn-feature-body'><h3>Informatique</h3><p>Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration incluses.</p><a href='/nos-solutions/materiel/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('videosurveillance') . "' alt='Vidéosurveillance' loading='lazy'></figure><div class='cn-feature-body'><h3>Vidéosurveillance</h3><p>Caméras IP, enregistreurs, consultation à distance, alarme et contrôle d'accès pour vos locaux.</p><a href='/nos-solutions/videosurveillance/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('telephonie') . "' alt='Téléphonie' loading='lazy'></figure><div class='cn-feature-body'><h3>Téléphonie</h3><p>Standard, VoIP, lignes fixes et mobiles : une communication claire pour toute l'équipe.</p><a href='/nos-solutions/telephonie/'>Découvrir &rarr;</a></div></div>"
-        . "<div class='cn-feature'><figure><img src='" . cn_img('bureautique') . "' alt='Bureautique' loading='lazy'></figure><div class='cn-feature-body'><h3>Bureautique</h3><p>Multifonctions et copieurs professionnels Canon et HP : étude de vos besoins, installation sur votre réseau et maintenance.</p><a href='/nos-solutions/bureautique/'>Découvrir &rarr;</a></div></div>"
+        . "<div class='cn-feature'><figure><img src='" . cn_img('bureautique') . "' alt='Bureautique' loading='lazy'></figure><div class='cn-feature-body'><h3>Bureautique &amp; impression</h3><p>Multifonctions et copieurs professionnels : étude de vos besoins, installation sur votre réseau et maintenance.</p><a href='/nos-solutions/bureautique/'>Découvrir &rarr;</a></div></div>"
         . "</div>";
     $also = cn_grid([
         cn_card('fibre', 'Internet & Fibre optique', "Raccordement fibre professionnel, box internet, Wi-Fi pro.", '/nos-solutions/fibre/'),
@@ -384,7 +384,7 @@ function connectis_pages_definitions() {
                 cn_card('monitor', 'Informatique', "Postes de travail, réseau, serveurs et périphériques.", '/nos-solutions/materiel/', 'Voir l’offre'),
                 cn_card('camera', 'Vidéosurveillance', "Caméras IP, enregistrement, accès à distance et alarme.", '/nos-solutions/videosurveillance/', 'Voir l’offre'),
                 cn_card('phone', 'Téléphonie', "Standard, VoIP, lignes fixes et mobiles.", '/nos-solutions/telephonie/', 'Voir l’offre'),
-                cn_card('printer', 'Bureautique', "Multifonctions et copieurs Canon et HP, installés sur votre réseau.", '/nos-solutions/bureautique/', 'Voir l’offre'),
+                cn_card('printer', 'Bureautique & impression', "Multifonctions et copieurs, installés sur votre réseau.", '/nos-solutions/bureautique/', 'Voir l’offre'),
             ])
             . "<h2>Notre méthode</h2>" . cn_steps()
             . cn_trust()
