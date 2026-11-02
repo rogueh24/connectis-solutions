@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v16 : nouvelle offre « Photocopieurs & impression » (page, 4e carte d'accueil, À propos, textes) ; création de la page si absente.
-const CONNECTIS_PAGES_VERSION = 16;
+// v17 : offre « Bureautique » (Canon et HP, sans achat/location), bloc « entreprise vérifiable » retiré, page renommée depuis /photocopieurs/.
+const CONNECTIS_PAGES_VERSION = 17;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -110,18 +110,7 @@ function cn_finance() {
 }
 
 function cn_trust() {
-    $facts = [
-        ['Dénomination', 'CONNECTIS SOLUTIONS (SAS)'],
-        ['SIREN', '103 370 557'],
-        ['SIRET (siège)', '103 370 557 00011'],
-        ['Siège social', "110 boulevard d'Austrasie, 54000 Nancy"],
-        ['Immatriculation', 'RCS Nancy'],
-        ['Activité (APE)', '62.02A'],
-    ];
-    $li = '';
-    foreach ($facts as $f) {
-        $li .= "<li><span>" . $f[0] . "</span><strong>" . $f[1] . "</strong></li>";
-    }
+    // Les engagements seuls : on ne justifie pas l'existence de l'entreprise (identité légale : mentions légales).
     $commit = [
         "Devis détaillé et solutions de financement",
         "Installation et configuration par notre équipe",
@@ -132,16 +121,12 @@ function cn_trust() {
     foreach ($commit as $t) {
         $c .= "<li>" . cn_i('check') . "<span>" . $t . "</span></li>";
     }
-    return "<div class='cn-trust'><div class='cn-trust-id'><div class='cn-trust-head'>" . cn_i('building')
-        . "<div><h3>Une entreprise vérifiable</h3><p>Nos informations légales sont publiques : vous pouvez les contrôler à tout moment.</p></div></div>"
-        . "<ul class='cn-facts'>" . $li . "</ul>"
-        . "<a class='cn-btn cn-btn-ghost' href='https://annuaire-entreprises.data.gouv.fr/entreprise/connectis-solutions-103370557' target='_blank' rel='noopener'>Vérifier sur l'Annuaire des Entreprises</a></div>"
-        . "<div class='cn-trust-commit'><h3>Nos engagements</h3><ul>" . $c . "</ul></div></div>";
+    return "<div class='cn-trust cn-trust-one'><div class='cn-trust-commit'><h3>Nos engagements</h3><ul>" . $c . "</ul></div></div>";
 }
 
 function cn_strip() {
     $items = [
-        ['building', "Société immatriculée", "RCS Nancy · SIREN 103 370 557"],
+        ['pin', "Équipe locale", "Basée à Nancy"],
         ['wrench', "Installation par nos équipes", "Sur site, clé en main"],
         ['check', "Garantie constructeur", "Sur le matériel installé"],
         ['users', "Interlocuteur unique", "Du devis au SAV"],
@@ -165,7 +150,7 @@ function cn_faq_common() {
     return [
         ["Comment obtenir un devis ?", "Remplissez le formulaire ou écrivez-nous : nous revenons vers vous rapidement, puis nous nous déplaçons pour étudier votre besoin et établir un devis détaillé."],
         ["Intervenez-vous directement chez nous ?", "Oui. Notre équipe se déplace dans vos locaux pour le conseil, l'installation et la mise en service."],
-        ["Puis-je financer l'équipement en location (leasing) ?", "Oui, c'est possible : nous établissons des devis détaillés, poste par poste, utilisables pour une demande de financement auprès d'un de nos partenaires financiers. Nos informations légales (SIREN, RCS) sont publiques, et un extrait Kbis peut être communiqué sur demande."],
+        ["Puis-je financer l'équipement en location (leasing) ?", "Oui, c'est possible : nous établissons des devis détaillés, poste par poste, utilisables pour une demande de financement auprès d'un de nos partenaires financiers."],
         ["Quelles garanties sur le matériel ?", "Le matériel installé bénéficie de la garantie constructeur. Un contrat de maintenance peut être souscrit séparément pour un suivi dans la durée."],
     ];
 }
@@ -231,18 +216,19 @@ function connectis_pages_definitions() {
             ],
             'finance' => true, 'cta' => "Un besoin en téléphonie ?",
         ],
-        'photocopieurs' => [
-            'path' => 'nos-solutions/photocopieurs', 'title' => 'Photocopieurs & impression', 'image' => 'photocopieurs', 'alt' => 'Écran tactile de photocopieur multifonction',
-            'intro' => "Photocopieurs multifonctions pour votre entreprise : copie, impression et numérisation sur un seul appareil, choisi selon vos volumes, installé sur votre réseau et suivi dans la durée par une seule équipe.",
+        'bureautique' => [
+            'path' => 'nos-solutions/bureautique', 'title' => 'Bureautique', 'image' => 'bureautique', 'alt' => 'Écran tactile de multifonction de bureau',
+            'intro' => "Multifonctions et copieurs professionnels des marques Canon et HP : copie, impression, numérisation et gestion documentaire, choisis selon vos volumes, installés sur votre réseau et suivis dans la durée par une seule équipe.",
             'cards' => [
-                ['printer', 'Photocopieurs multifonctions', "Copie, impression et numérisation sur un seul appareil, adapté à la taille de votre équipe."],
+                ['printer', 'Multifonctions et copieurs', "Copie, impression et numérisation sur un seul appareil, des marques Canon et HP."],
                 ['pin', 'Étude de vos besoins', "Analyse sur site de vos volumes et de vos usages pour dimensionner l'appareil au plus juste."],
-                ['network', 'Intégration à votre réseau', "Raccordement, configuration des postes et paramétrage de la numérisation vers e-mail ou dossier partagé."],
-                ['coins', 'Achat ou location', "Achat ou financement en location auprès de nos partenaires financiers, détaillé dans votre devis."],
+                ['network', 'Intégration à votre réseau', "Raccordement et configuration des postes, pour imprimer et numériser sans y penser."],
+                ['doc', 'Gestion documentaire', "Numérisation vers e-mail ou dossier partagé, classement et circulation de vos documents."],
                 ['wrench', 'Installation et prise en main', "Mise en service sur site et accompagnement de vos équipes."],
-                ['headset', 'Maintenance et assistance', "Contrat de maintenance et dépannage, selon les conditions précisées dans votre devis."],
+                ['headset', 'Maintenance et assistance', "Suivi et dépannage de vos appareils, selon les conditions précisées dans votre devis."],
             ],
-            'finance' => true, 'cta' => "Un besoin en photocopieurs ?",
+            'finance' => false, 'cta' => "Un besoin en bureautique ?",
+            'cta_text' => "Décrivez-nous votre besoin : nous revenons vers vous avec un devis détaillé.",
         ],
         'fibre' => [
             'path' => 'nos-solutions/fibre', 'title' => 'Internet & Fibre optique', 'image' => 'fibre', 'alt' => 'Fibre optique',
@@ -291,10 +277,10 @@ function connectis_pages_definitions() {
         'materiel' => "Pour connaître les bonnes pratiques numériques d'une entreprise, consultez <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Votre installation gagne à être associée à une <a href='/nos-solutions/fibre/'>connexion fibre</a> adaptée et à un <a href='/nos-solutions/services/'>contrat de maintenance</a>. Un projet ? <a href='/devis-contact/'>Demandez un devis</a>.",
         'videosurveillance' => "La vidéosurveillance de locaux professionnels est encadrée par la loi : la <a href='https://www.cnil.fr/' target='_blank' rel='noopener'>CNIL</a> détaille les règles à respecter. Pensez aussi au stockage des images avec nos <a href='/nos-solutions/abonnements/'>abonnements</a> et au suivi par un <a href='/nos-solutions/services/'>contrat de maintenance</a>. <a href='/devis-contact/'>Demandez votre devis</a>.",
         'telephonie' => "Les règles de numérotation et de portabilité des lignes sont encadrées par l'<a href='https://www.arcep.fr/' target='_blank' rel='noopener'>ARCEP</a>. Une téléphonie IP demande une bonne connexion : découvrez notre offre <a href='/nos-solutions/fibre/'>Internet et fibre optique</a> et nos <a href='/nos-solutions/abonnements/'>abonnements et forfaits</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
-        'photocopieurs' => "Un photocopieur se raccorde à votre réseau : découvrez notre offre <a href='/nos-solutions/materiel/'>Informatique et matériel</a> et notre offre <a href='/nos-solutions/fibre/'>Internet et fibre optique</a>. Le suivi s'organise avec un <a href='/nos-solutions/services/'>contrat de maintenance</a>. La fin de vie des équipements électroniques est encadrée : l'<a href='https://www.ademe.fr/' target='_blank' rel='noopener'>ADEME</a> explique comment les gérer. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'bureautique' => "Un copieur ou une multifonction se raccorde à votre réseau : découvrez notre offre <a href='/nos-solutions/materiel/'>Informatique et matériel</a> et notre offre <a href='/nos-solutions/fibre/'>Internet et fibre optique</a>. Le suivi s'organise avec un <a href='/nos-solutions/services/'>contrat de maintenance</a>. La fin de vie des équipements électroniques est encadrée : l'<a href='https://www.ademe.fr/' target='_blank' rel='noopener'>ADEME</a> explique comment les gérer. <a href='/devis-contact/'>Demandez un devis</a>.",
         'fibre' => "Vérifiez la couverture fibre de votre adresse sur la <a href='https://cartefibre.arcep.fr/' target='_blank' rel='noopener'>carte de la fibre de l'ARCEP</a>. Associez la fibre à notre <a href='/nos-solutions/telephonie/'>téléphonie IP</a>, à des <a href='/nos-solutions/abonnements/'>abonnements</a> adaptés et à un <a href='/nos-solutions/services/'>contrat de maintenance</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
         'abonnements' => "Les règles applicables aux opérateurs et aux abonnements sont publiées par l'<a href='https://www.arcep.fr/' target='_blank' rel='noopener'>ARCEP</a>. Nous vous aidons à choisir la bonne formule pour votre <a href='/nos-solutions/fibre/'>fibre</a>, votre <a href='/nos-solutions/telephonie/'>téléphonie</a> ou votre <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
-        'services' => "Les bonnes pratiques et l'assistance en cas d'incident numérique sont détaillées sur <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Nos interventions couvrent le <a href='/nos-solutions/materiel/'>matériel informatique</a>, la <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a>, la <a href='/nos-solutions/telephonie/'>téléphonie</a> et les <a href='/nos-solutions/photocopieurs/'>photocopieurs</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'services' => "Les bonnes pratiques et l'assistance en cas d'incident numérique sont détaillées sur <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Nos interventions couvrent le <a href='/nos-solutions/materiel/'>matériel informatique</a>, la <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a>, la <a href='/nos-solutions/telephonie/'>téléphonie</a> et la <a href='/nos-solutions/bureautique/'>bureautique</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
     ];
 
     $pages = [];
@@ -303,7 +289,7 @@ function connectis_pages_definitions() {
         'materiel' => ["Le matériel est-il configuré avant la livraison ?", "La configuration et la mise en service sont incluses : vos équipements sont installés prêts à l'emploi."],
         'videosurveillance' => ["La vidéosurveillance est-elle encadrée par la loi ?", "Oui : l'information des personnes, la durée de conservation des images et le périmètre de filmage sont réglementés. Nous vous conseillons lors de l'étude de votre site."],
         'telephonie' => ["La téléphonie IP demande-t-elle une bonne connexion ?", "Oui, une connexion internet stable est nécessaire. Nous pouvons vérifier votre accès et, si besoin, le fiabiliser (fibre, secours 4G/5G)."],
-        'photocopieurs' => ["Comment choisir le bon photocopieur ?", "Cela dépend de votre volume d'impression, du nombre d'utilisateurs et de vos besoins : nous étudions votre situation sur site avant de vous proposer un modèle."],
+        'bureautique' => ["Comment choisir le bon appareil ?", "Cela dépend de votre volume d'impression, du nombre d'utilisateurs et de vos usages : nous étudions votre situation sur site avant de vous proposer un modèle."],
         'fibre' => ["Quelle connexion choisir pour mon entreprise ?", "Cela dépend de vos usages et de votre local : nous étudions votre besoin sur site avant de vous proposer une solution."],
         'abonnements' => ["Comment la durée et les conditions sont-elles précisées ?", "Chaque devis et chaque contrat indiquent clairement la durée, le prix et les conditions de résiliation."],
         'services' => ["Comment demander une intervention ?", "Contactez-nous par le formulaire ou par e-mail en décrivant l'équipement concerné : nous vous répondons rapidement."],
@@ -322,8 +308,8 @@ function connectis_pages_definitions() {
                 . "<h2>Comment ça se passe</h2>" . cn_steps()
                 . ($s['finance'] ? cn_finance() : '')
                 . "<h2>Pour aller plus loin</h2><div class='cn-narrow'><p>" . $more[$key] . "</p></div>"
-                . "<h2>Questions fréquentes</h2>" . cn_faq(array_merge([$faq_extra[$key]], cn_faq_common()))
-                . cn_cta($s['cta']),
+                . "<h2>Questions fréquentes</h2>" . cn_faq(array_merge([$faq_extra[$key]], $key === 'bureautique' ? array_values(array_filter(cn_faq_common(), function ($qa) { return strpos($qa[0], 'financer') === false; })) : cn_faq_common()))
+                . (isset($s['cta_text']) ? cn_cta($s['cta'], $s['cta_text']) : cn_cta($s['cta'])),
         ];
     }
 
@@ -332,7 +318,7 @@ function connectis_pages_definitions() {
         . "<div class='cn-feature'><figure><img src='" . cn_img('materiel') . "' alt='Informatique' loading='lazy'></figure><div class='cn-feature-body'><h3>Informatique</h3><p>Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration incluses.</p><a href='/nos-solutions/materiel/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('videosurveillance') . "' alt='Vidéosurveillance' loading='lazy'></figure><div class='cn-feature-body'><h3>Vidéosurveillance</h3><p>Caméras IP, enregistreurs, consultation à distance, alarme et contrôle d'accès pour vos locaux.</p><a href='/nos-solutions/videosurveillance/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('telephonie') . "' alt='Téléphonie' loading='lazy'></figure><div class='cn-feature-body'><h3>Téléphonie</h3><p>Standard, VoIP, lignes fixes et mobiles : une communication claire pour toute l'équipe.</p><a href='/nos-solutions/telephonie/'>Découvrir &rarr;</a></div></div>"
-        . "<div class='cn-feature'><figure><img src='" . cn_img('photocopieurs') . "' alt='Photocopieurs' loading='lazy'></figure><div class='cn-feature-body'><h3>Photocopieurs</h3><p>Photocopieurs multifonctions : étude de vos besoins, installation sur votre réseau, financement et maintenance.</p><a href='/nos-solutions/photocopieurs/'>Découvrir &rarr;</a></div></div>"
+        . "<div class='cn-feature'><figure><img src='" . cn_img('bureautique') . "' alt='Bureautique' loading='lazy'></figure><div class='cn-feature-body'><h3>Bureautique</h3><p>Multifonctions et copieurs professionnels Canon et HP : étude de vos besoins, installation sur votre réseau et maintenance.</p><a href='/nos-solutions/bureautique/'>Découvrir &rarr;</a></div></div>"
         . "</div>";
     $also = cn_grid([
         cn_card('fibre', 'Internet & Fibre optique', "Raccordement fibre professionnel, box internet, Wi-Fi pro.", '/nos-solutions/fibre/'),
@@ -343,16 +329,16 @@ function connectis_pages_definitions() {
         cn_card('pin', 'Proximité', "Une équipe commerciale qui se déplace directement dans vos locaux, où que vous soyez."),
         cn_card('clock', 'Réactivité', "Des rendez-vous et des interventions sous délai court, sans centre d'appels national."),
         cn_card('sliders', 'Sur mesure', "Des solutions adaptées à votre activité, pas un forfait imposé."),
-        cn_card('users', 'Guichet unique', "Informatique, vidéosurveillance, téléphonie et photocopieurs : un seul interlocuteur pour tout gérer."),
+        cn_card('users', 'Guichet unique', "Informatique, vidéosurveillance, téléphonie et bureautique : un seul interlocuteur pour tout gérer."),
         cn_card('doc', 'Devis clair', "Un chiffrage détaillé poste par poste, pour savoir précisément ce que vous financez."),
         cn_card('headset', 'Suivi après installation', "Maintenance, dépannage et assistance : nous restons votre interlocuteur une fois le projet livré."),
     ]);
     // Le titre de la page d'accueil est l'unique H1 du site (masqué visuellement par le thème, lu par les moteurs de recherche).
     $pages['accueil'] = [
-        'title'   => 'Informatique, vidéosurveillance, téléphonie et photocopieurs pour votre entreprise',
+        'title'   => 'Informatique, vidéosurveillance, téléphonie et bureautique pour votre entreprise',
         'content' => "<!--cn-->"
-            . "<div class='cn-hero-home'><span class='cn-kicker'>Informatique · Vidéosurveillance · Téléphonie · Photocopieurs</span>"
-            . "<div class='cn-h1'>Informatique, vidéosurveillance, téléphonie et photocopieurs pour votre entreprise</div>"
+            . "<div class='cn-hero-home'><span class='cn-kicker'>Informatique · Vidéosurveillance · Téléphonie · Bureautique</span>"
+            . "<div class='cn-h1'>Informatique, vidéosurveillance, téléphonie et bureautique pour votre entreprise</div>"
             . "<p>Un seul interlocuteur local : nous conseillons, installons et assurons le suivi directement chez vous.</p>"
             . "<p><a class='cn-btn' href='/devis-contact/'>Demander un devis</a> <a class='cn-btn cn-btn-ghost' href='/nos-solutions/'>Découvrir nos solutions</a></p></div>"
             . cn_strip()
@@ -369,7 +355,7 @@ function connectis_pages_definitions() {
     $pages['nos-solutions'] = [
         'title'   => 'Nos solutions',
         'content' => "<!--cn-->"
-            . "<p class='cn-lead'>Connectis Solutions accompagne les professionnels sur quatre métiers principaux — l'<strong>informatique</strong>, la <strong>vidéosurveillance</strong>, la <strong>téléphonie</strong> et les <strong>photocopieurs</strong> — complétés par la fibre, les abonnements et la maintenance.</p>"
+            . "<p class='cn-lead'>Connectis Solutions accompagne les professionnels sur quatre métiers principaux — l'<strong>informatique</strong>, la <strong>vidéosurveillance</strong>, la <strong>téléphonie</strong> et la <strong>bureautique</strong> — complétés par la fibre, les abonnements et la maintenance.</p>"
             . cn_strip()
             . "<h2>Nos expertises</h2>" . $expertises
             . "<h2>Services complémentaires</h2>" . $also
@@ -385,7 +371,7 @@ function connectis_pages_definitions() {
     $pages['a-propos'] = [
         'title'   => 'Connectis',
         'content' => "<!--cn-->" . cn_hero('a-propos', 'Poste de travail informatique moderne')
-            . "<p class='cn-lead'>Connectis Solutions est une entreprise basée à Nancy, dédiée aux professionnels. Nous concevons, installons et maintenons leurs solutions d'<strong>informatique</strong>, de <strong>vidéosurveillance</strong>, de <strong>téléphonie</strong> et de <strong>photocopieurs</strong>, avec la fibre optique, le matériel et les abonnements associés.</p>"
+            . "<p class='cn-lead'>Connectis Solutions est une entreprise basée à Nancy, dédiée aux professionnels. Nous concevons, installons et maintenons leurs solutions d'<strong>informatique</strong>, de <strong>vidéosurveillance</strong>, de <strong>téléphonie</strong> et de <strong>bureautique</strong>, avec la fibre optique, le matériel et les abonnements associés.</p>"
             . "<p>Notre équipe commerciale se déplace directement chez vous pour le conseil, le devis et l'installation — pas de centre d'appels, pas de parcours standardisé : un interlocuteur qui connaît votre dossier du premier contact au suivi après installation.</p>"
             . "<h2>Nos valeurs</h2>" . cn_grid([
                 cn_card('pin', 'Proximité', "Une équipe locale, disponible et joignable."),
@@ -393,12 +379,12 @@ function connectis_pages_definitions() {
                 cn_card('sliders', 'Sur mesure', "Des solutions pensées pour votre activité, pas un forfait imposé."),
             ])
             . "<h2>Quatre métiers, un seul interlocuteur</h2>"
-            . "<p>Connectis Solutions intervient sur les quatre sujets qui font fonctionner une entreprise au quotidien : le parc informatique, la protection des locaux par la vidéosurveillance, les communications téléphoniques et l'impression avec les photocopieurs. Réunir ces métiers chez un seul prestataire évite de multiplier les contacts, les devis et les factures : une seule équipe étudie votre besoin, installe le matériel et assure le suivi.</p>"
+            . "<p>Connectis Solutions intervient sur les quatre sujets qui font fonctionner une entreprise au quotidien : le parc informatique, la protection des locaux par la vidéosurveillance, les communications téléphoniques et la bureautique (copieurs et multifonctions). Réunir ces métiers chez un seul prestataire évite de multiplier les contacts, les devis et les factures : une seule équipe étudie votre besoin, installe le matériel et assure le suivi.</p>"
             . cn_grid([
                 cn_card('monitor', 'Informatique', "Postes de travail, réseau, serveurs et périphériques.", '/nos-solutions/materiel/', 'Voir l’offre'),
                 cn_card('camera', 'Vidéosurveillance', "Caméras IP, enregistrement, accès à distance et alarme.", '/nos-solutions/videosurveillance/', 'Voir l’offre'),
                 cn_card('phone', 'Téléphonie', "Standard, VoIP, lignes fixes et mobiles.", '/nos-solutions/telephonie/', 'Voir l’offre'),
-                cn_card('printer', 'Photocopieurs', "Copie, impression et numérisation, installées sur votre réseau.", '/nos-solutions/photocopieurs/', 'Voir l’offre'),
+                cn_card('printer', 'Bureautique', "Multifonctions et copieurs Canon et HP, installés sur votre réseau.", '/nos-solutions/bureautique/', 'Voir l’offre'),
             ])
             . "<h2>Notre méthode</h2>" . cn_steps()
             . cn_trust()
@@ -464,8 +450,13 @@ add_action('init', function () {
         // Sans utilisateur connecté, WordPress filtre le HTML enregistré (kses) : ce contenu est le nôtre.
         kses_remove_filters();
 
+        $legacy = ['nos-solutions/bureautique' => 'nos-solutions/photocopieurs'];
         foreach (connectis_pages_definitions() as $path => $def) {
             $page = get_page_by_path($path);
+            if (!$page && isset($legacy[$path]) && ($old = get_page_by_path($legacy[$path]))) {
+                wp_update_post(['ID' => $old->ID, 'post_name' => basename($path)]);   // ancienne adresse conservée par une redirection 301 (connectis-seo.php)
+                $page = get_post($old->ID);
+            }
             if (!$page && strpos($path, '/') !== false) {
                 // Nouvelle sous-page d'offre : créée sous sa page parente, puis remplie comme les autres.
                 $parent = get_page_by_path(dirname($path));

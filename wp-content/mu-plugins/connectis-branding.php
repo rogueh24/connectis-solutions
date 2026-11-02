@@ -157,7 +157,7 @@ add_filter('wp_nav_menu_objects', function ($items) {
         return rtrim((string) $item->url, '/') === rtrim(home_url(), '/');
     };
     // Ordre des sous-pages de « Solutions » dans le menu.
-    $child_order = ['materiel' => 1, 'videosurveillance' => 2, 'telephonie' => 3, 'photocopieurs' => 4, 'fibre' => 5, 'abonnements' => 6, 'services' => 7];
+    $child_order = ['materiel' => 1, 'videosurveillance' => 2, 'telephonie' => 3, 'bureautique' => 4, 'fibre' => 5, 'abonnements' => 6, 'services' => 7];
     $order = ['nos-solutions' => 2, 'a-propos' => 3, 'recrutement' => 4, 'devis-contact' => 5];
 
     $top = [];

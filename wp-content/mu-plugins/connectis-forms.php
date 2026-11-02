@@ -181,7 +181,7 @@ function connectis_forms_layouts() {
 
     $devis = <<<'FORM'
 <div class="cn-fstep"><span class="cn-num">1</span><h3>Votre besoin</h3></div>
-[radio your-service use_label_element default:1 "Informatique et matériel" "Vidéosurveillance" "Téléphonie et VoIP" "Internet et fibre optique" "Abonnements et forfaits" "Services et maintenance" "Photocopieurs et impression" "Plusieurs services / autre"]
+[radio your-service use_label_element default:1 "Informatique et matériel" "Vidéosurveillance" "Téléphonie et VoIP" "Internet et fibre optique" "Abonnements et forfaits" "Services et maintenance" "Bureautique" "Plusieurs services / autre"]
 
 <div class="cn-fstep"><span class="cn-num">2</span><h3>Vos coordonnées</h3></div>
 <p class="cn-field"><label>Nom et prénom *<br>[text* your-name autocomplete:name]</label></p>
@@ -190,7 +190,7 @@ function connectis_forms_layouts() {
 <p class="cn-field"><label>Entreprise<br>[text your-company autocomplete:organization]</label></p>
 
 <div class="cn-fstep"><span class="cn-num">3</span><h3>Votre projet</h3></div>
-<p class="cn-field"><label>Décrivez brièvement votre besoin<br>[textarea your-message x6 placeholder "Nombre de postes, de caméras, de lignes ou de photocopieurs, délais souhaités, financement envisagé…"]</label></p>
+<p class="cn-field"><label>Décrivez brièvement votre besoin<br>[textarea your-message x6 placeholder "Nombre de postes, de caméras, de lignes ou d'appareils de bureautique, délais souhaités, financement envisagé…"]</label></p>
 {{CONSENT}}
 [submit "Envoyer ma demande de devis"]
 FORM;
@@ -223,7 +223,7 @@ FORM;
 }
 
 add_action('init', function () {
-    if (get_option('connectis_forms_layout_v2') || !get_option('connectis_forms_v1') || !class_exists('WPCF7_ContactForm') || !post_type_exists('wpcf7_contact_form')) {
+    if (get_option('connectis_forms_layout_v3') || !get_option('connectis_forms_v1') || !class_exists('WPCF7_ContactForm') || !post_type_exists('wpcf7_contact_form')) {
         return;
     }
     try {
@@ -245,5 +245,5 @@ add_action('init', function () {
     } catch (\Throwable $e) {
         update_option('connectis_forms_layout_error', $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
     }
-    update_option('connectis_forms_layout_v2', 1);
+    update_option('connectis_forms_layout_v3', 1);
 }, 31);

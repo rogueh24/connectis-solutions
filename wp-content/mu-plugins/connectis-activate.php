@@ -107,7 +107,7 @@ add_action('rest_api_init', function () {
                 'pages'              => [
                     'version' => (int) get_option('connectis_pages_version', 0),
                     'error'   => get_option('connectis_pages_error', null),
-                    'forms_layout_done'  => (bool) get_option('connectis_forms_layout_v2'),
+                    'forms_layout_done'  => (bool) get_option('connectis_forms_layout_v3'),
                     'forms_layout_error' => get_option('connectis_forms_layout_error', null),
                 ],
                 'cache_settings'     => [
