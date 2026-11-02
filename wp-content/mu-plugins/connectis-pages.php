@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v19 : visuel téléphonie sans personne (téléphone de conférence) ; offre « Bureautique & impression » sans marque, sans achat/location.
-const CONNECTIS_PAGES_VERSION = 19;
+// v20 : visuel téléphonie = personne avec casque-micro (photo choisie par le client), cadrage sur le visage ; offre « Bureautique & impression » sans marque.
+const CONNECTIS_PAGES_VERSION = 20;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -161,8 +161,8 @@ function cn_img($name) {
     return content_url('mu-plugins/connectis-content-seed/images/' . $name . '.' . $ext . '?v=' . CONNECTIS_PAGES_VERSION);
 }
 
-function cn_hero($image, $alt) {
-    return "<figure class='cn-hero'><img src='" . cn_img($image) . "' alt='" . $alt . "' width='1600' height='1000' fetchpriority='high' decoding='async'></figure>";
+function cn_hero($image, $alt, $pos = '') {
+    return "<figure class='cn-hero'><img src='" . cn_img($image) . "' alt='" . $alt . "' " . ($pos !== '' ? "style='object-position:" . $pos . "' " : '') . " width='1600' height='1000' fetchpriority='high' decoding='async'></figure>";
 }
 
 /* ───────────────────────── Contenu des pages ───────────────────────── */
@@ -204,7 +204,7 @@ function connectis_pages_definitions() {
             'finance' => true, 'cta' => "Un besoin en vidéosurveillance ?",
         ],
         'telephonie' => [
-            'path' => 'nos-solutions/telephonie', 'title' => 'Téléphonie & standard', 'image' => 'telephonie', 'alt' => 'Téléphonie',
+            'path' => 'nos-solutions/telephonie', 'title' => 'Téléphonie & standard', 'image' => 'telephonie', 'alt' => 'Téléphonie', 'pos' => '50% 18%',
             'intro' => "Modernisez votre communication d'entreprise avec des solutions de téléphonie fixe, mobile et VoIP, adaptées aux TPE comme aux structures multi-sites.",
             'cards' => [
                 ['headset', 'Standard téléphonique', "Accueil, renvois, files d'attente : une image professionnelle pour vos appels."],
@@ -302,7 +302,7 @@ function connectis_pages_definitions() {
         }
         $pages[$s['path']] = [
             'title'   => $s['title'],
-            'content' => "<!--cn-->" . cn_hero($s['image'], $s['alt']) . cn_strip()
+            'content' => "<!--cn-->" . cn_hero($s['image'], $s['alt'], $s['pos'] ?? '') . cn_strip()
                 . "<p class='cn-lead'>" . $s['intro'] . "</p>"
                 . "<h2>Ce que nous proposons</h2>" . cn_grid($cards)
                 . "<h2>Comment ça se passe</h2>" . cn_steps()
@@ -317,7 +317,7 @@ function connectis_pages_definitions() {
     $expertises = "<div class='cn-features cn-f4'>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('materiel') . "' alt='Informatique' loading='lazy'></figure><div class='cn-feature-body'><h3>Informatique</h3><p>Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration incluses.</p><a href='/nos-solutions/materiel/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('videosurveillance') . "' alt='Vidéosurveillance' loading='lazy'></figure><div class='cn-feature-body'><h3>Vidéosurveillance</h3><p>Caméras IP, enregistreurs, consultation à distance, alarme et contrôle d'accès pour vos locaux.</p><a href='/nos-solutions/videosurveillance/'>Découvrir &rarr;</a></div></div>"
-        . "<div class='cn-feature'><figure><img src='" . cn_img('telephonie') . "' alt='Téléphonie' loading='lazy'></figure><div class='cn-feature-body'><h3>Téléphonie</h3><p>Standard, VoIP, lignes fixes et mobiles : une communication claire pour toute l'équipe.</p><a href='/nos-solutions/telephonie/'>Découvrir &rarr;</a></div></div>"
+        . "<div class='cn-feature'><figure><img src='" . cn_img('telephonie') . "' alt='Téléphonie' style='object-position:50% 20%' loading='lazy'></figure><div class='cn-feature-body'><h3>Téléphonie</h3><p>Standard, VoIP, lignes fixes et mobiles : une communication claire pour toute l'équipe.</p><a href='/nos-solutions/telephonie/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('bureautique') . "' alt='Bureautique' loading='lazy'></figure><div class='cn-feature-body'><h3>Bureautique &amp; impression</h3><p>Multifonctions et copieurs professionnels : étude de vos besoins, installation sur votre réseau et maintenance.</p><a href='/nos-solutions/bureautique/'>Découvrir &rarr;</a></div></div>"
         . "</div>";
     $also = cn_grid([
