@@ -35,7 +35,7 @@ function connectis_legal_definitions() {
 <li><span>Président</span><strong>Arno Dessalle</strong></li>
 <li><span>Contact</span><strong><a href='mailto:contact@connectis-solutions.fr'>contact@connectis-solutions.fr</a></strong></li>
 </ul>
-<p>Activité : conseil, fourniture, installation et maintenance de solutions informatiques, de vidéosurveillance et de téléphonie à destination des professionnels. L'activité n'est soumise à aucune autorisation administrative particulière ni à aucun ordre professionnel.</p>
+<p>Activité : conseil, fourniture, installation et maintenance de solutions informatiques, de vidéosurveillance, de téléphonie et de photocopieurs à destination des professionnels. L'activité n'est soumise à aucune autorisation administrative particulière ni à aucun ordre professionnel.</p>
 <p>Ces informations sont publiques et vérifiables à tout moment auprès des registres officiels.</p>
 <p><a class='cn-btn cn-btn-ghost' href='https://annuaire-entreprises.data.gouv.fr/entreprise/connectis-solutions-103370557' target='_blank' rel='noopener'>Vérifier ces informations sur l'Annuaire des Entreprises</a></p>
 </section>
@@ -92,13 +92,13 @@ HTML;
     $cgv = <<<'HTML'
 <!--cn-->
 <div class='cn-narrow cn-legal'>
-<p class='cn-lead'>Conditions générales de vente de <strong>CONNECTIS SOLUTIONS</strong> applicables aux clients professionnels pour la vente de matériels, la fourniture d'abonnements et les prestations d'installation et de maintenance en informatique, vidéosurveillance et téléphonie.</p>
+<p class='cn-lead'>Conditions générales de vente de <strong>CONNECTIS SOLUTIONS</strong> applicables aux clients professionnels pour la vente de matériels, la fourniture d'abonnements et les prestations d'installation et de maintenance en informatique, vidéosurveillance, téléphonie et photocopieurs.</p>
 <nav class='cn-toc' aria-label='Sommaire'><a href='#art-1'>Art. 1</a><a href='#art-2'>Art. 2</a><a href='#art-3'>Art. 3</a><a href='#art-4'>Art. 4</a><a href='#art-5'>Art. 5</a><a href='#art-6'>Art. 6</a><a href='#art-7'>Art. 7</a><a href='#art-8'>Art. 8</a><a href='#art-9'>Art. 9</a><a href='#art-10'>Art. 10</a><a href='#art-11'>Art. 11</a><a href='#art-12'>Art. 12</a><a href='#art-13'>Art. 13</a><a href='#art-14'>Art. 14</a><a href='#art-15'>Art. 15</a><a href='#art-16'>Art. 16</a><a href='#art-17'>Art. 17</a><a href='#art-18'>Art. 18</a><a href='#art-19'>Art. 19</a></nav>
 
 <section id='art-1' class='cn-legal-sec'>
 <h2>Article 1 — Objet, champ d'application et définitions</h2>
 <p><span class='cn-cl'>1.1</span> Les présentes conditions générales de vente (les « CGV ») régissent les relations contractuelles entre la société <strong>CONNECTIS SOLUTIONS</strong>, société par actions simplifiée dont le siège social est situé 110 boulevard d'Austrasie, 54000 Nancy, immatriculée au RCS de Nancy sous le numéro 103 370 557 (le « Prestataire »), et toute personne physique ou morale agissant à titre professionnel (le « Client ») qui lui commande des produits ou des services.</p>
-<p><span class='cn-cl'>1.2</span> Elles s'appliquent à la vente de matériels informatiques, de vidéosurveillance et de téléphonie (les « Produits »), et à la fourniture de prestations d'étude, d'installation, de configuration, de maintenance, d'assistance, ainsi que d'abonnements et services récurrents (les « Services »).</p>
+<p><span class='cn-cl'>1.2</span> Elles s'appliquent à la vente de matériels informatiques, de vidéosurveillance, de téléphonie et de reprographie, dont les photocopieurs multifonctions (les « Produits »), et à la fourniture de prestations d'étude, d'installation, de configuration, de maintenance, d'assistance, ainsi que d'abonnements et services récurrents (les « Services »).</p>
 <p><span class='cn-cl'>1.3</span> Les CGV sont destinées exclusivement aux professionnels. Elles constituent le socle unique de la négociation commerciale et sont communiquées à tout Client qui en fait la demande, conformément à l'article L.441-1 du Code de commerce. Elles prévalent sur toute condition générale d'achat du Client, sauf dérogation expresse et écrite du Prestataire.</p>
 </section>
 
@@ -164,6 +164,7 @@ HTML;
 <p><span class='cn-cl'>10.1</span> La durée, le prix, la périodicité de facturation, les conditions de renouvellement et de résiliation de chaque abonnement (internet, téléphonie, vidéosurveillance, stockage, supervision et services associés) sont précisés au devis et au contrat. À défaut de stipulation contraire, l'abonnement est conclu pour la durée initiale indiquée puis se renouvelle tacitement par périodes successives d'égale durée, sauf résiliation notifiée par lettre recommandée ou courrier électronique avec accusé de réception moyennant un préavis de trois (3) mois avant l'échéance.</p>
 <p><span class='cn-cl'>10.2</span> Les Services fournis par des opérateurs, éditeurs ou hébergeurs tiers sont en outre soumis à leurs propres conditions, que le Client reconnaît avoir consultées et acceptées. Le Prestataire n'est pas responsable des interruptions, restrictions ou évolutions décidées par ces tiers, ni des défaillances des réseaux de télécommunications.</p>
 <p><span class='cn-cl'>10.3</span> Le Prestataire peut suspendre l'accès aux Services récurrents en cas d'utilisation illicite ou contraire au contrat, ou de défaut de paiement persistant après mise en demeure.</p>
+<p><span class='cn-cl'>10.4</span> Pour les photocopieurs et appareils d'impression, le devis précise le mode d'acquisition (achat ou location), le contrat de maintenance et, le cas échéant, les conditions de facturation des copies et impressions réalisées, relevées au compteur de l'appareil.</p>
 </section>
 
 <section id='art-11' class='cn-legal-sec'>
@@ -186,6 +187,7 @@ HTML;
 <p><span class='cn-cl'>13.1</span> Le Client est <strong>seul responsable</strong> de la conformité de l'exploitation de son système de vidéosurveillance et de ses traitements de données, notamment au regard du RGPD, du Code de la sécurité intérieure et du Code du travail : finalité et proportionnalité du dispositif, information des personnes filmées et des représentants du personnel, durée de conservation des images, sécurisation des accès, formalités ou autorisations préalables lorsque des lieux ouverts au public sont concernés.</p>
 <p><span class='cn-cl'>13.2</span> Le Prestataire conseille le Client lors de l'étude du site mais ne saurait se substituer à lui pour la détermination des finalités ni pour l'accomplissement de ces obligations.</p>
 <p><span class='cn-cl'>13.3</span> Lorsque, à l'occasion d'une intervention, le Prestataire a accès à des données personnelles du Client, il agit en qualité de sous-traitant au sens de l'article 28 du RGPD : il traite ces données uniquement sur instruction documentée du Client, s'engage à en garantir la confidentialité et la sécurité et à ne pas les utiliser à d'autres fins. Un accord de sous-traitance peut être conclu sur demande.</p>
+<p><span class='cn-cl'>13.4</span> Les appareils d'impression et de numérisation peuvent mémoriser des documents. Le Client demeure responsable des documents qu'il traite ; l'effacement des données mémorisées, avant tout retrait, échange ou reprise d'un appareil, peut être convenu au devis.</p>
 </section>
 
 <section id='art-14' class='cn-legal-sec'>
