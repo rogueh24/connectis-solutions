@@ -5,6 +5,19 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+### Ajouté (2026-11-02) — Photocopieurs & impression
+- **Nouvelle offre** `Photocopieurs & impression` (`/nos-solutions/photocopieurs/`) : page sur le même modèle que les autres offres
+  (cartes, étapes, financement en location, liens utiles, FAQ), photo libre de droits (Pexels, WebP + JPEG). La page est **créée par
+  le code** si elle n'existe pas (`connectis-pages.php`).
+- **Accueil** : titre, accroche et « Nos expertises » passent à quatre métiers (4e carte, quatre colonnes sur grand écran) ; page
+  « Solutions », « Connectis » (quatre métiers, quatre cartes), « Guichet unique » et page « Services & maintenance » mises à jour.
+- **Menu** : sous-menu « Solutions » trié par le code, Photocopieurs placé après la téléphonie.
+- **Formulaire de devis** : choix « Photocopieurs et impression » (icône dédiée) ; formulaire réappliqué (`connectis_forms_layout_v2`).
+- **SEO** : titre et description de la nouvelle page, descriptions d'accueil / solutions / connectis / devis, JSON-LD (`knowsAbout`).
+- **Textes légaux** : activité (mentions légales), objet des CGV (reprographie, photocopieurs), art. 10.4 (achat ou location, contrat de
+  maintenance, copies relevées au compteur le cas échéant), art. 13.4 (documents mémorisés par les appareils). **À faire relire par
+  l'avocat** : les CGV avaient été relues avant cet ajout.
+
 ### À venir
 - Vérifier la disparition de l'alerte Chrome sur `wp-admin`.
 - Vraies photos de l'équipe ; numéro de téléphone de l'entreprise.

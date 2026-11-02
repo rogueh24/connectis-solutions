@@ -59,12 +59,12 @@ Détails complets, conventions et leçons apprises : **[docs/ENGINEERING.md](doc
 
 Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 
-### Ce qui est livré (v1.2.0)
+### Ce qui est livré (v1.3.0)
 
-- **Site public** en thème sombre aux couleurs du logo : 14 pages (accueil, Solutions + 6 offres, Connectis, Devis & Contact,
+- **Site public** en thème sombre aux couleurs du logo : 15 pages (accueil, Solutions + 7 offres dont Photocopieurs & impression, Connectis, Devis & Contact,
   Recrutement, mentions légales, CGV, confidentialité), en-tête avec logo horizontal, menu hamburger centré (logo cliquable,
   bouton « Devis & Contact »), pied de page réduit aux liens légaux, animations douces avec filet de sécurité.
-- **Message** : informatique, vidéosurveillance et téléphonie pour les professionnels ; devis détaillé et solutions de
+- **Message** : informatique, vidéosurveillance, téléphonie et photocopieurs pour les professionnels ; devis détaillé et solutions de
   financement en location auprès de partenaires financiers (sans citer de loueur).
 - **Formulaires** (devis en 3 étapes, contact, candidature avec CV), consentement RGPD, anti-spam WP Armour,
   e-mails via SureMail — **devis testé en conditions réelles**.
@@ -97,4 +97,6 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - [x] Mot de passe d'application « Claude MCP » : **conservé** (décision du client) ; procédure de rotation documentée (ENGINEERING §6)
 - [ ] Alerte Chrome sur `wp-admin` : vérifier sa disparition (24 à 72 h)
 - [ ] Vraies photos de l'équipe et des chantiers ; numéro de téléphone de l'entreprise
+- [x] Offre **Photocopieurs & impression** ajoutée (2026-11-02) : page dédiée, 4e carte d'accueil, menu, formulaire de devis, SEO, CGV
+- [ ] Photocopieurs : marque / agrément à afficher, modèles, tarifs ou coût à la copie, vraie photo ; objet social et code APE à vérifier
 - [ ] Peaufinages au fil des demandes
