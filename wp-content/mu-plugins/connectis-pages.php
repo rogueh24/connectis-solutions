@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v18 : offre « Bureautique & impression » (sans marque, sans achat/location), bloc « entreprise vérifiable » retiré, page renommée depuis /photocopieurs/.
-const CONNECTIS_PAGES_VERSION = 18;
+// v19 : visuel téléphonie sans personne (téléphone de conférence) ; offre « Bureautique & impression » sans marque, sans achat/location.
+const CONNECTIS_PAGES_VERSION = 19;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
