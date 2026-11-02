@@ -10,6 +10,7 @@ format AAAA-MM-JJ.
   ligne « Téléphone » dans les mentions légales (éditeur du site), champ `telephone` des données structurées « entreprise locale ».
   `connectis-pages.php` passe en version 21.
 - **Pied de page** (`connectis-theme-config.php`) : nom, adresse, téléphone et e-mail en clair, puis copyright et liens légaux.
+- **Devis & Contact** : les quatre tuiles « Nous contacter directement » en grille 2 × 2 (la quatrième restait seule sur une ligne).
 - **Bouton « Appeler »** flottant, discret, sur téléphone et tablette seulement (≤ 999 px, `connectis-branding.php` + `custom.css`) ; masqué
   sur ordinateur et à l'impression. **Rien dans l'en-tête sur ordinateur** : il reste minimaliste (logo, recherche, connexion, menu).
 
