@@ -156,6 +156,8 @@ add_filter('wp_nav_menu_objects', function ($items) {
         }
         return rtrim((string) $item->url, '/') === rtrim(home_url(), '/');
     };
+    // Ordre des sous-pages de « Solutions » dans le menu.
+    $child_order = ['materiel' => 1, 'videosurveillance' => 2, 'telephonie' => 3, 'photocopieurs' => 4, 'fibre' => 5, 'abonnements' => 6, 'services' => 7];
     $order = ['nos-solutions' => 2, 'a-propos' => 3, 'recrutement' => 4, 'devis-contact' => 5];
 
     $top = [];
@@ -183,7 +185,7 @@ add_filter('wp_nav_menu_objects', function ($items) {
 
     $sorted = [];
     $i = 1;
-    $append = function ($item) use (&$sorted, &$i, &$append, $children, $slug_of, $is_home) {
+    $append = function ($item) use (&$sorted, &$i, &$append, $children, $slug_of, $is_home, $child_order) {
         $item->menu_order = $i++;
         if ($is_home($item)) {
             $item->classes[] = 'cn-menu-logo';
@@ -199,7 +201,11 @@ add_filter('wp_nav_menu_objects', function ($items) {
             $item->classes[] = 'cn-menu-cta';
         }
         $sorted[] = $item;
-        foreach ($children[(int) $item->ID] ?? [] as $child) {
+        $kids = $children[(int) $item->ID] ?? [];
+        usort($kids, function ($x, $y) use ($child_order, $slug_of) {
+            return ($child_order[$slug_of($x)] ?? 50) <=> ($child_order[$slug_of($y)] ?? 50);
+        });
+        foreach ($kids as $child) {
             $append($child);
         }
     };

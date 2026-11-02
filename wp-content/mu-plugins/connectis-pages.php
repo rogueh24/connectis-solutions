@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v15 : liens internes et sortants (Pour aller plus loin, Recrutement, CGV) pour l'analyse SEO.
-const CONNECTIS_PAGES_VERSION = 15;
+// v16 : nouvelle offre « Photocopieurs & impression » (page, 4e carte d'accueil, À propos, textes) ; création de la page si absente.
+const CONNECTIS_PAGES_VERSION = 16;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -30,6 +30,7 @@ function connectis_icons() {
         'cable'    => '<path d="M4 8h5v8H4zM15 8h5v8h-5zM9 12h6"/>',
         'hdd'      => '<rect x="3" y="8" width="18" height="8" rx="2"/><circle class="cn-led" cx="7" cy="12" r=".9"/><path d="M11 12h6"/>',
         'wrench'   => '<path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.8 2.8-2.2-.6-.6-2.2z"/>',
+        'printer'  => '<rect x="6" y="3" width="12" height="5" rx="1"/><path d="M6 17H4a1 1 0 01-1-1v-6a2 2 0 012-2h14a2 2 0 012 2v6a1 1 0 01-1 1h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/><circle class="cn-led" cx="17" cy="11" r=".9"/>',
         'sliders'  => '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
         'bolt'     => '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
         'doc'      => '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
@@ -80,7 +81,7 @@ function cn_card($icon, $title, $text, $href = '', $more = 'En savoir plus') {
 
 function cn_grid(array $cards) {
     // Trois cartes : trois colonnes (jamais 2 + 1 orpheline) dès que la largeur le permet.
-    return "<div class='cn-grid" . (count($cards) === 3 ? " cn-grid-3" : "") . "'>" . implode('', $cards) . "</div>";
+    return "<div class='cn-grid" . (count($cards) === 3 ? " cn-grid-3" : "") . (count($cards) === 4 ? " cn-grid-4" : "") . "'>" . implode('', $cards) . "</div>";
 }
 
 function cn_steps() {
@@ -230,6 +231,19 @@ function connectis_pages_definitions() {
             ],
             'finance' => true, 'cta' => "Un besoin en téléphonie ?",
         ],
+        'photocopieurs' => [
+            'path' => 'nos-solutions/photocopieurs', 'title' => 'Photocopieurs & impression', 'image' => 'photocopieurs', 'alt' => 'Écran tactile de photocopieur multifonction',
+            'intro' => "Photocopieurs multifonctions pour votre entreprise : copie, impression et numérisation sur un seul appareil, choisi selon vos volumes, installé sur votre réseau et suivi dans la durée par une seule équipe.",
+            'cards' => [
+                ['printer', 'Photocopieurs multifonctions', "Copie, impression et numérisation sur un seul appareil, adapté à la taille de votre équipe."],
+                ['pin', 'Étude de vos besoins', "Analyse sur site de vos volumes et de vos usages pour dimensionner l'appareil au plus juste."],
+                ['network', 'Intégration à votre réseau', "Raccordement, configuration des postes et paramétrage de la numérisation vers e-mail ou dossier partagé."],
+                ['coins', 'Achat ou location', "Achat ou financement en location auprès de nos partenaires financiers, détaillé dans votre devis."],
+                ['wrench', 'Installation et prise en main', "Mise en service sur site et accompagnement de vos équipes."],
+                ['headset', 'Maintenance et assistance', "Contrat de maintenance et dépannage, selon les conditions précisées dans votre devis."],
+            ],
+            'finance' => true, 'cta' => "Un besoin en photocopieurs ?",
+        ],
         'fibre' => [
             'path' => 'nos-solutions/fibre', 'title' => 'Internet & Fibre optique', 'image' => 'fibre', 'alt' => 'Fibre optique',
             'intro' => "Une connexion internet stable et rapide est indispensable à l'activité de votre entreprise. Nous nous occupons du raccordement, de l'équipement et du réglage de votre réseau.",
@@ -277,9 +291,10 @@ function connectis_pages_definitions() {
         'materiel' => "Pour connaître les bonnes pratiques numériques d'une entreprise, consultez <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Votre installation gagne à être associée à une <a href='/nos-solutions/fibre/'>connexion fibre</a> adaptée et à un <a href='/nos-solutions/services/'>contrat de maintenance</a>. Un projet ? <a href='/devis-contact/'>Demandez un devis</a>.",
         'videosurveillance' => "La vidéosurveillance de locaux professionnels est encadrée par la loi : la <a href='https://www.cnil.fr/' target='_blank' rel='noopener'>CNIL</a> détaille les règles à respecter. Pensez aussi au stockage des images avec nos <a href='/nos-solutions/abonnements/'>abonnements</a> et au suivi par un <a href='/nos-solutions/services/'>contrat de maintenance</a>. <a href='/devis-contact/'>Demandez votre devis</a>.",
         'telephonie' => "Les règles de numérotation et de portabilité des lignes sont encadrées par l'<a href='https://www.arcep.fr/' target='_blank' rel='noopener'>ARCEP</a>. Une téléphonie IP demande une bonne connexion : découvrez notre offre <a href='/nos-solutions/fibre/'>Internet et fibre optique</a> et nos <a href='/nos-solutions/abonnements/'>abonnements et forfaits</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'photocopieurs' => "Un photocopieur se raccorde à votre réseau : découvrez notre offre <a href='/nos-solutions/materiel/'>Informatique et matériel</a> et notre offre <a href='/nos-solutions/fibre/'>Internet et fibre optique</a>. Le suivi s'organise avec un <a href='/nos-solutions/services/'>contrat de maintenance</a>. La fin de vie des équipements électroniques est encadrée : l'<a href='https://www.ademe.fr/' target='_blank' rel='noopener'>ADEME</a> explique comment les gérer. <a href='/devis-contact/'>Demandez un devis</a>.",
         'fibre' => "Vérifiez la couverture fibre de votre adresse sur la <a href='https://cartefibre.arcep.fr/' target='_blank' rel='noopener'>carte de la fibre de l'ARCEP</a>. Associez la fibre à notre <a href='/nos-solutions/telephonie/'>téléphonie IP</a>, à des <a href='/nos-solutions/abonnements/'>abonnements</a> adaptés et à un <a href='/nos-solutions/services/'>contrat de maintenance</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
         'abonnements' => "Les règles applicables aux opérateurs et aux abonnements sont publiées par l'<a href='https://www.arcep.fr/' target='_blank' rel='noopener'>ARCEP</a>. Nous vous aidons à choisir la bonne formule pour votre <a href='/nos-solutions/fibre/'>fibre</a>, votre <a href='/nos-solutions/telephonie/'>téléphonie</a> ou votre <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
-        'services' => "Les bonnes pratiques et l'assistance en cas d'incident numérique sont détaillées sur <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Nos interventions couvrent le <a href='/nos-solutions/materiel/'>matériel informatique</a>, la <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a> et la <a href='/nos-solutions/telephonie/'>téléphonie</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
+        'services' => "Les bonnes pratiques et l'assistance en cas d'incident numérique sont détaillées sur <a href='https://www.cybermalveillance.gouv.fr/' target='_blank' rel='noopener'>Cybermalveillance.gouv.fr</a>. Nos interventions couvrent le <a href='/nos-solutions/materiel/'>matériel informatique</a>, la <a href='/nos-solutions/videosurveillance/'>vidéosurveillance</a>, la <a href='/nos-solutions/telephonie/'>téléphonie</a> et les <a href='/nos-solutions/photocopieurs/'>photocopieurs</a>. <a href='/devis-contact/'>Demandez un devis</a>.",
     ];
 
     $pages = [];
@@ -288,6 +303,7 @@ function connectis_pages_definitions() {
         'materiel' => ["Le matériel est-il configuré avant la livraison ?", "La configuration et la mise en service sont incluses : vos équipements sont installés prêts à l'emploi."],
         'videosurveillance' => ["La vidéosurveillance est-elle encadrée par la loi ?", "Oui : l'information des personnes, la durée de conservation des images et le périmètre de filmage sont réglementés. Nous vous conseillons lors de l'étude de votre site."],
         'telephonie' => ["La téléphonie IP demande-t-elle une bonne connexion ?", "Oui, une connexion internet stable est nécessaire. Nous pouvons vérifier votre accès et, si besoin, le fiabiliser (fibre, secours 4G/5G)."],
+        'photocopieurs' => ["Comment choisir le bon photocopieur ?", "Cela dépend de votre volume d'impression, du nombre d'utilisateurs et de vos besoins : nous étudions votre situation sur site avant de vous proposer un modèle."],
         'fibre' => ["Quelle connexion choisir pour mon entreprise ?", "Cela dépend de vos usages et de votre local : nous étudions votre besoin sur site avant de vous proposer une solution."],
         'abonnements' => ["Comment la durée et les conditions sont-elles précisées ?", "Chaque devis et chaque contrat indiquent clairement la durée, le prix et les conditions de résiliation."],
         'services' => ["Comment demander une intervention ?", "Contactez-nous par le formulaire ou par e-mail en décrivant l'équipement concerné : nous vous répondons rapidement."],
@@ -312,10 +328,11 @@ function connectis_pages_definitions() {
     }
 
     // Accueil
-    $expertises = "<div class='cn-features'>"
+    $expertises = "<div class='cn-features cn-f4'>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('materiel') . "' alt='Informatique' loading='lazy'></figure><div class='cn-feature-body'><h3>Informatique</h3><p>Postes de travail, réseau, serveurs et périphériques : fourniture, installation et configuration incluses.</p><a href='/nos-solutions/materiel/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('videosurveillance') . "' alt='Vidéosurveillance' loading='lazy'></figure><div class='cn-feature-body'><h3>Vidéosurveillance</h3><p>Caméras IP, enregistreurs, consultation à distance, alarme et contrôle d'accès pour vos locaux.</p><a href='/nos-solutions/videosurveillance/'>Découvrir &rarr;</a></div></div>"
         . "<div class='cn-feature'><figure><img src='" . cn_img('telephonie') . "' alt='Téléphonie' loading='lazy'></figure><div class='cn-feature-body'><h3>Téléphonie</h3><p>Standard, VoIP, lignes fixes et mobiles : une communication claire pour toute l'équipe.</p><a href='/nos-solutions/telephonie/'>Découvrir &rarr;</a></div></div>"
+        . "<div class='cn-feature'><figure><img src='" . cn_img('photocopieurs') . "' alt='Photocopieurs' loading='lazy'></figure><div class='cn-feature-body'><h3>Photocopieurs</h3><p>Photocopieurs multifonctions : étude de vos besoins, installation sur votre réseau, financement et maintenance.</p><a href='/nos-solutions/photocopieurs/'>Découvrir &rarr;</a></div></div>"
         . "</div>";
     $also = cn_grid([
         cn_card('fibre', 'Internet & Fibre optique', "Raccordement fibre professionnel, box internet, Wi-Fi pro.", '/nos-solutions/fibre/'),
@@ -326,16 +343,16 @@ function connectis_pages_definitions() {
         cn_card('pin', 'Proximité', "Une équipe commerciale qui se déplace directement dans vos locaux, où que vous soyez."),
         cn_card('clock', 'Réactivité', "Des rendez-vous et des interventions sous délai court, sans centre d'appels national."),
         cn_card('sliders', 'Sur mesure', "Des solutions adaptées à votre activité, pas un forfait imposé."),
-        cn_card('users', 'Guichet unique', "Informatique, vidéosurveillance et téléphonie : un seul interlocuteur pour tout gérer."),
+        cn_card('users', 'Guichet unique', "Informatique, vidéosurveillance, téléphonie et photocopieurs : un seul interlocuteur pour tout gérer."),
         cn_card('doc', 'Devis clair', "Un chiffrage détaillé poste par poste, pour savoir précisément ce que vous financez."),
         cn_card('headset', 'Suivi après installation', "Maintenance, dépannage et assistance : nous restons votre interlocuteur une fois le projet livré."),
     ]);
     // Le titre de la page d'accueil est l'unique H1 du site (masqué visuellement par le thème, lu par les moteurs de recherche).
     $pages['accueil'] = [
-        'title'   => 'Informatique, vidéosurveillance et téléphonie pour votre entreprise',
+        'title'   => 'Informatique, vidéosurveillance, téléphonie et photocopieurs pour votre entreprise',
         'content' => "<!--cn-->"
-            . "<div class='cn-hero-home'><span class='cn-kicker'>Informatique · Vidéosurveillance · Téléphonie</span>"
-            . "<div class='cn-h1'>Informatique, vidéosurveillance et téléphonie pour votre entreprise</div>"
+            . "<div class='cn-hero-home'><span class='cn-kicker'>Informatique · Vidéosurveillance · Téléphonie · Photocopieurs</span>"
+            . "<div class='cn-h1'>Informatique, vidéosurveillance, téléphonie et photocopieurs pour votre entreprise</div>"
             . "<p>Un seul interlocuteur local : nous conseillons, installons et assurons le suivi directement chez vous.</p>"
             . "<p><a class='cn-btn' href='/devis-contact/'>Demander un devis</a> <a class='cn-btn cn-btn-ghost' href='/nos-solutions/'>Découvrir nos solutions</a></p></div>"
             . cn_strip()
@@ -352,7 +369,7 @@ function connectis_pages_definitions() {
     $pages['nos-solutions'] = [
         'title'   => 'Nos solutions',
         'content' => "<!--cn-->"
-            . "<p class='cn-lead'>Connectis Solutions accompagne les professionnels sur trois métiers principaux — l'<strong>informatique</strong>, la <strong>vidéosurveillance</strong> et la <strong>téléphonie</strong> — complétés par la fibre, les abonnements et la maintenance.</p>"
+            . "<p class='cn-lead'>Connectis Solutions accompagne les professionnels sur quatre métiers principaux — l'<strong>informatique</strong>, la <strong>vidéosurveillance</strong>, la <strong>téléphonie</strong> et les <strong>photocopieurs</strong> — complétés par la fibre, les abonnements et la maintenance.</p>"
             . cn_strip()
             . "<h2>Nos expertises</h2>" . $expertises
             . "<h2>Services complémentaires</h2>" . $also
@@ -368,19 +385,20 @@ function connectis_pages_definitions() {
     $pages['a-propos'] = [
         'title'   => 'Connectis',
         'content' => "<!--cn-->" . cn_hero('a-propos', 'Poste de travail informatique moderne')
-            . "<p class='cn-lead'>Connectis Solutions est une entreprise basée à Nancy, dédiée aux professionnels. Nous concevons, installons et maintenons leurs solutions d'<strong>informatique</strong>, de <strong>vidéosurveillance</strong> et de <strong>téléphonie</strong>, avec la fibre optique, le matériel et les abonnements associés.</p>"
+            . "<p class='cn-lead'>Connectis Solutions est une entreprise basée à Nancy, dédiée aux professionnels. Nous concevons, installons et maintenons leurs solutions d'<strong>informatique</strong>, de <strong>vidéosurveillance</strong>, de <strong>téléphonie</strong> et de <strong>photocopieurs</strong>, avec la fibre optique, le matériel et les abonnements associés.</p>"
             . "<p>Notre équipe commerciale se déplace directement chez vous pour le conseil, le devis et l'installation — pas de centre d'appels, pas de parcours standardisé : un interlocuteur qui connaît votre dossier du premier contact au suivi après installation.</p>"
             . "<h2>Nos valeurs</h2>" . cn_grid([
                 cn_card('pin', 'Proximité', "Une équipe locale, disponible et joignable."),
                 cn_card('clock', 'Réactivité', "Des délais courts, sans passer par un centre d'appels national."),
                 cn_card('sliders', 'Sur mesure', "Des solutions pensées pour votre activité, pas un forfait imposé."),
             ])
-            . "<h2>Trois métiers, un seul interlocuteur</h2>"
-            . "<p>Connectis Solutions intervient sur les trois sujets qui font fonctionner une entreprise au quotidien : le parc informatique, la protection des locaux par la vidéosurveillance, et les communications téléphoniques. Réunir ces métiers chez un seul prestataire évite de multiplier les contacts, les devis et les factures : une seule équipe étudie votre besoin, installe le matériel et assure le suivi.</p>"
+            . "<h2>Quatre métiers, un seul interlocuteur</h2>"
+            . "<p>Connectis Solutions intervient sur les quatre sujets qui font fonctionner une entreprise au quotidien : le parc informatique, la protection des locaux par la vidéosurveillance, les communications téléphoniques et l'impression avec les photocopieurs. Réunir ces métiers chez un seul prestataire évite de multiplier les contacts, les devis et les factures : une seule équipe étudie votre besoin, installe le matériel et assure le suivi.</p>"
             . cn_grid([
                 cn_card('monitor', 'Informatique', "Postes de travail, réseau, serveurs et périphériques.", '/nos-solutions/materiel/', 'Voir l’offre'),
                 cn_card('camera', 'Vidéosurveillance', "Caméras IP, enregistrement, accès à distance et alarme.", '/nos-solutions/videosurveillance/', 'Voir l’offre'),
                 cn_card('phone', 'Téléphonie', "Standard, VoIP, lignes fixes et mobiles.", '/nos-solutions/telephonie/', 'Voir l’offre'),
+                cn_card('printer', 'Photocopieurs', "Copie, impression et numérisation, installées sur votre réseau.", '/nos-solutions/photocopieurs/', 'Voir l’offre'),
             ])
             . "<h2>Notre méthode</h2>" . cn_steps()
             . cn_trust()
@@ -448,6 +466,18 @@ add_action('init', function () {
 
         foreach (connectis_pages_definitions() as $path => $def) {
             $page = get_page_by_path($path);
+            if (!$page && strpos($path, '/') !== false) {
+                // Nouvelle sous-page d'offre : créée sous sa page parente, puis remplie comme les autres.
+                $parent = get_page_by_path(dirname($path));
+                if ($parent) {
+                    $new_id = wp_insert_post([
+                        'post_type' => 'page', 'post_status' => 'publish', 'post_name' => basename($path),
+                        'post_title' => $def['title'], 'post_content' => $def['content'],
+                        'post_parent' => (int) $parent->ID, 'comment_status' => 'closed', 'ping_status' => 'closed',
+                    ]);
+                    $page = $new_id && !is_wp_error($new_id) ? get_post($new_id) : null;
+                }
+            }
             if (!$page) {
                 continue;
             }
