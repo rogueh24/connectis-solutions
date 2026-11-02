@@ -20,6 +20,9 @@ format AAAA-MM-JJ.
 - Titre de l'offre « **Bureautique & impression** » (deux mots, comme les autres offres) ; **marques Canon et HP retirées** du site (page,
   accueil, Connectis, SEO). Entrée de menu renommée dans la base (élément 264).
 
+- Visuel de la **téléphonie** remplacé par une photo **sans personne** (téléphone de conférence, Pexels) : cohérent avec les autres offres ; une photo de
+  banque d'images ne représente pas l'équipe. Une vraie photo de l'équipe reste à fournir. (La précédente reste dans l'historique Git.)
+
 ### Retiré (2026-11-02) — « on se justifie pour rien »
 - Bloc « Une entreprise vérifiable » (identité légale + bouton Annuaire des Entreprises) retiré de l'accueil, Solutions, Connectis et
   Devis ; il ne reste que « Nos engagements ». Mention « Société immatriculée · RCS · SIREN » de la bande d'assurance remplacée par
