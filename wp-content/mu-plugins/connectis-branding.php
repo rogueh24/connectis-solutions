@@ -112,6 +112,13 @@ add_action('wp_head', function () {
 
 // (Barre d'accès rapide au-dessus du menu retirée : l'en-tête commence directement par le logo.)
 
+// Bouton « Appeler » discret, sur téléphone seulement (masqué sur ordinateur par custom.css).
+add_action('wp_footer', function () {
+    echo '<a class="cn-call" href="tel:+33187668469" aria-label="Appeler Connectis Solutions au 01 87 66 84 69">'
+        . '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>'
+        . '<span>Appeler</span></a>' . "\n";
+}, 5);
+
 // Apparition douce des blocs au défilement. Sans JavaScript, tout reste visible.
 add_action('wp_footer', function () {
     ?>

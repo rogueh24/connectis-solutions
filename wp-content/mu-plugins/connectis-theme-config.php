@@ -14,7 +14,9 @@ const CONNECTIS_THEME_CONFIG_VERSION = 1;
 // Pied de page : copyright, e-mail + liens réglementaires (l'identité légale complète est dans les mentions légales) (appliqué au rendu tant qu'aucun texte
 // personnalisé n'a été saisi dans le Customizer).
 add_filter('blocksy:footer:copyright:default-value', function () {
-    return '&copy; {current_year} Connectis Solutions<br>'
+    return '<strong>Connectis Solutions</strong> · 110 boulevard d\'Austrasie, 54000 Nancy<br>'
+        . '<a href="tel:+33187668469">01 87 66 84 69</a> · <a href="mailto:contact@connectis-solutions.fr">contact@connectis-solutions.fr</a><br>'
+        . '&copy; {current_year} Connectis Solutions · '
         . '<a href="/mentions-legales/">Mentions légales</a> · <a href="/cgv/">CGV</a> · '
         . '<a href="/confidentialite/">Politique de confidentialité</a>';
 });

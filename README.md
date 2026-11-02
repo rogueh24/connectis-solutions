@@ -97,7 +97,7 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - [x] Mot de passe d'application « Claude MCP » : **conservé** (décision du client) ; procédure de rotation documentée (ENGINEERING §6)
 - [ ] Alerte Chrome sur `wp-admin` : vérifier sa disparition (24 à 72 h)
 - [ ] Vraies photos de l'équipe et des chantiers
-- [x] Numéro de téléphone **01 87 66 84 69** affiché (Devis & Contact, mentions légales, données structurées) ; reste à l'ajouter dans l'en-tête / le pied de page (réglage Blocksy, en base)
+- [x] Numéro de téléphone **01 87 66 84 69** affiché (Devis & Contact, mentions légales, données structurées, pied de page ; bouton « Appeler » sur mobile, rien dans l'en-tête sur ordinateur : choix voulu, l'en-tête reste minimaliste)
 - [x] Offre **Bureautique & impression** ajoutée le 2026-11-02 : page, 4e carte d'accueil, menu, formulaire de devis, SEO, CGV ; bloc « entreprise vérifiable » retiré
 - [ ] Bureautique : vraie photo d'un appareil ; objet social et code APE à faire confirmer par le comptable ; CGV art. 10.4 / 13.4 à faire relire
 - [ ] Peaufinages au fil des demandes

@@ -9,6 +9,9 @@ format AAAA-MM-JJ.
 - **01 87 66 84 69** (lien `tel:+33187668469`) : tuile « Téléphone » en tête de « Nous contacter directement » (Devis & Contact),
   ligne « Téléphone » dans les mentions légales (éditeur du site), champ `telephone` des données structurées « entreprise locale ».
   `connectis-pages.php` passe en version 21.
+- **Pied de page** (`connectis-theme-config.php`) : nom, adresse, téléphone et e-mail en clair, puis copyright et liens légaux.
+- **Bouton « Appeler »** flottant, discret, sur téléphone et tablette seulement (≤ 999 px, `connectis-branding.php` + `custom.css`) ; masqué
+  sur ordinateur et à l'impression. **Rien dans l'en-tête sur ordinateur** : il reste minimaliste (logo, recherche, connexion, menu).
 
 ### Ajouté (2026-11-02) — offre Bureautique
 - **Nouvelle offre « Bureautique »** (`/nos-solutions/bureautique/`, d'abord publiée sous `/photocopieurs/`, redirigée en 301) : multifonctions et

@@ -104,6 +104,16 @@ div[style*="flex:1 1 280px"] a { text-decoration: none; font-weight: 600; }
 #footer, #footer .ct-footer-copyright { color: var(--cn-grey) !important; text-align: center; }
 #footer a { color: #fff !important; }
 #footer a:hover { color: var(--cn-cyan) !important; }
+#footer .ct-footer-copyright { line-height: 1.8; }
+
+/* ── Bouton « Appeler » (téléphone et tablette seulement) ── */
+.cn-call { display: none; }
+@media (max-width: 999px) {
+  .cn-call { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 90; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px 12px 14px; border-radius: 999px; background: linear-gradient(135deg, var(--cn-blue), #2f80ff); color: #fff !important; font-weight: 600; font-size: .95rem; text-decoration: none !important; box-shadow: 0 6px 20px rgba(7,13,31,.35); }
+  .cn-call svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cn-call:active { transform: scale(.97); }
+}
+@media print { .cn-call { display: none !important; } }
 
 /* ── Mobile ── */
 @media (max-width: 999px) {
