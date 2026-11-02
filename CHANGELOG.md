@@ -5,6 +5,11 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+### Modifié (2026-11-02) — page « Notre expertise »
+- Page `/a-propos/` intitulée **« Notre expertise »** à la place de « Connectis » (demande du client) : titre de la page, entrée du menu
+  (`connectis-branding.php`) et titre SEO (« Notre expertise : Connectis Solutions à Nancy »). URL inchangée, donc ni redirection ni lien cassé.
+  `connectis-pages.php` v22, `connectis-seo.php` v8.
+
 ### Ajouté (2026-11-02) — numéro de téléphone
 - **01 87 66 84 69** (lien `tel:+33187668469`) : tuile « Téléphone » en tête de « Nous contacter directement » (Devis & Contact),
   ligne « Téléphone » dans les mentions légales (éditeur du site), champ `telephone` des données structurées « entreprise locale ».

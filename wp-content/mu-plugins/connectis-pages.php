@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v21 : numéro de téléphone 01 87 66 84 69 (page Devis & Contact, mentions légales) ; visuel téléphonie = personne avec casque-micro.
-const CONNECTIS_PAGES_VERSION = 21;
+// v22 : page « À propos » intitulée « Notre expertise » (demande du client) ; numéro de téléphone 01 87 66 84 69.
+const CONNECTIS_PAGES_VERSION = 22;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
@@ -369,7 +369,7 @@ function connectis_pages_definitions() {
 
     // À propos
     $pages['a-propos'] = [
-        'title'   => 'Connectis',
+        'title'   => 'Notre expertise',
         'content' => "<!--cn-->" . cn_hero('a-propos', 'Poste de travail informatique moderne')
             . "<p class='cn-lead'>Connectis Solutions est une entreprise basée à Nancy, dédiée aux professionnels. Nous concevons, installons et maintenons leurs solutions d'<strong>informatique</strong>, de <strong>vidéosurveillance</strong>, de <strong>téléphonie</strong> et de <strong>bureautique</strong>, avec la fibre optique, le matériel et les abonnements associés.</p>"
             . "<p>Notre équipe commerciale se déplace directement chez vous pour le conseil, le devis et l'installation — pas de centre d'appels, pas de parcours standardisé : un interlocuteur qui connaît votre dossier du premier contact au suivi après installation.</p>"

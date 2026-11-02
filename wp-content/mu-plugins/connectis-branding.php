@@ -199,7 +199,7 @@ add_filter('wp_nav_menu_objects', function ($items) {
             $item->attr_title = 'Connectis Solutions — accueil';
         }
         if ($slug_of($item) === 'a-propos') {
-            $item->title = 'Connectis';
+            $item->title = 'Notre expertise';
         }
         if ($slug_of($item) === 'nos-solutions' && !(int) $item->menu_item_parent) {
             $item->title = 'Solutions';

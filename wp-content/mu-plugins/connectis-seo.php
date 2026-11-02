@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v7 : page « Bureautique & impression » sans marques ; descriptions pour quatre métiers.
-const CONNECTIS_SEO_VERSION = 7;
+// v8 : titre de la page « Notre expertise » ; page « Bureautique & impression » sans marques ; descriptions pour quatre métiers.
+const CONNECTIS_SEO_VERSION = 8;
 
 /**
  * Métadonnées par page : chemin => [titre (≈60 car.), description (≈155 car.)].
@@ -54,7 +54,7 @@ function connectis_seo_definitions() {
             "Maintenance et services : installation sur site, maintenance préventive, dépannage réactif et contrats SAV pour vos équipements informatiques et télécoms.",
         ],
         'a-propos' => [
-            "Connectis Solutions à Nancy : qui sommes-nous ?",
+            "Notre expertise : Connectis Solutions à Nancy",
             "Connectis Solutions, SAS basée à Nancy : conseil, installation et maintenance en informatique, vidéosurveillance, téléphonie et bureautique.",
         ],
         'devis-contact' => [
