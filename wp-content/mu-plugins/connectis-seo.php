@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v4 : titres ≤ 60 caractères, descriptions 120-155, mots-clés courts présents dans titre/description/H1.
-const CONNECTIS_SEO_VERSION = 4;
+// v5 : page « Photocopieurs & impression », accueil, solutions, à propos et devis mis à jour.
+const CONNECTIS_SEO_VERSION = 5;
 
 /**
  * Métadonnées par page : chemin => [titre (≈60 car.), description (≈155 car.)].
@@ -19,11 +19,11 @@ function connectis_seo_definitions() {
     return [
         'accueil' => [
             "Connectis – Informatique, vidéosurveillance, téléphonie",
-            "Connectis Solutions installe et maintient l'informatique, la vidéosurveillance et la téléphonie des professionnels à Nancy. Solutions de financement.",
+            "Connectis Solutions installe l'informatique, la vidéosurveillance, la téléphonie et les photocopieurs des professionnels à Nancy. Financement possible.",
         ],
         'nos-solutions' => [
             "Solutions informatique, vidéosurveillance, téléphonie",
-            "Toutes nos solutions pour les professionnels : informatique, vidéosurveillance, téléphonie, fibre, abonnements et maintenance. Devis et financement.",
+            "Toutes nos solutions pour les professionnels : informatique, vidéosurveillance, téléphonie, photocopieurs, fibre et maintenance. Devis et financement.",
         ],
         'nos-solutions/materiel' => [
             "Informatique et matériel pour entreprises | Connectis",
@@ -36,6 +36,10 @@ function connectis_seo_definitions() {
         'nos-solutions/telephonie' => [
             "Téléphonie d'entreprise : standard et VoIP | Connectis",
             "Téléphonie d'entreprise : standard téléphonique, VoIP, lignes fixes et mobiles. Installation, paramétrage et suivi par Connectis Solutions.",
+        ],
+        'nos-solutions/photocopieurs' => [
+            "Photocopieurs et impression pour entreprises",
+            "Photocopieurs multifonctions pour les professionnels : étude de vos volumes, installation sur votre réseau, maintenance et financement. Devis détaillé.",
         ],
         'nos-solutions/fibre' => [
             "Internet et fibre optique pour entreprises | Connectis",
@@ -51,11 +55,11 @@ function connectis_seo_definitions() {
         ],
         'a-propos' => [
             "Connectis Solutions à Nancy : qui sommes-nous ?",
-            "Connectis Solutions, SAS basée à Nancy : conseil, installation et maintenance en informatique, vidéosurveillance et téléphonie pour les professionnels.",
+            "Connectis Solutions, SAS basée à Nancy : conseil, installation et maintenance en informatique, vidéosurveillance, téléphonie et photocopieurs.",
         ],
         'devis-contact' => [
             "Devis, financement et contact | Connectis Solutions",
-            "Demandez un devis détaillé pour votre projet informatique, vidéosurveillance ou téléphonie, avec solutions de financement. Contact : réponse rapide.",
+            "Demandez un devis détaillé pour votre projet informatique, vidéosurveillance, téléphonie ou photocopieurs, avec financement. Contact : réponse rapide.",
         ],
         'recrutement' => [
             "Recrutement et candidature | Connectis Solutions",
@@ -87,6 +91,7 @@ function connectis_seo_keywords() {
         'nos-solutions/materiel' => "informatique, matériel",
         'nos-solutions/videosurveillance' => "vidéosurveillance, caméras",
         'nos-solutions/telephonie' => "téléphonie, standard",
+        'nos-solutions/photocopieurs' => "photocopieurs",
         'nos-solutions/fibre' => "fibre optique, internet",
         'nos-solutions/abonnements' => "abonnements, forfaits",
         'nos-solutions/services' => "maintenance, services",
@@ -173,7 +178,7 @@ add_action('wp_head', function () {
         'logo'        => content_url('mu-plugins/connectis-maintenance/logo-full.png'),
         'image'       => content_url('mu-plugins/connectis-content-seed/images/materiel.jpg'),
         'email'       => 'contact@connectis-solutions.fr',
-        'description' => "Installation et maintenance d'informatique, de vidéosurveillance et de téléphonie pour les professionnels.",
+        'description' => "Installation et maintenance d'informatique, de vidéosurveillance, de téléphonie et de photocopieurs pour les professionnels.",
         'address'     => [
             '@type'           => 'PostalAddress',
             'streetAddress'   => "110 boulevard d'Austrasie",
@@ -185,7 +190,7 @@ add_action('wp_head', function () {
             ['@type' => 'PropertyValue', 'propertyID' => 'SIREN', 'value' => '103370557'],
             ['@type' => 'PropertyValue', 'propertyID' => 'SIRET', 'value' => '10337055700011'],
         ],
-        'knowsAbout'  => ['Informatique', 'Vidéosurveillance', 'Téléphonie', 'Fibre optique', 'Maintenance informatique'],
+        'knowsAbout'  => ['Informatique', 'Vidéosurveillance', 'Téléphonie', 'Photocopieurs', 'Fibre optique', 'Maintenance informatique'],
     ];
 
     echo '<script type="application/ld+json">' . wp_json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</script>\n";
