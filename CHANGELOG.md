@@ -7,7 +7,7 @@ format AAAA-MM-JJ.
 
 ### Ajouté (2026-11-02) — offre Bureautique
 - **Nouvelle offre « Bureautique »** (`/nos-solutions/bureautique/`, d'abord publiée sous `/photocopieurs/`, redirigée en 301) : multifonctions et
-  copieurs professionnels **Canon et HP**, gestion documentaire (planche 5 et 7 de la présentation d'entreprise du 31/10). Même modèle que les
+  copieurs professionnels, gestion documentaire (planche 5 et 7 de la présentation d'entreprise du 31/10). Même modèle que les
   autres offres (cartes, étapes, liens utiles, FAQ), **sans mention d'achat ni de location** : « demande de devis » simplement (pas de bloc
   financement, pas de question « financement » dans la FAQ). Page créée / renommée par le code (`connectis-pages.php`).
 - **Accueil** : titre, accroche et « Nos expertises » à quatre métiers (4e carte, quatre colonnes sur grand écran) ; Solutions et Connectis aussi.
@@ -15,6 +15,10 @@ format AAAA-MM-JJ.
 - **Formulaire de devis** : choix « Bureautique » (icône dédiée). **SEO** : titre, description et mot-clé de la page, descriptions mises à jour.
 - **Textes légaux** : bureautique dans l'activité et l'objet des CGV, art. 10.4 (conditions de fourniture, maintenance, copies relevées au
   compteur), art. 13.4 (documents mémorisés par les appareils). **À faire relire par l'avocat** : les CGV avaient été relues avant cet ajout.
+
+### Modifié (2026-11-02, suite) — Bureautique & impression
+- Titre de l'offre « **Bureautique & impression** » (deux mots, comme les autres offres) ; **marques Canon et HP retirées** du site (page,
+  accueil, Connectis, SEO). Entrée de menu renommée dans la base (élément 264).
 
 ### Retiré (2026-11-02) — « on se justifie pour rien »
 - Bloc « Une entreprise vérifiable » (identité légale + bouton Annuaire des Entreprises) retiré de l'accueil, Solutions, Connectis et
