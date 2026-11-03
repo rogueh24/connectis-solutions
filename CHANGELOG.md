@@ -5,6 +5,14 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+### Ajouté (2026-11-03) — bon de commande et contrats (PDF)
+- `docs/documents-commerciaux/` : **bon de commande, CGV, contrat de service maintenance impression, contrat de service & abonnement, mandat de
+  prélèvement SEPA** (6 pages, design Connectis, champs remplissables à l'écran). Même structure que le document d'un autre fournisseur, mais **texte
+  Connectis** : les CGV sont lues directement dans `connectis-legal.php` (une seule source, celle du site, tribunal de commerce de Nancy).
+  Régénérer : `python docs/documents-commerciaux/generer_documents.py`. Documentation seulement : aucun déploiement.
+- **À compléter avant usage** : l'**identifiant créancier SEPA (ICS)** de Connectis (champ vide sur le mandat) ; relecture par un avocat des renvois
+  aux articles de CGV (3, 9, 10, 11, 12.4, 19.2) et des durées / résiliation des contrats de service.
+
 ### Modifié (2026-11-02) — page « Notre expertise »
 - Page `/a-propos/` intitulée **« Notre expertise »** à la place de « Connectis » (demande du client) : titre de la page, entrée du menu
   (`connectis-branding.php`) et titre SEO (« Notre expertise : Connectis Solutions à Nancy »). URL inchangée, donc ni redirection ni lien cassé.

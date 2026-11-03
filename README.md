@@ -16,7 +16,7 @@ abonnements, services & maintenance.
 
 ```
 .
-├── docs/                     Cahier des charges + dossier de projet commercial (PDF, script de génération)
+├── docs/                     Cahier des charges + dossier de projet commercial (PDF, script de génération) ; documents-commerciaux/ : bon de commande, CGV et contrats (PDF + script)
 ├── site-en-construction/     Ancienne page d'attente statique (archive — remplacée par le mu-plugin WordPress)
 ├── wp-content/                Tout ce qui est versionné côté WordPress (voir ENGINEERING.md)
 │   ├── themes/blocksy/        Thème principal
