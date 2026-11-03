@@ -5,6 +5,13 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+### Ajouté (2026-11-03) — conditions des contrats de service en ligne
+- Page `/cgv/` : **annexe « Conditions générales des contrats de service »** (12 articles : maintenance, compteurs et copies, services récurrents,
+  sécurité des accès, révision des prix, durée, résiliation anticipée, restitution), lien « Contrats de service » dans le sommaire. L'article 2.1 des CGV
+  cite l'annexe dans l'ordre des documents contractuels ; **articles 1 à 19 inchangés**. Accord du client reçu le 2026-11-03.
+- **Une seule source** : le texte vit dans `connectis-legal.php` ; `docs/documents-commerciaux/generer_documents.py` le relit pour le PDF
+  (`conditions_service.py` supprimé). `connectis-pages.php` v23. **À faire relire par un avocat** (annexe, en particulier 8.2, 9 et 10.2).
+
 ### Ajouté (2026-11-03) — bon de commande et contrats (PDF)
 - `docs/documents-commerciaux/` : **bon de commande, CGV, contrat de service maintenance impression, contrat de service & abonnement, mandat de
   prélèvement SEPA** (7 pages, design Connectis, champs remplissables à l'écran). Même structure que le document d'un autre fournisseur, mais **texte

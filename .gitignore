@@ -29,3 +29,6 @@ Thumbs.db
 # Sauvegardes locales (racine uniquement — certaines extensions embarquent des .sql de schéma)
 /*.sql
 /*.zip
+
+# Présentations internes du client (finances, effectifs, partenaires) : jamais dans ce dépôt public.
+/docs/pptx/

@@ -18,8 +18,6 @@ from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Flowable, Frame, Paragraph
 
-import conditions_service
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 LOGO = os.path.join(ROOT, "wp-content", "mu-plugins", "connectis-maintenance", "logo-full.png")
@@ -56,8 +54,16 @@ def cgv_blocs():
         titre = re.search(r"<h2>(.*?)</h2>", sec).group(1)
         arts.append((titre, [inline(p) for p in re.findall(r"<p>(.*?)</p>", sec, re.S)]))
     version = re.search(r"<p class='cn-updated'>(.*?)</p>", corps).group(1)
+    version = re.sub(r"\s*\(.*?\)", "", version)
     assert len(arts) == 19, len(arts)
-    return intro, arts, version
+    annexe = re.search(r"<section id='contrats-service'.*?</section>", corps, re.S).group(0)
+    intro_srv = inline(re.search(r"<p>(.*?)</p>", annexe, re.S).group(1))
+    arts_srv = []
+    for sec in re.findall(r"<section id='srv-\d+'.*?</section>", corps, re.S):
+        titre = re.search(r"<h2>(.*?)</h2>", sec).group(1)
+        arts_srv.append((titre, [inline(p) for p in re.findall(r"<p>(.*?)</p>", sec, re.S)]))
+    assert len(arts_srv) == 12, len(arts_srv)
+    return intro, arts, version, intro_srv, arts_srv
 
 
 class Bloc(Flowable):
@@ -510,15 +516,14 @@ class Doc:
 
 
 def construire(cible):
-    intro, arts, version = cgv_blocs()
+    intro, arts, version, intro_srv, arts_srv = cgv_blocs()
     t_cgv = ["CONDITIONS GÉNÉRALES", "DE VENTE"]
     t_srv = ["CONDITIONS GÉNÉRALES DES", "CONTRATS DE SERVICE"]
-    v_srv = "Version en vigueur au 3 novembre 2026."
     # le nombre de pages de chaque texte sert aux renvois : on le mesure d'abord sur un document jetable
     sonde = Doc(io.BytesIO())
     sonde.page = 1
     n1 = sonde.colonnes(t_cgv, intro, arts, version)
-    n2 = sonde.colonnes(t_srv, conditions_service.INTRO, conditions_service.ARTICLES, v_srv)
+    n2 = sonde.colonnes(t_srv, intro_srv, arts_srv, version)
 
     def libelle(debut, n):
         return "page %d" % debut if n == 1 else "pages %d à %d" % (debut, debut + n - 1)
@@ -527,7 +532,7 @@ def construire(cible):
     d.renvoi = "CGV : %s ; contrats de service : %s" % (libelle(2, n1), libelle(2 + n1, n2))
     d.bon_de_commande(libelle(2, n1))
     d.colonnes(t_cgv, intro, arts, version)
-    d.colonnes(t_srv, conditions_service.INTRO, conditions_service.ARTICLES, v_srv)
+    d.colonnes(t_srv, intro_srv, arts_srv, version)
     d.contrat_maintenance()
     d.contrat_abonnement()
     d.mandat_sepa()

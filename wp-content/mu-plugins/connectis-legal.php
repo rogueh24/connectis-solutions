@@ -92,7 +92,7 @@ HTML;
 <!--cn-->
 <div class='cn-narrow cn-legal'>
 <p class='cn-lead'>Conditions générales de vente de <strong>CONNECTIS SOLUTIONS</strong> applicables aux clients professionnels pour la vente de matériels, la fourniture d'abonnements et les prestations d'installation et de maintenance en informatique, vidéosurveillance, téléphonie et bureautique.</p>
-<nav class='cn-toc' aria-label='Sommaire'><a href='#art-1'>Art. 1</a><a href='#art-2'>Art. 2</a><a href='#art-3'>Art. 3</a><a href='#art-4'>Art. 4</a><a href='#art-5'>Art. 5</a><a href='#art-6'>Art. 6</a><a href='#art-7'>Art. 7</a><a href='#art-8'>Art. 8</a><a href='#art-9'>Art. 9</a><a href='#art-10'>Art. 10</a><a href='#art-11'>Art. 11</a><a href='#art-12'>Art. 12</a><a href='#art-13'>Art. 13</a><a href='#art-14'>Art. 14</a><a href='#art-15'>Art. 15</a><a href='#art-16'>Art. 16</a><a href='#art-17'>Art. 17</a><a href='#art-18'>Art. 18</a><a href='#art-19'>Art. 19</a></nav>
+<nav class='cn-toc' aria-label='Sommaire'><a href='#art-1'>Art. 1</a><a href='#art-2'>Art. 2</a><a href='#art-3'>Art. 3</a><a href='#art-4'>Art. 4</a><a href='#art-5'>Art. 5</a><a href='#art-6'>Art. 6</a><a href='#art-7'>Art. 7</a><a href='#art-8'>Art. 8</a><a href='#art-9'>Art. 9</a><a href='#art-10'>Art. 10</a><a href='#art-11'>Art. 11</a><a href='#art-12'>Art. 12</a><a href='#art-13'>Art. 13</a><a href='#art-14'>Art. 14</a><a href='#art-15'>Art. 15</a><a href='#art-16'>Art. 16</a><a href='#art-17'>Art. 17</a><a href='#art-18'>Art. 18</a><a href='#art-19'>Art. 19</a><a href='#contrats-service'>Contrats de service</a></nav>
 
 <section id='art-1' class='cn-legal-sec'>
 <h2>Article 1 — Objet, champ d'application et définitions</h2>
@@ -103,7 +103,7 @@ HTML;
 
 <section id='art-2' class='cn-legal-sec'>
 <h2>Article 2 — Documents contractuels et acceptation</h2>
-<p><span class='cn-cl'>2.1</span> Le contrat est constitué, par ordre de priorité décroissant : (i) le devis accepté et ses annexes, (ii) le cas échéant, le contrat de maintenance ou d'abonnement, (iii) les présentes CGV.</p>
+<p><span class='cn-cl'>2.1</span> Le contrat est constitué, par ordre de priorité décroissant : (i) le devis accepté et ses annexes, (ii) le cas échéant, le contrat de maintenance ou d'abonnement et l'annexe « Conditions générales des contrats de service », (iii) les présentes CGV.</p>
 <p><span class='cn-cl'>2.2</span> La signature du devis ou toute commande passée par écrit (y compris par courrier électronique) emporte adhésion pleine et entière aux CGV, dont le Client reconnaît avoir pris connaissance avant la commande. Le Prestataire peut modifier ses CGV ; les CGV applicables sont celles en vigueur à la date de la commande.</p>
 <p><span class='cn-cl'>2.3</span> Les échanges par courrier électronique ont valeur d'écrit ; les registres informatisés du Prestataire font foi entre les parties, sauf preuve contraire.</p>
 </section>
@@ -223,8 +223,87 @@ HTML;
 <p><span class='cn-cl'>19.1</span> Toute réclamation peut être adressée par écrit à <a href='mailto:contact@connectis-solutions.fr'>contact@connectis-solutions.fr</a> ; les parties s'efforcent de résoudre à l'amiable tout différend avant toute action judiciaire.</p>
 <p><span class='cn-cl'>19.2</span> Les CGV et les contrats conclus sont soumis au <strong>droit français</strong>. À défaut d'accord amiable, <strong>le tribunal de commerce de Nancy est seul compétent</strong>, y compris en cas de référé, d'appel en garantie, de pluralité de défendeurs ou de procédure d'urgence, nonobstant toute clause contraire des conditions du Client.</p>
 </section>
+
+<section id='contrats-service' class='cn-legal-sec'>
+<h2>Annexe — Conditions générales des contrats de service</h2>
+<p>Les présentes conditions complètent les conditions générales de vente (les « CGV ») de <strong>CONNECTIS SOLUTIONS</strong> (le « Prestataire ») pour les <strong>contrats de service de maintenance et d'impression</strong> et les <strong>contrats de service et d'abonnement</strong> (le « Contrat »). En cas de contradiction, s'appliquent dans l'ordre : le recto du Contrat, les présentes conditions, puis les CGV.</p>
+</section>
+
+<section id='srv-1' class='cn-legal-sec'>
+<h2>Article 1 — Objet</h2>
+<p><span class='cn-cl'>1.1</span> Le Prestataire assure, les jours ouvrés et pendant ses heures de travail, par ses techniciens ou ses sous-traitants, l'entretien, le dépannage et l'assistance des matériels désignés au recto, ou fournit les services récurrents (internet, téléphonie, vidéosurveillance, supervision, forfaits et services associés) qui y sont listés.</p>
+<p><span class='cn-cl'>1.2</span> Le Client reconnaît avoir défini ses besoins avec le Prestataire, avoir été informé des caractéristiques et des conditions d'utilisation des matériels et services, et que ceux-ci correspondent à son activité professionnelle.</p>
+</section>
+
+<section id='srv-2' class='cn-legal-sec'>
+<h2>Article 2 — Souscription et date d'effet</h2>
+<p><span class='cn-cl'>2.1</span> Le Contrat est formé à la réception du recto daté et signé par le Client et accepté par le Prestataire. Une proposition non retournée signée dans les quinze (15) jours de sa date n'engage plus le Prestataire. Le Client fournit sur demande les documents établissant l'identité de la société et la qualité du signataire et, en cas de prélèvement, un relevé d'identité bancaire.</p>
+<p><span class='cn-cl'>2.2</span> Le Contrat prend effet à la date indiquée au recto ou, à défaut, à la livraison ou à la mise en service, attestée par le bon d'intervention ou de livraison. Les éventuels frais de mise en service ou de gestion sont indiqués au recto.</p>
+</section>
+
+<section id='srv-3' class='cn-legal-sec'>
+<h2>Article 3 — Engagements du Prestataire</h2>
+<p><span class='cn-cl'>3.1</span> Le Prestataire met en œuvre les moyens nécessaires au bon fonctionnement des matériels et services (obligation de moyens) et intervient dans le <strong>délai indiqué au recto</strong>, à compter de la réception de la demande complète du Client par les canaux convenus.</p>
+<p><span class='cn-cl'>3.2</span> La maintenance comprend, selon le recto, la main-d'œuvre, le déplacement et les pièces nécessaires à la remise en état de fonctionnement, ainsi qu'une maintenance préventive effectuée selon les préconisations du constructeur. Les consommables (toner, encre) ne sont fournis que si le recto le mentionne ; le papier, les supports spéciaux et les agrafes ne sont jamais compris.</p>
+</section>
+
+<section id='srv-4' class='cn-legal-sec'>
+<h2>Article 4 — Engagements du Client</h2>
+<p><span class='cn-cl'>4.1</span> Le Client fournit des informations exactes et complètes, utilise les matériels et services conformément à leur notice, assure une alimentation électrique et un accès au réseau adaptés, donne au personnel du Prestataire un accès libre aux matériels, et désigne un interlocuteur chargé de leur bonne utilisation.</p>
+<p><span class='cn-cl'>4.2</span> Il s'interdit toute intervention d'un tiers non agréé par le Prestataire sur les matériels objets du Contrat, l'emploi de pièces ou de consommables non conformes ou non fournis par le Prestataire lorsque le recto les prévoit, et le déplacement des matériels hors des locaux désignés sans accord écrit préalable. Il effectue ses sauvegardes (CGV, art. 6.4).</p>
+</section>
+
+<section id='srv-5' class='cn-legal-sec'>
+<h2>Article 5 — Interventions non comprises</h2>
+<p><span class='cn-cl'>5.1</span> Ne sont pas comprises dans le Contrat, et sont facturées en sus au tarif en vigueur, les interventions rendues nécessaires par : la foudre, une surtension, un dégât des eaux, un sinistre ou tout événement extérieur aux matériels ; un choc, une chute, un produit d'entretien inadapté ou un usage non conforme à la notice ; l'intervention d'un tiers non agréé ; des pièces ou consommables non conformes ; une alimentation électrique ou un réseau inadaptés ; la connexion de matériels incompatibles ; les logiciels, systèmes et données du Client ; une modification de l'environnement du Client non validée par le Prestataire ; ou une période de suspension du Contrat pour impayé.</p>
+</section>
+
+<section id='srv-6' class='cn-legal-sec'>
+<h2>Article 6 — Impression : compteurs et facturation</h2>
+<p><span class='cn-cl'>6.1</span> Les copies et impressions sont comptées par le compteur de l'appareil. Le Client communique le relevé de ses compteurs à chaque fin de période de facturation, dans les cinq (5) jours de la demande, ou autorise le relevé à distance lorsque l'appareil le permet.</p>
+<p><span class='cn-cl'>6.2</span> À défaut de relevé, le Prestataire facture sur une base estimée (dernier relevé connu ou moyenne des consommations précédentes), régularisée au relevé suivant. Un déplacement rendu nécessaire par l'absence de relevé est facturé au tarif en vigueur.</p>
+<p><span class='cn-cl'>6.3</span> Le forfait mensuel inclut le volume de copies indiqué au recto, facturé d'avance ; le volume non utilisé n'est ni reporté ni remboursé. Les copies au-delà du forfait sont facturées au coût copie du recto. Le coût copie est établi sur un taux de couverture moyen de 5 % (norme constructeur) ; une consommation de toner supérieure donne lieu à une facturation complémentaire.</p>
+<p><span class='cn-cl'>6.4</span> Les éléments dont la mise à disposition est prévue au recto restent la propriété du Prestataire et lui sont restitués en fin de Contrat, faute de quoi ils sont facturés à leur valeur au tarif en vigueur.</p>
+</section>
+
+<section id='srv-7' class='cn-legal-sec'>
+<h2>Article 7 — Services récurrents, sécurité et usage</h2>
+<p><span class='cn-cl'>7.1</span> Le Client utilise les services de manière licite et raisonnable. Sont notamment interdits la revente, l'utilisation comme passerelle de réacheminement, l'envoi en masse de messages ou d'appels automatisés et toute utilisation frauduleuse ; le Prestataire peut suspendre le service en cas d'usage abusif, après information du Client. Les numéros à tarification spéciale et les appels hors forfait sont facturés selon les conditions du recto.</p>
+<p><span class='cn-cl'>7.2</span> <strong>Sécurité des accès.</strong> Dès la mise en service, le Client remplace les mots de passe initiaux (messagerie vocale, administration du standard, accès à distance, caméras et enregistreurs), les garde secrets et les renouvelle régulièrement. Le Prestataire n'est pas responsable des fraudes, piratages et consommations anormales qui résultent du non-respect de ces mesures, sauf faute du Prestataire.</p>
+<p><span class='cn-cl'>7.3</span> Lorsque le Client est titulaire de lignes ou d'abonnements auprès d'un opérateur, il donne mandat au Prestataire pour effectuer en son nom les démarches nécessaires (portabilité, résiliation, activation). Les services fournis par des opérateurs ou éditeurs tiers sont soumis à leurs conditions propres (CGV, art. 10.2).</p>
+</section>
+
+<section id='srv-8' class='cn-legal-sec'>
+<h2>Article 8 — Prix, facturation et paiement</h2>
+<p><span class='cn-cl'>8.1</span> Les redevances sont facturées d'avance selon la périodicité du recto ; les première et dernière périodes sont facturées au prorata. Sauf autre délai au recto, elles sont payables par prélèvement SEPA à la date indiquée (le Client signe alors le mandat joint) ou par virement à trente (30) jours. Tout retard de paiement est régi par l'article 5.2 des CGV.</p>
+<p><span class='cn-cl'>8.2</span> Les prix peuvent être révisés à chaque date anniversaire pour tenir compte de l'évolution des coûts de fournitures, de main-d'œuvre et des tarifs des opérateurs et éditeurs tiers, par notification écrite au moins trente (30) jours avant. Si la hausse excède dix pour cent (10 %), le Client peut résilier sans indemnité dans le mois qui suit la notification.</p>
+</section>
+
+<section id='srv-9' class='cn-legal-sec'>
+<h2>Article 9 — Durée et renouvellement</h2>
+<p><span class='cn-cl'>9.1</span> Le Contrat est conclu pour la durée initiale indiquée au recto. Lorsque l'équipement est financé par un contrat de location, cette durée peut être alignée sur celle du financement, ce que le recto précise.</p>
+<p><span class='cn-cl'>9.2</span> À l'issue de la durée initiale, le Contrat se renouvelle par périodes successives d'un (1) an, sauf résiliation notifiée par lettre recommandée avec accusé de réception au moins trois (3) mois avant l'échéance (CGV, art. 10.1).</p>
+</section>
+
+<section id='srv-10' class='cn-legal-sec'>
+<h2>Article 10 — Suspension, résiliation et indemnité</h2>
+<p><span class='cn-cl'>10.1</span> En cas de manquement du Client, notamment de non-paiement, restant sans effet quinze (15) jours après mise en demeure, le Prestataire peut suspendre ses prestations, puis résilier le Contrat dans les conditions de l'article 17 des CGV. Chaque partie peut aussi résilier de plein droit en cas de force majeure de plus de soixante (60) jours (CGV, art. 16).</p>
+<p><span class='cn-cl'>10.2</span> Si le Client met fin au Contrat avant son terme, hors manquement du Prestataire, il verse une <strong>indemnité de résiliation anticipée</strong> égale au pourcentage, indiqué au recto, des redevances restant à courir jusqu'au terme ; à défaut d'indication, à <strong>la moitié</strong> de ces redevances. Elle indemnise l'immobilisation de moyens et de stocks par le Prestataire ; le juge conserve son pouvoir de modération.</p>
+</section>
+
+<section id='srv-11' class='cn-legal-sec'>
+<h2>Article 11 — Fin du Contrat et restitution</h2>
+<p><span class='cn-cl'>11.1</span> À la fin du Contrat, le Client laisse le Prestataire relever les compteurs, reprendre les éléments restituables et les consommables non utilisés qui lui appartiennent. Les matériels financés par un tiers sont restitués selon le contrat de financement ; les frais de dépose et de transport, indiqués au devis, sont à la charge du Client. Le Client fait effacer les données mémorisées avant toute reprise (CGV, art. 13.4).</p>
+</section>
+
+<section id='srv-12' class='cn-legal-sec'>
+<h2>Article 12 — Responsabilité, cession et litiges</h2>
+<p><span class='cn-cl'>12.1</span> La responsabilité du Prestataire est régie par l'article 15 des CGV (limitation au montant payé) ; il ne répond ni des interruptions des réseaux d'énergie ou de télécommunications, ni du fonctionnement des logiciels de tiers. Pour les données personnelles, l'article 13.3 des CGV s'applique.</p>
+<p><span class='cn-cl'>12.2</span> Le Client ne peut céder le Contrat sans accord écrit. Le Prestataire peut le céder à une entreprise offrant les mêmes garanties, après information écrite du Client. À défaut d'accord amiable, le tribunal de commerce de Nancy est seul compétent (CGV, art. 19.2).</p>
+</section>
+
 <p>Pour aller plus loin : les règles applicables aux relations entre professionnels (délais de paiement, facturation) sont présentées sur <a href='https://www.service-public.fr/professionnels-entreprises' target='_blank' rel='noopener'>Service-public.fr</a>. Vous pouvez aussi consulter <a href='/nos-solutions/'>nos solutions</a>, nos <a href='/mentions-legales/'>mentions légales</a> ou <a href='/devis-contact/'>demander un devis</a>.</p>
-<p class='cn-updated'>Version en vigueur au 25 septembre 2026.</p>
+<p class='cn-updated'>Version en vigueur au 3 novembre 2026 (annexe « contrats de service » ajoutée ; articles 1 à 19 inchangés depuis le 25 septembre 2026).</p>
 </div>
 HTML;
 

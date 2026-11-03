@@ -78,6 +78,9 @@ Les commits assistés par un agent portent `Co-Authored-By: Claude Sonnet 5 <nor
   car Chrome refuse les fenêtres de moins de 500 px).
 - **Alpha sur JPEG : le bruit de compression** du fond devient visible dès qu'on rend le fond transparent
   (petits carrés sombres autour de l'icône) → seuil d'alpha élevé + filtre médian.
+- **Dépôt public : ne jamais faire `git add docs`, `git add .` ni `git add -A`.** Le 2026-11-03, `git add docs` a embarqué `docs/pptx/` (présentation
+  interne du client : finances, partenaires, effectifs) dans un commit poussé. Corrigé par réécriture de l'historique (avant tout autre commit) ; le dossier est
+  maintenant dans `.gitignore`. **Toujours ajouter les fichiers par chemin exact** et relire `git status` / `git diff --cached --stat` avant le commit.
 
 ## 6. Accès
 
@@ -151,7 +154,7 @@ Leçons :
 
 | Fichier | Version courante | Particularités |
 |---|---|---|
-| `connectis-pages.php` | 22 | Composants (cartes, étapes, FAQ, confiance), filtre typographique (espace insécable, « Wi-Fi »), unique H1 |
+| `connectis-pages.php` | 23 | Composants (cartes, étapes, FAQ, confiance), filtre typographique (espace insécable, « Wi-Fi »), unique H1 |
 | `connectis-legal.php` | — | CGV (19 art.), mentions légales (9 sections), confidentialité ; constante `CONNECTIS_CAPITAL_SOCIAL` |
 | `connectis-seo.php` | 8 | Métadonnées SEOPress, mots-clés cibles, plan du site, image de partage, JSON-LD, redirection des doublons `-2` |
 | `connectis-admin.php` | 1 | Réglages, durcissement, tableau de bord, connexion, **purge du cache à chaque déploiement**, barre d'administration réservée aux administrateurs |

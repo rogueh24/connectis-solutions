@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// v22 : page « À propos » intitulée « Notre expertise » (demande du client) ; numéro de téléphone 01 87 66 84 69.
-const CONNECTIS_PAGES_VERSION = 22;
+// v23 : annexe « Conditions générales des contrats de service » dans la page CGV ; page « À propos » intitulée « Notre expertise » ; numéro de téléphone.
+const CONNECTIS_PAGES_VERSION = 23;
 
 /* ───────────────────────── Icônes (shortcode [cn_icon name="wifi"]) ───────────────────────── */
 
