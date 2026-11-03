@@ -7,7 +7,8 @@ abonnements, services & maintenance.
 | | |
 |---|---|
 | **Domaine** | [connectis-solutions.fr](https://connectis-solutions.fr) — **en ligne depuis le 2026-09-25** |
-| **Contact** | contact@connectis-solutions.fr |
+| **Statut** | **Site terminé et en ligne (v1.3.0, 2026-11-03).** Il n'évolue plus que **sur demande du client** (voir « État d'avancement ») |
+| **Contact** | contact@connectis-solutions.fr · 01 87 66 84 69 |
 | **Hébergement** | Planet Hoster |
 | **Stack** | WordPress · thème [Blocksy](https://www.blocksy.wordpress.com) + Companion · MySQL |
 | **Cahier des charges** | [docs/Connectis_Solutions_Cahier_des_Charges_et_Projet_Commercial.pdf](docs/Connectis_Solutions_Cahier_des_Charges_et_Projet_Commercial.pdf) |
@@ -61,15 +62,18 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 
 ### Ce qui est livré (v1.3.0)
 
-- **Site public** en thème sombre aux couleurs du logo : 15 pages (accueil, Solutions + 7 offres dont Bureautique, Connectis, Devis & Contact,
-  Recrutement, mentions légales, CGV, confidentialité), en-tête avec logo horizontal, menu hamburger centré (logo cliquable,
-  bouton « Devis & Contact »), pied de page réduit aux liens légaux, animations douces avec filet de sécurité.
+- **Site public** en thème sombre aux couleurs du logo : 15 pages (accueil, Solutions + 7 offres dont Bureautique & impression, Notre expertise,
+  Devis & Contact, Recrutement, mentions légales, CGV, confidentialité), en-tête avec logo horizontal, menu hamburger centré (logo cliquable,
+  bouton « Devis & Contact »), pied de page avec coordonnées (adresse, téléphone, e-mail) et liens légaux, bouton « Appeler » sur mobile,
+  animations douces avec filet de sécurité.
 - **Message** : informatique, vidéosurveillance, téléphonie et bureautique pour les professionnels ; devis détaillé et solutions de
   financement en location auprès de partenaires financiers (sans citer de loueur).
 - **Formulaires** (devis en 3 étapes, contact, candidature avec CV), consentement RGPD, anti-spam WP Armour,
   e-mails via SureMail — **devis testé en conditions réelles**.
-- **Confiance** : identité légale vérifiable (SIREN, SIRET, RCS, capital, TVA) et lien vers l'Annuaire des Entreprises ;
-  CGV (19 articles) et mentions légales (9 sections) rédigées.
+- **Mentions et conditions** : identité légale dans les mentions légales (SIREN, SIRET, RCS, capital, TVA, téléphone), pas ailleurs (le site ne se justifie pas) ;
+  CGV (19 articles) + **annexe « Conditions générales des contrats de service »** (12 articles) et mentions légales (9 sections) rédigées.
+- **Documents commerciaux** (`docs/documents-commerciaux/`) : bon de commande, CGV, contrats de service et mandat SEPA en PDF remplissable, générés
+  depuis le texte du site (une seule source).
 - **Référencement** : titre, description et mot-clé cible par page, plan du site (`/sitemaps.xml`), image de partage,
   données structurées (entreprise locale, fil d'Ariane, services), un seul H1 par page. Google Search Console connectée
   via Site Kit.
@@ -99,5 +103,7 @@ Historique daté des changements : **[CHANGELOG.md](CHANGELOG.md)**.
 - [ ] Vraies photos de l'équipe et des chantiers
 - [x] Numéro de téléphone **01 87 66 84 69** affiché (Devis & Contact, mentions légales, données structurées, pied de page ; bouton « Appeler » sur mobile, rien dans l'en-tête sur ordinateur : choix voulu, l'en-tête reste minimaliste)
 - [x] Offre **Bureautique & impression** ajoutée le 2026-11-02 : page, 4e carte d'accueil, menu, formulaire de devis, SEO, CGV ; bloc « entreprise vérifiable » retiré
-- [ ] Bureautique : vraie photo d'un appareil ; objet social et code APE à faire confirmer par le comptable ; CGV art. 10.4 / 13.4 à faire relire
-- [ ] Peaufinages au fil des demandes
+- [x] Conditions des contrats de service en ligne (annexe CGV) et PDF des documents commerciaux (2026-11-03), accord du client reçu
+- [x] **Site terminé : v1.3.0 (2026-11-03).** Plus de chantier en cours ; **évolutions uniquement à la demande du client**
+- [ ] Ouverts, non bloquants : vraie photo d'un appareil de bureautique ; objet social et code APE à faire confirmer par le comptable ; relecture par un
+      avocat de l'annexe « contrats de service » (art. 8.2, 9, 10.2) et des CGV art. 10.4 / 13.4 ; identifiant créancier SEPA (ICS) à renseigner sur le mandat

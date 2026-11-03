@@ -5,6 +5,10 @@ format AAAA-MM-JJ.
 
 ## [Non publié]
 
+Site terminé. Rien n'est prévu : les prochaines modifications se font **uniquement à la demande du client**.
+
+## [1.3.0] - 2026-11-03 — Bureautique & impression, coordonnées, documents commerciaux
+
 ### Ajouté (2026-11-03) — conditions des contrats de service en ligne
 - Page `/cgv/` : **annexe « Conditions générales des contrats de service »** (12 articles : maintenance, compteurs et copies, services récurrents,
   sécurité des accès, révision des prix, durée, résiliation anticipée, restitution), lien « Contrats de service » dans le sommaire. L'article 2.1 des CGV
