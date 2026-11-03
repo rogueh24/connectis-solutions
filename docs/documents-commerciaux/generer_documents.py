@@ -18,6 +18,8 @@ from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Flowable, Frame, Paragraph
 
+import conditions_service
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 LOGO = os.path.join(ROOT, "wp-content", "mu-plugins", "connectis-maintenance", "logo-full.png")
@@ -284,8 +286,8 @@ class Doc:
         assert y + 82 + 70 < H - 40, "bon de commande trop long"
         self.pied()
 
-    def cgv(self, intro, arts, version):
-        """Place les CGV sur deux colonnes ; renvoie le nombre de pages."""
+    def colonnes(self, titres_page, intro, arts, version):
+        """Place un texte juridique sur deux colonnes ; renvoie le nombre de pages."""
         st_t = ParagraphStyle("t", fontName="Helvetica-Bold", fontSize=7.3, leading=8.8, textColor=BLUE, spaceBefore=4, spaceAfter=1.5)
         st_p = ParagraphStyle("p", fontName="Helvetica", fontSize=6.5, leading=7.9, textColor=NAVY, alignment=TA_JUSTIFY, spaceAfter=1.5)
         histoire = [Paragraph(intro, st_p)]
@@ -298,7 +300,7 @@ class Doc:
         while histoire:
             self.nouvelle_page()
             nb += 1
-            self.entete(["CONDITIONS GÉNÉRALES", "DE VENTE"], date=False)
+            self.entete(titres_page, date=False)
             for i in range(2):
                 f = Frame(M + i * (larg + 14), 48, larg, H - 48 - 100, leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
                 f.addFromList(histoire, self.c)
@@ -313,15 +315,26 @@ class Doc:
 
     def declarations_contrat(self, top, objet, extra):
         reste = self.paragraphes(top, 72, [
-            "<b>Le client déclare expressément :</b> 1/ avoir pris connaissance des conditions générales de vente de CONNECTIS SOLUTIONS (art. 5, 9 et 10 notamment) "
-            "et du présent contrat, et en accepter le contenu, qui lui est opposable ; 2/ que %s sont destinés aux besoins de son activité professionnelle et en rapport "
-            "direct avec celle-ci ; 3/ avoir été informé des capacités et des conditions d'utilisation et que ceux-ci correspondent à ses besoins tels qu'il les a exprimés." % objet,
+            "<b>Le client déclare expressément :</b> 1/ avoir pris connaissance des conditions générales de vente et des conditions générales des contrats de service "
+            "de CONNECTIS SOLUTIONS (%s) ainsi que du présent contrat, et en accepter le contenu, qui lui est opposable ; 2/ que %s sont destinés aux besoins de son activité professionnelle et en rapport "
+            "direct avec celle-ci ; 3/ avoir été informé des capacités et des conditions d'utilisation et que ceux-ci correspondent à ses besoins tels qu'il les a exprimés." % (self.renvoi, objet),
             extra,
-            "<b>Durée et résiliation :</b> à défaut de stipulation contraire, le contrat se renouvelle tacitement par périodes successives d'égale durée, sauf résiliation "
-            "notifiée avec un préavis de trois (3) mois avant l'échéance (art. 10.1 des CGV). "
+            "<b>Durée et résiliation :</b> durée initiale au recto, puis renouvellement par périodes d'un an sauf résiliation notifiée trois (3) mois avant l'échéance "
+            "(art. 9 des conditions des contrats de service) ; indemnité de résiliation anticipée selon l'art. 10.2. "
             "<b>Attribution de compétence :</b> à défaut d'accord amiable, le tribunal de commerce de Nancy est seul compétent (art. 19.2 des CGV).",
         ], taille=6.0)
         assert not reste, "déclarations tronquées"
+
+    def engagements(self, top):
+        x = M
+        for lib, tip, suffixe, w in [("Délai d'intervention :", "Délai d'intervention", "h ouvrées", 26),
+                                     ("Indemnité de résiliation anticipée :", "Indemnité de résiliation anticipée", "% des redevances restant à courir", 26)]:
+            self.texte(x, top + 2.5, lib, 7, "Helvetica", NAVY)
+            x += stringWidth(lib, "Helvetica", 7) + 4
+            self.champ(x, top, w, 12, tip)
+            x += w + 3
+            self.texte(x, top + 2.5, suffixe, 7, "Helvetica", NAVY)
+            x += stringWidth(suffixe, "Helvetica", 7) + 22
 
     def facturation(self, top):
         self.texte(M, top, "FACTURATION", 8, "Helvetica-Bold", BLUE)
@@ -329,7 +342,7 @@ class Doc:
         x = self.case_texte(M + 92, top + 14, "Mensuelle")
         self.case_texte(x, top + 14, "Trimestrielle")
         self.texte(M, top + 32, "Mode de paiement :", 7, "Helvetica", NAVY)
-        x = self.case_texte(M + 92, top + 31, "Prélèvement SEPA (mandat page suivante)")
+        x = self.case_texte(M + 92, top + 31, "Prélèvement SEPA (mandat en dernière page)")
         x = self.case_texte(x, top + 31, "Virement")
         x = self.case_texte(x, top + 31, "Mandat administratif")
         x = self.case_texte(x, top + 31, "Autre :")
@@ -348,7 +361,7 @@ class Doc:
         for nom, l in cols:
             self.texte(x + 6, top + 6, nom, 6.8, "Helvetica-Bold", white)
             x += l
-        for i in range(4):
+        for i in range(3):
             y0 = top + 20 + i * 17
             self.champ(M + 2, y0 + 3, 100, 13, "Modèle %d" % (i + 1))
             xx = self.case_texte(M + 108, y0 + 5, "Neuf", "Neuf (ligne %d)" % (i + 1))
@@ -359,11 +372,11 @@ class Doc:
         self.texte(M + 449, top + 56, "(cf. bon de livraison)", 6.4, "Helvetica", GREY, centre=True)
         c.setStrokeColor(BLUE)
         c.setLineWidth(0.9)
-        c.rect(M, H - top - 20 - 4 * 17, CW, 20 + 4 * 17, stroke=1, fill=0)
-        c.line(M + 235, H - top - 20, M + 235, H - top - 20 - 4 * 17)
-        c.line(M + 375, H - top - 20, M + 375, H - top - 20 - 4 * 17)
+        c.rect(M, H - top - 20 - 3 * 17, CW, 20 + 3 * 17, stroke=1, fill=0)
+        c.line(M + 235, H - top - 20, M + 235, H - top - 20 - 3 * 17)
+        c.line(M + 375, H - top - 20, M + 375, H - top - 20 - 3 * 17)
         # tarifs
-        t2 = top + 20 + 4 * 17 + 10
+        t2 = top + 20 + 3 * 17 + 10
         for bloc, nom in enumerate(["MODÈLE A4", "MODÈLE A4 / A3"]):
             y0 = t2 + bloc * 64
             c.setFillColor(NAVY)
@@ -393,14 +406,15 @@ class Doc:
         self.texte(x + 14, y + 22, "Durée initiale du contrat :", 7, "Helvetica", NAVY)
         self.champ(x + 100, y + 20, 40, 12, "Durée initiale en mois")
         self.texte(x + 143, y + 22, "mois", 7, "Helvetica", NAVY)
-        self.facturation(y + 40)
-        self.texte(M, y + 88, "CONDITIONS PARTICULIÈRES", 8, "Helvetica-Bold", BLUE)
-        self.champ(M, y + 99, CW, 30, "Conditions particulières", multiligne=True, taille=7.5)
-        self.declarations_contrat(y + 134, "le matériel et les prestations objets du présent contrat",
-                                  "<b>Maintenance :</b> périmètre, horaires, délais d'intervention et exclusions selon l'article 9 des CGV ; les copies et impressions sont relevées "
-                                  "au compteur de l'appareil (art. 10.4). <b>Réserve de propriété :</b> art. 11 des CGV.")
-        self.signatures(y + 208)
-        assert y + 208 + 64 < H - 40, "contrat maintenance trop long : %d" % (y + 208 + 64)
+        self.engagements(y + 38)
+        self.facturation(y + 58)
+        self.texte(M, y + 106, "CONDITIONS PARTICULIÈRES", 8, "Helvetica-Bold", BLUE)
+        self.champ(M, y + 117, CW, 24, "Conditions particulières", multiligne=True, taille=7.5)
+        self.declarations_contrat(y + 146, "le matériel et les prestations objets du présent contrat",
+                                  "<b>Maintenance :</b> périmètre, exclusions et obligations des parties selon les articles 3 à 5 ; copies relevées au compteur de l'appareil et "
+                                  "facturées selon l'article 6. <b>Réserve de propriété :</b> art. 11 des CGV.")
+        self.signatures(y + 220)
+        assert y + 220 + 64 < H - 40, "contrat maintenance trop long : %d" % (y + 220 + 64)
         self.pied()
 
     def contrat_abonnement(self):
@@ -435,14 +449,16 @@ class Doc:
         self.texte(M, y + 20, "Frais de mise en service :", 7, "Helvetica-Bold", NAVY)
         self.champ(M + 100, y + 17, 80, 13, "Frais de mise en service HT")
         self.texte(M + 183, y + 20, "€ H.T.", 7, "Helvetica", NAVY)
-        self.facturation(y + 38)
-        self.texte(M, y + 86, "CONDITIONS PARTICULIÈRES", 8, "Helvetica-Bold", BLUE)
-        self.champ(M, y + 97, CW, 38, "Conditions particulières", multiligne=True, taille=7.5)
-        self.declarations_contrat(y + 142, "les services souscrits",
-                                  "<b>Services de tiers :</b> les services fournis par des opérateurs, éditeurs ou hébergeurs tiers sont en outre soumis à leurs propres conditions, "
-                                  "que le client reconnaît avoir consultées et acceptées (art. 10.2 des CGV). <b>Prix :</b> révision et répercussion des hausses de tiers selon l'art. 4.3 des CGV.")
-        self.signatures(y + 216)
-        assert y + 216 + 64 < H - 40, "contrat abonnement trop long : %d" % (y + 216 + 64)
+        self.engagements(y + 38)
+        self.facturation(y + 58)
+        self.texte(M, y + 106, "CONDITIONS PARTICULIÈRES", 8, "Helvetica-Bold", BLUE)
+        self.champ(M, y + 117, CW, 38, "Conditions particulières", multiligne=True, taille=7.5)
+        self.declarations_contrat(y + 162, "les services souscrits",
+                                  "<b>Services de tiers et sécurité :</b> les services d'opérateurs, éditeurs ou hébergeurs tiers sont soumis à leurs propres conditions ; le client "
+                                  "s'engage à remplacer les mots de passe initiaux et à les renouveler (art. 7 des conditions des contrats de service). "
+                                  "<b>Prix :</b> révision selon l'art. 8.2.")
+        self.signatures(y + 236)
+        assert y + 236 + 64 < H - 40, "contrat abonnement trop long : %d" % (y + 236 + 64)
         self.pied()
 
     def mandat_sepa(self):
@@ -495,21 +511,30 @@ class Doc:
 
 def construire(cible):
     intro, arts, version = cgv_blocs()
-    # le nombre de pages des CGV sert au renvoi du bon de commande : on le mesure d'abord sur un document jetable
+    t_cgv = ["CONDITIONS GÉNÉRALES", "DE VENTE"]
+    t_srv = ["CONDITIONS GÉNÉRALES DES", "CONTRATS DE SERVICE"]
+    v_srv = "Version en vigueur au 3 novembre 2026."
+    # le nombre de pages de chaque texte sert aux renvois : on le mesure d'abord sur un document jetable
     sonde = Doc(io.BytesIO())
     sonde.page = 1
-    n = sonde.cgv(intro, arts, version)
-    renvoi = "page 2" if n == 1 else "pages 2 à %d" % (n + 1)
+    n1 = sonde.colonnes(t_cgv, intro, arts, version)
+    n2 = sonde.colonnes(t_srv, conditions_service.INTRO, conditions_service.ARTICLES, v_srv)
+
+    def libelle(debut, n):
+        return "page %d" % debut if n == 1 else "pages %d à %d" % (debut, debut + n - 1)
+
     d = Doc(cible)
-    d.bon_de_commande(renvoi)
-    d.cgv(intro, arts, version)
+    d.renvoi = "CGV : %s ; contrats de service : %s" % (libelle(2, n1), libelle(2 + n1, n2))
+    d.bon_de_commande(libelle(2, n1))
+    d.colonnes(t_cgv, intro, arts, version)
+    d.colonnes(t_srv, conditions_service.INTRO, conditions_service.ARTICLES, v_srv)
     d.contrat_maintenance()
     d.contrat_abonnement()
     d.mandat_sepa()
     d.fin()
-    return renvoi
+    return "CGV %s, services %s, total %d pages" % (libelle(2, n1), libelle(2 + n1, n2), d.page)
 
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    print("écrit :", OUT, "| CGV :", construire(OUT))
+    print("écrit :", OUT, "|", construire(OUT))

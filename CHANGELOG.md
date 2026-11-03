@@ -7,11 +7,17 @@ format AAAA-MM-JJ.
 
 ### Ajouté (2026-11-03) — bon de commande et contrats (PDF)
 - `docs/documents-commerciaux/` : **bon de commande, CGV, contrat de service maintenance impression, contrat de service & abonnement, mandat de
-  prélèvement SEPA** (6 pages, design Connectis, champs remplissables à l'écran). Même structure que le document d'un autre fournisseur, mais **texte
+  prélèvement SEPA** (7 pages, design Connectis, champs remplissables à l'écran). Même structure que le document d'un autre fournisseur, mais **texte
   Connectis** : les CGV sont lues directement dans `connectis-legal.php` (une seule source, celle du site, tribunal de commerce de Nancy).
   Régénérer : `python docs/documents-commerciaux/generer_documents.py`. Documentation seulement : aucun déploiement.
+- **Conditions générales des contrats de service** (page 4, `conditions_service.py`, rédigées avec nos mots, équilibrées) : maintenance, relevé de compteurs
+  et facturation des copies, services récurrents, sécurité des accès et fraude téléphonique, révision des prix, durée, résiliation anticipée, restitution.
+  Les chiffres commerciaux sont des **champs du recto** (délai d'intervention, indemnité de résiliation anticipée en %, durée) et non du texte imposé.
+  **Valeurs par défaut à confirmer** : indemnité de résiliation = la moitié des redevances restantes si le recto est vide (art. 10.2) ; hausse de prix > 10 %
+  = résiliation sans indemnité (art. 8.2) ; relevé de compteurs sous 5 jours (art. 6.1) ; durée alignée sur le financement si location (art. 9.1).
+  Les CGV du site (articles 9 et 10, courts) ne sont pas modifiées : aucun déploiement.
 - **À compléter avant usage** : l'**identifiant créancier SEPA (ICS)** de Connectis (champ vide sur le mandat) ; relecture par un avocat des renvois
-  aux articles de CGV (3, 9, 10, 11, 12.4, 19.2) et des durées / résiliation des contrats de service.
+  aux articles de CGV (3, 9, 10, 11, 12.4, 19.2), des conditions des contrats de service (en particulier 8.2, 9, 10.2) et de la durée / résiliation.
 
 ### Modifié (2026-11-02) — page « Notre expertise »
 - Page `/a-propos/` intitulée **« Notre expertise »** à la place de « Connectis » (demande du client) : titre de la page, entrée du menu
